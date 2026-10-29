@@ -1,0 +1,9 @@
+# Install AFTER the base environment (pip install -e ".[dev]").
+# Match torch's CUDA wheel to the cluster driver; do not pin blindly.
+torch>=2.3
+transformers>=4.44
+sentence-transformers>=3.0
+accelerate>=0.33
+
+# vLLM pins its own torch build; install it last and re-check the torch version.
+# vllm>=0.6.0

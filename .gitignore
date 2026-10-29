@@ -1,0 +1,39 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.tmp/
+.ruff_cache/
+.mypy_cache/
+
+# --- Generated artifacts (never commit) ---
+data/raw/
+data/processed/
+cache/
+third_party/
+logs/
+*.jsonl
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.npz
+
+# --- Secrets ---
+.env
+*.key
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

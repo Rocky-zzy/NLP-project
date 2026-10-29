@@ -1,0 +1,31 @@
+# Single source of truth for shared settings.
+# Experiment configs override individual keys; do not fork this file per person.
+
+seed: 0
+
+model:
+  name: TODO              # lock in W1; one model for the whole project
+  max_new_tokens: 32
+  temperature: 1.0
+  top_p: 0.9
+
+conu:
+  dataset: triviaqa
+  num_questions: 500
+  num_samples: 20
+  correctness_threshold: 0.6
+  alphas: [0.1, 0.2]
+  calibration_ratios: [0.2, 0.3, 0.5]
+  drop_unanswerable: false   # false keeps the filtering audit in every run
+
+factuality:
+  dataset: factscore
+  alphas: [0.1, 0.2]
+  calibration_ratios: [0.2, 0.3, 0.5]
+  judge: TODO
+
+extension:
+  num_prompts: 50            # cap from the project brief
+  num_responses: 5           # cap from the project brief
+  similarity_model: TODO
+  alphas: [0.1, 0.2]
