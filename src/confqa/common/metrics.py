@@ -8,7 +8,7 @@ cluster login node without the GPU environment.
 from __future__ import annotations
 
 import random
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def _mean(xs: Sequence[float]) -> float:
