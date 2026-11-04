@@ -166,13 +166,37 @@ prompt hash in the result payload, and report human agreement on a sample.
 ```json
 {
   "threshold": 0.55,
-  "n_responses": 50,
+  "confidence_method": "frequency",
+  "required_correct_fraction": 1.0,
+  "n_calibration": 10,
+  "n_responses": 25,
+  "n_claims": 201,
+  "n_retained_claims": 103,
+  "calibration_ids": ["factscore-0002", "…"],
+  "calibration_ids_sha256": "…",
+  "test_ids_sha256": "…",
+  "scored_file": "third_party/…/factscore_subclaims_with_scores.jsonl",
+  "scored_sha256": "…",
+  "split_file": "data/splits/factscore.json",
+  "split_sha256": "…",
+  "upstream_commit": "6022b4c90c6580f524f123b0cb97bbb61ab621d1",
   "all_correct_nonempty": 0.91,
+  "all_correct_nonempty_ci": [0.82, 1.0],
   "retention": 0.72,
+  "retention_ci": [0.61, 0.81],
   "empty_rate": 0.03,
+  "empty_rate_ci": [0.0, 0.08],
   "judge_agreement": 0.88
 }
 ```
+
+- `calibration_ids` is the exact fixed subset used to fit `threshold`.
+- `scored_file` and `scored_sha256` pin the cached claim-score input.
+- The three `*_ci` fields are percentile bootstrap intervals over test
+  responses. Retention is recomputed from total retained and total original
+  claims inside each bootstrap resample.
+- `required_correct_fraction` is the paper's `a`; the course's all-retained-
+  claims-correct metric uses `a = 1.0`.
 
 ---
 

@@ -1,0 +1,15 @@
+seed: 0
+
+factuality:
+  dataset: factscore
+  scored_path: third_party/conformal-factual-lm/out/factscore_subclaims_with_scores.jsonl
+  split_path: data/splits/factscore.json
+  score_field: frequency-score
+  confidence_method: frequency
+  required_correct_fraction: 1.0
+  alphas: [0.1, 0.2]
+  baseline_calib_frac: 0.5
+  bootstrap_samples: 10000
+  bootstrap_level: 0.95
+  model: upstream-cached:gpt-4
+  upstream_commit: 6022b4c90c6580f524f123b0cb97bbb61ab621d1
