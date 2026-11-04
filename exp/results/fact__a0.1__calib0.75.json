@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "pipeline": "fact",
+  "created_at": "2026-11-04T12:13:47+00:00",
+  "elapsed_s": null,
+  "git": {
+    "commit": "2108cabd6b6202924bae20a39e651ce1fbdc6c50",
+    "dirty": false
+  },
+  "config": {
+    "path": "configs/factuality.yaml",
+    "sha256": "f3fc4ce745e85419c21a2ead8bb72ce846c35b4def41eaddbbb498ef4548abc6"
+  },
+  "model": "upstream-cached:gpt-4",
+  "seed": 0,
+  "alpha": 0.1,
+  "calib_frac": 0.75,
+  "reportable": true,
+  "threshold": 5.00007004480618,
+  "confidence_method": "frequency",
+  "required_correct_fraction": 1.0,
+  "n_calibration": 15,
+  "calibration_ids": [
+    "factscore-0002",
+    "factscore-0008",
+    "factscore-0013",
+    "factscore-0016",
+    "factscore-0018",
+    "factscore-0019",
+    "factscore-0022",
+    "factscore-0025",
+    "factscore-0026",
+    "factscore-0029",
+    "factscore-0032",
+    "factscore-0037",
+    "factscore-0044",
+    "factscore-0045",
+    "factscore-0048"
+  ],
+  "calibration_ids_sha256": "a8cc4db410ff88eac5a4024a6a0516da2752f04e4201373dd8c6f0f1dcc1a59e",
+  "test_ids_sha256": "ddecc312d8738d948f488239b91998efea265eae2f65e021c617f781f5c19542",
+  "scored_file": "third_party/conformal-factual-lm/out/factscore_subclaims_with_scores.jsonl",
+  "scored_sha256": "f296834632fbba05eab2d4e4d52056a898f6041ab0090c1239a1303e2f7bd385",
+  "split_file": "data/splits/factscore.json",
+  "split_sha256": "9419c4d444b5b5f9c73cd86cf95d43381b5a82b938afc7ffc26e7012aa3364ab",
+  "upstream_commit": "6022b4c90c6580f524f123b0cb97bbb61ab621d1",
+  "n_responses": 25,
+  "n_claims": 210,
+  "n_retained_claims": 34,
+  "all_correct_nonempty": 0.6,
+  "all_correct_nonempty_ci": [
+    0.4,
+    0.8
+  ],
+  "retention": 0.1619047619047619,
+  "retention_ci": [
+    0.10377358490566038,
+    0.22272727272727272
+  ],
+  "empty_rate": 0.36,
+  "empty_rate_ci": [
+    0.16,
+    0.56
+  ]
+}

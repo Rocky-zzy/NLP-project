@@ -159,9 +159,9 @@ B 负责复现 conformal factuality，并在固定的 FActScore 子集上完成�
 
 ### Checkpoint: Baseline and grid
 
-- [ ] 6 个结果 JSON 都是 `reportable=true`
-- [ ] 每个数字能指回一个 result 文件和 split hash
-- [ ] 小样本阈值、CI 和趋势异常已记录
+- [x] 6 个结果 JSON 都是 `reportable=true`
+- [x] 每个数字能指回一个 result 文件和 split hash
+- [x] 小样本阈值、CI 和趋势异常已记录
 
 ### Phase 3: Failure analysis and report
 
