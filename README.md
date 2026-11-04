@@ -36,7 +36,7 @@ figures/        plots produced from exp/results
 src/confqa/     package: common/, conu/, factuality/, extension/
 tests/          unit tests for metrics and io
 scripts/        cluster setup and slurm submission
-docs/           artifact schemas, reproduction checklist
+docs/           artifact schemas, reproduction checklist, work plan, per-person manuals
 ```
 
 ## What git tracks
