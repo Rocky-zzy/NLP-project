@@ -18,6 +18,9 @@
 3. 17 / 25 条 test 回答非空且所有 retained claims 都正确。
 4. 1 / 25 条回答在过滤后仍保留 `N` claim，说明频率分数并不保证一定选对。
 5. 高频 claim 更容易保留、低频 claim 更容易删除，但分数高低不绝对等于标注真假。
+6. 当前阈值具有很高的“保留精度”，但正确 claim 的“召回率”很低：45 条 retained
+   claims 中 44 条正确（97.8% precision），但 135 条 `Y/S` 中只保留了 44 条
+   （32.6% recall）。
 
 25 条 test 的互斥结果统计：
 
@@ -66,9 +69,170 @@
 - Claim 拆分或 merge 解析失败率无法得知，因为上游没有保存失败日志；该比例必须
   写成 `unknown`，不能写成 0。
 
-## 4. 成功案例
+## 4. Claim 层面的定量分析
 
-### 4.1 Sharad Kumar：删除错误奖牌，保留完整人物主线
+### 4.1 不同标注的保留情况
+
+| 标注 | 总数 | 保留 | 删除 | 保留率 |
+|---|---:|---:|---:|---:|
+| `Y` Factual | 111 | 40 | 71 | 36.0% |
+| `S` Subjective | 24 | 4 | 20 | 16.7% |
+| `N` False | 52 | 1 | 51 | 1.9% |
+| `U` Unverifiable | 23 | 0 | 23 | 0% |
+
+这说明 frequency 与正确性有明确关系：`Y/S` 的保留率明显高于 `N/U`。但过滤非常
+保守，把大多数正确 claim 也删掉了。
+
+- 在全部 210 条 claim 中，原始 `Y/S` 比例是 64.3%。
+- 过滤后 45 条 retained claims 中有 44 条正确，precision 约 97.8%。
+- 但 135 条正确 claim 只召回 44 条，recall 约 32.6%。
+- 75 条 `N/U` 中删除了 74 条，排除率约 98.7%。
+
+因此当前方法的主要问题不是“保留了太多错误内容”，而是“为了避免错误，牺牲了
+大量正确但支持不稳定的信息”。
+
+### 4.2 不同 frequency score 的结果
+
+| Frequency score | 正确 claim 总数 | 正确且保留 | 正确但删除 | `N/U` 总数 | `N/U` 保留 |
+|---|---:|---:|---:|---:|---:|
+| 5 | 66 | 44 | 22 | 2 | 1 |
+| 4 | 12 | 0 | 12 | 1 | 0 |
+| 1–3 | 45 | 0 | 45 | 29 | 0 |
+| 0 | 2 | 0 | 2 | 19 | 0 |
+| 负数 | 10 | 0 | 10 | 24 | 0 |
+
+这里有两个关键原因。
+
+第一，当前阈值是 `4.999642...`，略高于整数 `5`。因此并不是所有 5/5 支持的 claim
+都会被保留：只有 `5 + noise >= threshold` 的 claim 才能通过。66 条正确且 score=5
+的 claim 中有 22 条因为 `noise` 为负而删除。例如：
+
+- “She is best known for ... *Hello, Dolly!*” 是 `Y`、score=5，但
+  `noise=-0.000489`，最终分数是 `4.999511 < threshold`。
+- “Doug Sheehan is an American actor.” 也是 `Y`、score=5，但
+  `noise=-0.000715`，最终被删除。
+
+`noise` 原本只用于打破并列；但当阈值落在 5 附近时，它实际上变成了决定 claim 去留
+的随机边界。这是当前离散 5 分制、小 calibration set 和严格 90% 目标共同造成的。
+
+第二，score=4 表示有且仅有 4/5 个替代回答支持该 claim，或等价的总分少 1。
+当前阈值会删除全部 score=4 的 claim，其中包括 12 条正确 claim。例如
+“Lees Knowles wrote several books on military matters”只有约 4 分，因此被删除。
+
+### 4.3 哪些文本特征更容易出现在被误删的 claim 中
+
+以下是多标签表面统计；一条 claim 可以同时属于多个类别，因此比例不能相加。
+
+| 特征 | 正确且保留 | 正确但删除 | 观察 |
+|---|---:|---:|---|
+| 含具体数字 | 25.0% | 25.3% | 没有明显差异 |
+| 含作品、事件或奖项 | 15.9% | 23.1% | 删除组更高 |
+| 用 and / 分号连接多个事实 | 11.4% | 17.6% | 删除组更高 |
+| 以 he/she/his/her/this/another 开头 | 6.8% | 18.7% | 删除组明显更高 |
+| `S` 主观标注 | 9.1% | 22.0% | 主观 claim 更容易删除 |
+| 含 could/might/unclear 等含糊词 | 11.4% | 8.8% | 差异不稳定 |
+
+这些是描述性结果，不是因果证明，但和 frequency scoring 的工作方式一致。
+
+### 4.4 容易误删正确 claim 的类型
+
+#### 类型 A：替代回答没有提到的长尾细节
+
+具体奖牌、书籍、电影、职位、出生地和年份不一定在每次自由生成中出现。没有被提到
+通常记为 0，而不是 -1，因此 claim 会得到低分。
+
+例如：
+
+- “Sharad Kumar won a gold medal at the 2014 Asian Para Games.” 是 `Y`，但只有
+  score=1。
+- “Zamfir Ralli-Arbore was a historian.” 是 `Y`，但只有 score=3。
+
+这不是因为 claim 错误，而是因为 5 个替代回答选择了不同细节。
+
+#### 类型 B：一个 claim 包含多个事实
+
+复合 claim 中只要一个成分缺失，LLM judge 就可能把它整体判为不支持。例如：
+
+- “Sleepy John Estes was born in 1899 and died in 1977.” 同时包含出生和死亡，
+  score=4，最终删除。
+- “Sharad Kumar was born on March 1, 1992, in Bihar, India.” 同时包含日期和地点；
+  虽然本例保留，但结构上更容易受到部分支持的影响。
+
+上游虽然要求拆分“small, independent claims”，但实际缓存仍存在
+`and`、地点与日期组合、职务与年份组合等多事实单元。
+
+#### 类型 C：依赖代词或前文指代
+
+“He was born in Yokohama”或“She participated in the World Championships”必须依赖
+人物指代。替代回答如果换了句式或没有相同上下文，judge 可能判为 unrelated。
+
+删除组中 18.7% 的 claim 以 he/she/his/her/this/another 开头，而保留组只有 6.8%。
+例如：
+
+- “He was born in Yokohama, Japan.” 是 `Y`，但 score=-2。
+- “She has participated in the World Championships.” 是 `Y`，但 score=3。
+
+#### 类型 D：实体有歧义
+
+`John Estes`、`Carlos Alfonso` 这类 prompt 有多个同名人物。原回答会并列多个候选，
+替代回答可能聚焦不同的人，claim judge 也会因指代对象变化而给低分。
+
+例如“Another notable person ... Carlos Alfonso (baseball)”是 `Y`，但 score=-2。
+被删掉的不是一句错误事实，而是一个对消歧很重要的候选实体。
+
+#### 类型 E：主观或评价性陈述
+
+`S` claim 常使用“known for”“successful”“charming”等表达。不同生成不会以相同方式
+重复这些评价，judge 也更容易把它视为不直接支持。
+
+- 24 条 `S` 中只有 4 条被保留，而 111 条 `Y` 中保留了 40 条。
+- “Song Kang is known for his charming personality”是 `S`，score=1。
+- “Díaz is known for her speed, agility, and determination”是 `S`，score=3。
+
+#### 类型 F：关于回答过程本身的元陈述
+
+“The assistant couldn't find information”“the name might be misspelled”在原始对话
+语境中可能为真，但它们不是稳定的世界知识。新的独立采样没有必要重复这些内容，
+因此 cross-sample support 很低。
+
+- “The assistant couldn't find information on ...”是 `Y`，但 score=-1。
+- “The name ... might have been misspelled”是 `N`，score=3。
+
+这类 claim 说明：一个 statement 相对原回答上下文为真，不保证它在独立采样中可验证。
+
+### 4.5 为什么错误 claim 也可能通过
+
+Frequency score 衡量的是“5 个回答是否一致支持”，而不是“外部知识是否真实”。
+因此它无法自动解决三种情况：
+
+1. 5 个采样回答来自同一模型，会重复同样的错误。
+2. LLM judge 可能接受一个与替代回答措辞相容、但事实错误或不可验证的 claim。
+3. 人工标注与模型判断可能使用不同的判定标准或知识来源。
+
+本 test set 只有一个 `N` claim 通过：
+
+- “Rennie Fritchie is a British public servant.” score=5，最终保留，但缓存标注为 `N`。
+
+这句话从常识看并不明显错误，因此它也可能是 annotation/source disagreement，而不能
+只归因于模型重复幻觉。当前只有一个 false positive，样本不足以估计真实错误通过率。
+但机制上，只要错误 claim 在多次回答中稳定出现，它就可能获得与正确 claim 相同的高分。
+
+另有 Vincenzo Tusa 的职务 claim 是 `U`、score=5，最终仅因负 noise 被删除。这说明
+高 frequency 代表“重复或可被 judge 匹配”，不等于已经通过外部事实核验。
+
+### 4.6 对方法设计的启示
+
+- 应分别报告 precision 和 recall，不能只看 “retained claims 全对”的比例。
+- 应区分“替代回答明确反对”与“替代回答没有提到”两种零支持来源。
+- Claim 应尽量拆成单一实体、单一谓词和单一数值，减少复合陈述。
+- 对有歧义的人物名，应先消歧，再比较 claim。
+- 5 次采样太粗，且同一模型的多次生成并不独立；增加采样数可降低离散阈值效应，
+  但不能消除共同幻觉。
+- 语义等价判断需要处理同义改写、指代和部分支持，而不是只做整句支持判断。
+
+## 5. 成功案例
+
+### 5.1 Sharad Kumar：删除错误奖牌，保留完整人物主线
 
 - ID：`factscore-0027`
 - Prompt：`Sharad Kumar (athlete)`
@@ -116,7 +280,7 @@
 - 保留的身份、出生、参赛经历和 Tokyo medal 足以构成基本人物介绍。
 - 代价是几条正确的次要信息也被删除，包括 polio 经历和 2014 gold medal。
 
-### 4.2 Zamfir Arbore：过滤错误，但信息保留接近临界
+### 5.2 Zamfir Arbore：过滤错误，但信息保留接近临界
 
 - ID：`factscore-0049`
 - Prompt：`Zamfir Arbore`
@@ -157,9 +321,9 @@
 - 这说明 filtering 的目标不是最大化信息量；它宁愿牺牲正确但低频的事实，也要
   降低保留错误内容的风险。
 
-## 5. 事实正确但内容不足的案例
+## 6. 事实正确但内容不足的案例
 
-### 5.1 Rin Iwanaga：只剩“可能是普通人”
+### 6.1 Rin Iwanaga：只剩“可能是普通人”
 
 - ID：`factscore-0034`
 - Prompt：`Rin Iwanaga`
@@ -191,7 +355,7 @@
   usefulness 几乎为零。
 - 这是“正确但没有回答”的最直接例子。
 
-### 5.2 Carlos Alfonso：只留下一个同名候选
+### 6.2 Carlos Alfonso：只留下一个同名候选
 
 - ID：`factscore-0046`
 - Prompt：`Carlos Alfonso`
@@ -228,9 +392,9 @@
 - 但它失去了第二种候选解释，用户无法理解为什么需要补充信息。
 - 这说明 claim 层面的 correctness 无法保证消歧信息完整。
 
-## 6. 完全删空的案例
+## 7. 完全删空的案例
 
-### 6.1 Luis Guillermo Rivera
+### 7.1 Luis Guillermo Rivera
 
 - ID：`factscore-0020`
 - 原始 claims：10
@@ -268,7 +432,7 @@
   完全没有正确内容。
 - 对用户而言，正确行为应是明确 abstain，而不是把空集合当成完成回答。
 
-### 6.2 Roxana Díaz
+### 7.2 Roxana Díaz
 
 - ID：`factscore-0023`
 - 原始 claims：8
@@ -302,9 +466,9 @@
 - 该案例说明频率分数可能把“正确但换个说法较少出现”的 claim 判低。
 - 最终 empty 提高了 factuality 的表观安全性，却牺牲了全部可用信息。
 
-## 7. 过滤失败的案例
+## 8. 过滤失败的案例
 
-### 7.1 Rennie Fritchie：高分错误 claim 被保留
+### 8.1 Rennie Fritchie：高分错误 claim 被保留
 
 - ID：`factscore-0047`
 - 原始 claims：8
@@ -344,26 +508,26 @@
 - 该案例说明基于 frequency 的 filtering 不能保证所有 retained claims 正确，
   尤其是错误内容被多个采样回答重复时。
 
-## 8. 对 Part 2 问题的回答
+## 9. 对 Part 2 问题的回答
 
-### 8.1 为什么长回答需要 claim filtering
+### 9.1 为什么长回答需要 claim filtering
 
 长回答通常同时包含正确和错误 statement。Sharad Kumar 和 Zamfir Arbore 案例显示，
 过滤可以删除错误奖牌、党派或身份 claim，使保留内容更可靠。
 
-### 8.2 过滤是否会让回答正确但不完整
+### 9.2 过滤是否会让回答正确但不完整
 
 会。最直接的是 7 条空响应。Rin Iwanaga 和 Carlos Alfonso 还展示了非空但不完整的
 情况：留下内容正确，却不足以提供人物简介或解释名字歧义。
 
-### 8.3 如果重复采样一直得不到正确答案
+### 9.3 如果重复采样一直得不到正确答案
 
 本实验使用仓库缓存好的 frequency score，没有重新执行 5 次采样，因此不能在当前
 数据上精确复现“五次都没有正确回答”的过程。Luis Guillermo Rivera 和 Roxana Díaz
 的低分正确 claim 说明，即使存在正确内容，只要其跨回答支持不足，也可能被全部删除。
 更直接的采样失败分析需要后续保存原采样输出。
 
-### 8.4 Coverage 与 factuality 为什么不能互换
+### 9.4 Coverage 与 factuality 为什么不能互换
 
 - ConU 的 coverage 问：答案集合是否至少包含一个正确答案。
 - Factuality 问：一段回答中保留下来的 claims 是否都正确。
@@ -371,7 +535,7 @@
 一个空回答没有错误 claim，但也没有回答；一个包含 3 个答案的集合可能覆盖正确答案，
 同时也包含错误答案。两者衡量的是不同对象，不能直接比较数值大小。
 
-## 9. 审阅时建议重点判断
+## 10. 审阅时建议重点判断
 
 1. Zamfir Arbore 是否算“成功”还是“信息不足”，是本报告最依赖人工判断的边界案例。
 2. Rin Iwanaga 和 Carlos Alfonso 的“不足以回答”判断是否合理。
@@ -379,7 +543,7 @@
    case，而不是单纯 filtering failure。
 4. 当前只分析 claim 保留情况，没有重新生成流畅 answer。报告中应明确这一点。
 
-## 10. 复现
+## 11. 复现
 
 ```bash
 PYTHONPATH=src .venv/bin/python -m confqa.factuality.cli cases \

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import re
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -159,6 +161,102 @@ def summarize_case_views(cases: list[CaseView]) -> dict:
     }
 
 
+def summarize_claim_outcomes(cases: list[CaseView]) -> dict[str, dict]:
+    """Count retained and dropped claims for each annotation label."""
+    counts = Counter((claim.annotation, claim.retained) for case in cases for claim in case.claims)
+    summary = {}
+    for annotation in ("Y", "S", "N", "U"):
+        retained = counts[(annotation, True)]
+        dropped = counts[(annotation, False)]
+        total = retained + dropped
+        summary[annotation] = {
+            "total": total,
+            "retained": retained,
+            "dropped": dropped,
+            "retention": retained / total if total else float("nan"),
+        }
+    return summary
+
+
+def summarize_score_bands(cases: list[CaseView]) -> dict[str, dict]:
+    """Summarize correctness and retention across frequency-score bands."""
+    band_order = ("5", "4", "1_to_3", "0", "negative")
+    counts = Counter()
+    for case in cases:
+        for claim in case.claims:
+            if claim.score == 5:
+                band = "5"
+            elif claim.score == 4:
+                band = "4"
+            elif 1 <= claim.score <= 3:
+                band = "1_to_3"
+            elif claim.score == 0:
+                band = "0"
+            else:
+                band = "negative"
+            group = "correct" if claim.correct else "unaccepted"
+            counts[(band, group, claim.retained)] += 1
+
+    summary = {}
+    for band in band_order:
+        summary[band] = {}
+        for group in ("correct", "unaccepted"):
+            retained = counts[(band, group, True)]
+            dropped = counts[(band, group, False)]
+            summary[band][group] = {
+                "total": retained + dropped,
+                "retained": retained,
+                "dropped": dropped,
+            }
+    return summary
+
+
+CLAIM_FEATURES = {
+    "specific_numeric": re.compile(r"\b\d").search,
+    "work_event_or_award": re.compile(
+        r"""['"]|\b(?:film|series|show|book|band|award|medal|championship|games)\b""",
+        re.IGNORECASE,
+    ).search,
+    "compound_statement": re.compile(r"\band\b|;", re.IGNORECASE).search,
+    "reference_dependent": re.compile(
+        r"^(?:he|she|his|her|they|their|this|these|it|another)\b",
+        re.IGNORECASE,
+    ).search,
+    "hedged_or_ambiguous": re.compile(
+        r"\b(?:could|might|possible|possibly|unclear|maybe|without more|hard to|"
+        r"difficult to|isn't widely|no information)\b",
+        re.IGNORECASE,
+    ).search,
+}
+
+
+def summarize_correct_claim_features(cases: list[CaseView]) -> dict[str, dict]:
+    """Compare surface patterns in correctly retained vs deleted claims."""
+    groups = {"correct_retained": [], "correct_dropped": []}
+    for case in cases:
+        for claim in case.claims:
+            if not claim.correct:
+                continue
+            key = "correct_retained" if claim.retained else "correct_dropped"
+            groups[key].append(claim)
+
+    summary = {}
+    for group, claims in groups.items():
+        summary[group] = {"total": len(claims)}
+        for feature, pattern in CLAIM_FEATURES.items():
+            count = sum(bool(pattern(claim.text)) for claim in claims)
+            summary[group][feature] = {
+                "count": count,
+                "rate": count / len(claims) if claims else float("nan"),
+            }
+        subjective = sum(claim.annotation == "S" for claim in claims)
+        summary[group]["subjective_annotation"] = {
+            "count": subjective,
+            "rate": subjective / len(claims) if claims else float("nan"),
+        }
+    return summary
+
+
 def _wrapped_rows(path: str | Path) -> list[dict]:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     rows = data.get("data") if isinstance(data, dict) else data
@@ -224,6 +322,9 @@ def analyze_primary_cases(config_path: str | Path = DEFAULT_CONFIG) -> dict:
         "n_calibration": len(calibration),
         "threshold": threshold,
         "summary": summarize_case_views(cases),
+        "claim_outcomes": summarize_claim_outcomes(cases),
+        "score_bands": summarize_score_bands(cases),
+        "claim_features": summarize_correct_claim_features(cases),
         "cache_audit": audit_cached_exclusions(responses, merged_path),
         "cases": cases,
     }

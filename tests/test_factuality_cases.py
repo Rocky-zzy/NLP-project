@@ -8,6 +8,9 @@ from confqa.factuality.cases import (
     build_case_views,
     load_survey_outputs,
     summarize_case_views,
+    summarize_claim_outcomes,
+    summarize_correct_claim_features,
+    summarize_score_bands,
 )
 from confqa.factuality.data import DEFAULT_SCORED_PATH, FactClaim, FactResponse
 
@@ -70,6 +73,20 @@ def test_case_summary_has_mutually_exclusive_counts():
         "n_retained_unverifiable": 0,
         "n_original_available": 1,
     }
+    assert summarize_claim_outcomes(cases)["Y"] == {
+        "total": 3,
+        "retained": 1,
+        "dropped": 2,
+        "retention": 1 / 3,
+    }
+    assert summarize_score_bands(cases)["5"]["correct"] == {
+        "total": 1,
+        "retained": 1,
+        "dropped": 0,
+    }
+    features = summarize_correct_claim_features(cases)
+    assert features["correct_retained"]["total"] == 1
+    assert features["correct_dropped"]["total"] == 2
 
 
 def test_real_case_counts_and_cache_audit():
@@ -93,6 +110,36 @@ def test_real_case_counts_and_cache_audit():
     assert analysis["cache_audit"]["n_empty_accepted_claims"] == 4
     assert analysis["cache_audit"]["n_abstain_outputs"] == 4
     assert analysis["cache_audit"]["n_parse_failures"] is None
+    assert analysis["claim_outcomes"]["Y"]["retained"] == 40
+    assert analysis["claim_outcomes"]["S"]["retained"] == 4
+    assert analysis["claim_outcomes"]["N"]["retained"] == 1
+    assert analysis["claim_outcomes"]["U"]["retained"] == 0
+    assert analysis["score_bands"]["5"]["correct"] == {
+        "total": 66,
+        "retained": 44,
+        "dropped": 22,
+    }
+    assert analysis["score_bands"]["4"]["correct"] == {
+        "total": 12,
+        "retained": 0,
+        "dropped": 12,
+    }
+    assert analysis["score_bands"]["1_to_3"]["correct"] == {
+        "total": 45,
+        "retained": 0,
+        "dropped": 45,
+    }
+    features = analysis["claim_features"]
+    assert features["correct_retained"]["total"] == 44
+    assert features["correct_dropped"]["total"] == 91
+    assert features["correct_retained"]["work_event_or_award"]["count"] == 7
+    assert features["correct_dropped"]["work_event_or_award"]["count"] == 21
+    assert features["correct_retained"]["compound_statement"]["count"] == 5
+    assert features["correct_dropped"]["compound_statement"]["count"] == 16
+    assert features["correct_retained"]["reference_dependent"]["count"] == 3
+    assert features["correct_dropped"]["reference_dependent"]["count"] == 17
+    assert features["correct_retained"]["subjective_annotation"]["count"] == 4
+    assert features["correct_dropped"]["subjective_annotation"]["count"] == 20
 
 
 def test_cache_audit_rejects_malformed_merged_file(tmp_path):

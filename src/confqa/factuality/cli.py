@@ -40,6 +40,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             f"threshold={analysis['threshold']:.12f}"
         )
         print(f"summary={analysis['summary']}")
+        print(f"claim_outcomes={analysis['claim_outcomes']}")
+        print(f"score_bands={analysis['score_bands']}")
+        print(f"claim_features={analysis['claim_features']}")
         print(f"cache_audit={analysis['cache_audit']}")
         return 0
     elif args.command == "report":
