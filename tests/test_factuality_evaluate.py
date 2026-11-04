@@ -7,6 +7,7 @@ from confqa.factuality.evaluate import (
     calculate_baseline,
     evaluate_threshold,
     filtered_records,
+    run_baseline,
     select_calibration,
 )
 
@@ -64,7 +65,7 @@ def test_threshold_filtering_and_metrics():
     assert metrics["empty_rate"] == 0.0
 
 
-def test_synthetic_baseline_writes_two_results(tmp_path):
+def test_synthetic_baseline_writes_two_reportable_results(tmp_path, monkeypatch):
     records = []
     for index in range(30):
         records.append(
@@ -129,6 +130,19 @@ def test_synthetic_baseline_writes_two_results(tmp_path):
     assert all(run["payload"]["n_calibration"] == 10 for run in runs)
     assert all(run["payload"]["n_responses"] == 10 for run in runs)
     assert all(len(run["payload"]["all_correct_nonempty_ci"]) == 2 for run in runs)
+
+    import confqa.common.results as results
+
+    output_dir = tmp_path / "results"
+    monkeypatch.setattr(
+        results,
+        "git_dirty",
+        lambda: any(output_dir.glob("*.json")),
+    )
+    paths = run_baseline(config_path, results_dir=output_dir)
+
+    assert len(paths) == 2
+    assert all(json.loads(path.read_text(encoding="utf-8"))["reportable"] for path in paths)
 
 
 def test_real_baseline_computes():

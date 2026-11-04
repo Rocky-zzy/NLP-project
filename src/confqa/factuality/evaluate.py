@@ -227,7 +227,7 @@ def run_baseline(
     document = load_config(path)
     settings = document["factuality"]
     target_dir = Path(results_dir) if results_dir is not None else RESULTS
-    outputs = []
+    staged_outputs = []
 
     # Generate all files outside the checkout so writing the first result does
     # not make the second result's provenance dirty. Copy them only after both
@@ -244,6 +244,10 @@ def run_baseline(
                 seed=int(document["seed"]),
                 results_dir=staging,
             )
+            staged_outputs.append(staged)
+
+        outputs = []
+        for staged in staged_outputs:
             target = target_dir / staged.name
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(staged, target)
