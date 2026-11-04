@@ -66,7 +66,7 @@
 
 **做什么**：同一份缓存，跑 1−α = 0.9 和 0.8 两档，固定 confidence method 为 `frequency`（团队决定）。
 
-**输出**：`exp/results/fact__a0.1__calib0.5.json` 等，字段照 `docs/schemas.md`
+**输出**：`exp/results/fact__a0.1__calib0.5.json` 等，字段照 `docs/reference/schemas.md`
 
 **完成标准**：随着 α 变小（要求更严），retention 应该下降、all-correct 应该上升；如果不是，先怀疑自己算错了。
 

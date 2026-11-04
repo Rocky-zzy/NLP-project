@@ -1,1 +1,1 @@
-"""extension pipeline (see docs/schemas.md for the artifacts it reads and writes)."""
+"""Part 4 extension (owner: C). See docs/manuals/C-infra-extension.md."""

@@ -3,6 +3,7 @@
 Conformal Prediction for Reliable Short- and Long-Form Question Answering.
 
 Course project for **AIAA 4051 Natural Language Processing (Fall 2026)**.
+Three people, one inference model, a 20 GPU-hour budget, submit by 2026-11-30.
 
 Large language models answer confidently and sometimes wrongly. This project
 reproduces two conformal methods — **ConU** (prediction sets that cover a
@@ -10,6 +11,18 @@ correct answer) and **conformal factuality** (claim filtering that keeps the
 retained content correct) — compares what "reliable" means in each, and tests
 one small extension that carries ConU's cross-sample agreement signal into
 claim scoring.
+
+## Who does what
+
+| Person | Scope | Code | Manual |
+|---|---|---|---|
+| **A** | ConU, short-form QA | `src/confqa/conu/` | [docs/manuals/A-conu.md](docs/manuals/A-conu.md) |
+| **B** | Conformal factuality, long-form | `src/confqa/factuality/` | [docs/manuals/B-factuality.md](docs/manuals/B-factuality.md) |
+| **C** | Infrastructure + Part 4 extension | `src/confqa/common/`, `src/confqa/extension/` | [docs/manuals/C-infra-extension.md](docs/manuals/C-infra-extension.md) |
+
+- Week plan and handoff points: [docs/planning/workplan.png](docs/planning/workplan.png)
+- Decisions, risks, deliverables: [PLAN.md](PLAN.md)
+- Artifact formats: [docs/reference/schemas.md](docs/reference/schemas.md)
 
 ## Quickstart
 
@@ -28,49 +41,46 @@ sample from a model.
 ## Layout
 
 ```
-configs/        experiment configs (yaml), one file per study
-data/           raw data and fixed splits (raw data is git-ignored)
-cache/          generated artifacts: samples, similarities, claims (git-ignored)
-exp/results/    one json per run -- tracked, this is the source of every number
-figures/        plots produced from exp/results
-src/confqa/     package: common/, conu/, factuality/, extension/
-tests/          unit tests for metrics and io
-scripts/        cluster setup and slurm submission
-docs/           artifact schemas, reproduction checklist, work plan, per-person manuals
+configs/            experiment configs; base.yaml is the single source of shared settings
+data/               raw data (ignored) + fixed splits (tracked)
+cache/              generated artifacts: samples, similarities, claims (ignored)
+exp/results/        one json per run -- tracked, the source of every number
+figures/            plots produced from exp/results
+src/confqa/         common/ (shared), conu/ (A), factuality/ (B), extension/ (C)
+tests/              unit tests for metrics and io
+scripts/            cluster setup and slurm template
+docs/manuals/       one lab manual per person
+docs/planning/      work plan (Gantt + handoffs) and its generator
+docs/reference/     artifact schemas, pinned upstream commits, repro checklist
+third_party/        upstream repos at pinned commits (ignored)
 ```
 
 ## What git tracks
 
 | Path | Tracked | Why |
 |---|---|---|
-| `src/`, `tests/`, `configs/`, `docs/` | yes | the project itself |
+| `src/`, `tests/`, `configs/`, `docs/`, `scripts/` | yes | the project itself |
 | `exp/results/*.json` | yes | small, and every report number traces to one |
 | `figures/*.pdf`, `figures/*.png` | yes | report assets |
 | `data/splits/*.json` | yes | fixed calibration/test splits must be reproducible |
-| `data/raw/`, `cache/` | no | too large, regenerable |
-| `third_party/` | no | cloned upstream repos, pinned by commit hash |
+| `data/raw/`, `cache/`, `third_party/` | no | large, regenerable, or cloned |
 
-## Working together
+## Working rules
 
-Three people work in parallel, so keep the interfaces boring:
-
+- **One owner per directory.** `common/` belongs to C; do not edit another
+  person's package without saying so.
 - Branch per person: `feat/conu-*`, `feat/fact-*`, `feat/ext-*`.
-  PR into `main`, one reviewer.
-- CI must be green before merge (ruff + pytest, ~30 s).
-- Any new artifact format goes into `docs/schemas.md` **before** code is written.
-- Every experiment writes exactly one json to `exp/results/`, named
-  `<pipeline>__a<alpha>__calib<ratio>.json`; the report cites that filename.
-- Do not commit anything from `cache/` or `data/raw/`.
-
-## Compute
-
-Target: one NVIDIA A6000-class GPU, at most 20 GPU-hours planned. School
-cluster; `scripts/setup_env.sh` and `scripts/slurm/template.sbatch` carry
-the TODOs to fill in for this cluster.
+  PR into `main`, CI green first.
+- Any new artifact format goes into `docs/reference/schemas.md` **before** code.
+- One json per experiment in `exp/results/`, named
+  `<pipeline>__a<alpha>__calib<ratio>.json`.
+- Never commit `cache/`, `data/raw/`, `third_party/`.
 
 ## Status
 
-- [x] repository scaffold, CI, metrics, tests, schemas
-- [ ] W1: both upstream repos running end to end
-- [ ] W1: ConU filtering audit
-- [ ] W2-W4: experiments (see `PLAN.md`)
+- [x] scaffold, CI, metrics, tests, schemas
+- [x] upstream repos cloned and pinned ([docs/reference/upstream_versions.md](docs/reference/upstream_versions.md))
+- [x] per-person manuals and work plan
+- [ ] ConU pipeline running end to end (A)
+- [ ] factuality baseline from cached scores (B)
+- [ ] extension (C)

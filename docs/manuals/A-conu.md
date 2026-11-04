@@ -48,7 +48,7 @@
 **做什么**
 1. 在集群装 torch / transformers / vllm，下载模型权重
 2. 起 vLLM 的 OpenAI-compatible server，确认一次对话能返回
-3. 把命令写进 `scripts/setup_env.sh`，把启动命令写进 `docs/upstream_versions.md` 的末尾
+3. 把命令写进 `scripts/setup_env.sh`，把启动命令写进 `docs/reference/upstream_versions.md` 的末尾
 
 **团队决定**：模型用 Qwen2.5-14B-Instruct（和上游脚本默认一致、不需要 HF 授权、A6000 放得下）。
 
@@ -80,7 +80,7 @@ python conformal_uncertainty_criterion.py --dataset triviaqa ... \
 2. `--correctness-threshold` 脚本默认 0.7，README 示例是 0.6。**永远显式传**，并把值写进结果 json。
 3. `conformal_uncertainty_criterion.py:77` 硬编码 `CUDA_VISIBLE_DEVICES = '0,1'`，必须改成单卡。
 
-**输出**：`cache/conu_generations.jsonl`、`cache/conu_scores.jsonl`（格式见 `docs/schemas.md`）
+**输出**：`cache/conu_generations.jsonl`、`cache/conu_scores.jsonl`（格式见 `docs/reference/schemas.md`）
 
 **完成标准**：脚本能打印 Applied / Calibration / Test 三个数量，并给出 coverage 与 average set size。
 
@@ -138,7 +138,7 @@ python conformal_uncertainty_criterion.py --dataset triviaqa ... \
 
 **做什么**：6 个配置 = 2 个 α × 3 个校准比例，全部复用 A3 的采样结果。
 
-**输出**：`exp/results/conu__a0.1__calib0.5.json` 这样的 6 个文件，字段照 `docs/schemas.md`；一张 coverage–set size 图。
+**输出**：`exp/results/conu__a0.1__calib0.5.json` 这样的 6 个文件，字段照 `docs/reference/schemas.md`；一张 coverage–set size 图。
 
 **完成标准**：每个点带 bootstrap 置信区间（用 `src/confqa/common/metrics.py` 里的函数）。
 

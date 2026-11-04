@@ -13,7 +13,7 @@ Tick these in order. Nothing here needs a model until step 3.
 
 - [x] `git clone https://github.com/Zhiyuan-GG/Conformal-Uncertainty-Criterion third_party/ConU`
 - [x] `git clone https://github.com/tatsu-lab/conformal-factual-lm third_party/conformal-factual-lm`
-- [x] Record both commit hashes: see `docs/upstream_versions.md`
+- [x] Record both commit hashes: see `docs/reference/upstream_versions.md`
 - [ ] Confirm the ConU model paths can be overridden by CLI flags instead of source edits
 
 ## 2. Data
@@ -21,7 +21,7 @@ Tick these in order. Nothing here needs a model until step 3.
 - [ ] Download TriviaQA `rc.nocontext` into `data/raw/triviaqa/`
 - [x] Confirmed: `data/factscore_annotations.jsonl` ships **50** annotated prompts,
       and `out/factscore_subclaims_with_scores.jsonl` ships precomputed scores, so
-      no annotation pass is needed (see `docs/upstream_versions.md`)
+      no annotation pass is needed (see `docs/reference/upstream_versions.md`)
 - [ ] Build `data/splits/`: fixed calibration / dev / test ids, commit, record sha256
 
 ## 3. ConU end to end (50 questions)

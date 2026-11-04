@@ -1,1 +1,1 @@
-"""conu pipeline (see docs/schemas.md for the artifacts it reads and writes)."""
+"""ConU short-form pipeline (owner: A). See docs/manuals/A-conu.md."""

@@ -184,5 +184,5 @@ axt.text(
     va="bottom",
 )
 
-fig.savefig("docs/workplan.png", bbox_inches="tight", facecolor="white")
-print("saved docs/workplan.png")
+fig.savefig("docs/planning/workplan.png", bbox_inches="tight", facecolor="white")
+print("saved docs/planning/workplan.png")
