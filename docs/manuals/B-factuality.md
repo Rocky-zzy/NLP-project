@@ -56,7 +56,7 @@
 
 **完成标准**：三个指标都能算出来，且和自己手算的一两个样本对得上。
 
-**坑**：`src/factscore.py` 里 `ALPHA = 0.2` 是**打分方法**的参数，`REQUIRED_FRAC_CORRECT = 0.96` 才是 1−α。我们要动的是后者（0.9 / 0.8），别改错。
+**坑**：上游 `ALPHA` 是 conformal 错误率，`REQUIRED_FRAC_CORRECT`（即 paper 中的 \(a\)）是每条回答要求正确保留的比例，两者不同。课程要求保留 claim 全部正确，因此主实验固定 \(a=1\)，研究 \(\alpha=0.1/0.2\)，即 \(1-\alpha=0.9/0.8\)。
 
 ---
 
@@ -68,7 +68,7 @@
 
 **输出**：`exp/results/fact__a0.1__calib0.5.json` 等，字段照 `docs/reference/schemas.md`
 
-**完成标准**：随着 α 变小（要求更严），retention 应该下降、all-correct 应该上升；如果不是，先怀疑自己算错了。
+**完成标准**：随着 α 变小（要求更严），retention 应下降、empty rate 应上升。`all-correct nonempty` 以全部回答为分母时可能因删空而下降，因此还要同时检查非空回答中的条件全对率和 bootstrap CI。
 
 ---
 
@@ -96,7 +96,7 @@
 【原文 · Part 3】"Investigate one additional factor: the number of sampled responses, calibration-set size, or response length."
 【原文 · Part 3】"Visualize the tradeoff between reliability and usefulness: ... retained information for long-form generation."
 
-**团队决定**：额外因子用校准集大小（0.2 / 0.3 / 0.5），和 A 保持一致，方便对比。
+**团队决定**：额外因子用 calibration pool 的 0.5 / 0.75 / 1.0，即 10 / 15 / 20 条回答，和 A 的配置一致。
 
 **输出**：6 个结果 json + 一张 retention–factuality 图（横轴保留率，纵轴全对比例，两个 α 两组曲线）
 

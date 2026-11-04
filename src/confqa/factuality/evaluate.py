@@ -155,13 +155,19 @@ def evaluate_threshold(
     }
 
 
-def calculate_baseline(config_path: str | Path = DEFAULT_CONFIG) -> list[dict]:
-    """Calculate both configured alpha runs without writing result files."""
+def _calculate_runs(
+    config_path: str | Path,
+    calibration_fractions: Sequence[float],
+) -> list[dict]:
+    """Calculate configured alpha runs for each calibration fraction."""
     path = _resolve_path(config_path)
     document = load_config(path)
     settings = document.get("factuality")
     if not isinstance(settings, dict):
         raise ValueError("config must contain a factuality object")
+    fractions = [float(fraction) for fraction in calibration_fractions]
+    if not fractions or len(fractions) != len(set(fractions)):
+        raise ValueError("calibration fractions must be non-empty and unique")
 
     scored_path = _resolve_path(settings["scored_path"])
     split_path = _resolve_path(settings["split_path"])
@@ -173,71 +179,87 @@ def calculate_baseline(config_path: str | Path = DEFAULT_CONFIG) -> list[dict]:
     if "calib_pool" not in splits or "test" not in splits:
         raise ValueError("split must contain calib_pool and test")
 
-    calibration = select_calibration(
-        splits["calib_pool"],
-        float(settings["baseline_calib_frac"]),
-        seed=int(document["seed"]),
-    )
     test = splits["test"]
-    calibration_ids = [response.pid for response in calibration]
     test_ids = [response.pid for response in test]
-    calibration_ranks = [rank_score(response.claims) for response in calibration]
 
     runs = []
-    for alpha in settings["alphas"]:
-        alpha = float(alpha)
-        threshold = conformal_threshold(calibration_ranks, alpha)
-        metrics = evaluate_threshold(
-            test,
-            threshold,
-            n_boot=int(settings["bootstrap_samples"]),
-            level=float(settings["bootstrap_level"]),
+    for fraction in fractions:
+        calibration = select_calibration(
+            splits["calib_pool"],
+            fraction,
             seed=int(document["seed"]),
         )
-        runs.append(
-            {
-                "alpha": alpha,
-                "payload": {
-                    "threshold": threshold,
-                    "confidence_method": settings["confidence_method"],
-                    "required_correct_fraction": float(settings["required_correct_fraction"]),
-                    "n_calibration": len(calibration),
-                    "calibration_ids": calibration_ids,
-                    "calibration_ids_sha256": _ids_sha256(calibration_ids),
-                    "test_ids_sha256": _ids_sha256(test_ids),
-                    "scored_file": _path_label(scored_path),
-                    "scored_sha256": file_sha256(scored_path),
-                    "split_file": _path_label(split_path),
-                    "split_sha256": file_sha256(split_path),
-                    "upstream_commit": settings["upstream_commit"],
-                    **metrics,
-                },
-            }
-        )
+        calibration_ids = [response.pid for response in calibration]
+        calibration_ranks = [rank_score(response.claims) for response in calibration]
+        for alpha in settings["alphas"]:
+            alpha = float(alpha)
+            threshold = conformal_threshold(calibration_ranks, alpha)
+            metrics = evaluate_threshold(
+                test,
+                threshold,
+                n_boot=int(settings["bootstrap_samples"]),
+                level=float(settings["bootstrap_level"]),
+                seed=int(document["seed"]),
+            )
+            runs.append(
+                {
+                    "alpha": alpha,
+                    "calib_frac": fraction,
+                    "payload": {
+                        "threshold": threshold,
+                        "confidence_method": settings["confidence_method"],
+                        "required_correct_fraction": float(settings["required_correct_fraction"]),
+                        "n_calibration": len(calibration),
+                        "calibration_ids": calibration_ids,
+                        "calibration_ids_sha256": _ids_sha256(calibration_ids),
+                        "test_ids_sha256": _ids_sha256(test_ids),
+                        "scored_file": _path_label(scored_path),
+                        "scored_sha256": file_sha256(scored_path),
+                        "split_file": _path_label(split_path),
+                        "split_sha256": file_sha256(split_path),
+                        "upstream_commit": settings["upstream_commit"],
+                        **metrics,
+                    },
+                }
+            )
     return runs
 
 
-def run_baseline(
-    config_path: str | Path = DEFAULT_CONFIG,
+def calculate_baseline(config_path: str | Path = DEFAULT_CONFIG) -> list[dict]:
+    """Calculate both configured alpha runs without writing result files."""
+    path = _resolve_path(config_path)
+    settings = load_config(path)["factuality"]
+    return _calculate_runs(path, [float(settings["baseline_calib_frac"])])
+
+
+def calculate_grid(config_path: str | Path = DEFAULT_CONFIG) -> list[dict]:
+    """Calculate the alpha by calibration-size grid."""
+    path = _resolve_path(config_path)
+    settings = load_config(path)["factuality"]
+    return _calculate_runs(path, settings["calib_fracs"])
+
+
+def _run_and_persist(
+    config_path: str | Path,
+    runs: Sequence[dict],
     *,
-    results_dir: str | Path | None = None,
+    results_dir: str | Path | None,
 ) -> list[Path]:
-    """Calculate and persist both configured baseline results."""
+    """Persist a batch of results generated against one repository snapshot."""
     path = _resolve_path(config_path)
     document = load_config(path)
     settings = document["factuality"]
     target_dir = Path(results_dir) if results_dir is not None else RESULTS
     staged_outputs = []
 
-    # Generate all files outside the checkout so writing the first result does
-    # not make the second result's provenance dirty. Copy them only after both
-    # runs have observed the same repository state.
-    with tempfile.TemporaryDirectory(prefix="confqa-fact-baseline-") as staging:
-        for run in calculate_baseline(path):
+    # Generate all files outside the checkout so writing one result does not
+    # make a later result's provenance dirty.
+    with tempfile.TemporaryDirectory(prefix="confqa-fact-grid-") as staging:
+        for run in runs:
             staged = run_result(
                 pipeline="fact",
                 alpha=run["alpha"],
-                calib_frac=float(settings["baseline_calib_frac"]),
+                calib_frac=run["calib_frac"],
                 payload=run["payload"],
                 config=_path_label(path),
                 model=settings["model"],
@@ -253,3 +275,31 @@ def run_baseline(
             shutil.copy2(staged, target)
             outputs.append(target)
     return outputs
+
+
+def run_baseline(
+    config_path: str | Path = DEFAULT_CONFIG,
+    *,
+    results_dir: str | Path | None = None,
+) -> list[Path]:
+    """Calculate and persist both configured baseline results."""
+    path = _resolve_path(config_path)
+    return _run_and_persist(
+        path,
+        calculate_baseline(path),
+        results_dir=results_dir,
+    )
+
+
+def run_grid(
+    config_path: str | Path = DEFAULT_CONFIG,
+    *,
+    results_dir: str | Path | None = None,
+) -> list[Path]:
+    """Calculate and persist the complete comparison grid."""
+    path = _resolve_path(config_path)
+    return _run_and_persist(
+        path,
+        calculate_grid(path),
+        results_dir=results_dir,
+    )

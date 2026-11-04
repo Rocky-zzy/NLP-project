@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from collections.abc import Sequence
 
-from .evaluate import DEFAULT_CONFIG, run_baseline
+from .evaluate import DEFAULT_CONFIG, run_baseline, run_grid
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -16,14 +16,22 @@ def main(argv: Sequence[str] | None = None) -> int:
     baseline.add_argument("--config", default=str(DEFAULT_CONFIG))
     baseline.add_argument("--results-dir", default=None)
 
+    grid = subparsers.add_parser("grid", help="run alpha by calibration-size grid")
+    grid.add_argument("--config", default=str(DEFAULT_CONFIG))
+    grid.add_argument("--results-dir", default=None)
+
     args = parser.parse_args(argv)
     if args.command == "baseline":
         paths = run_baseline(args.config, results_dir=args.results_dir)
-        for path in paths:
-            print(path)
-        return 0
-    parser.error(f"unknown command: {args.command}")
-    return 2
+    elif args.command == "grid":
+        paths = run_grid(args.config, results_dir=args.results_dir)
+    else:
+        parser.error(f"unknown command: {args.command}")
+        return 2
+
+    for path in paths:
+        print(path)
+    return 0
 
 
 if __name__ == "__main__":

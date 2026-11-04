@@ -5,9 +5,11 @@ import pytest
 from confqa.factuality.data import FactClaim, FactResponse
 from confqa.factuality.evaluate import (
     calculate_baseline,
+    calculate_grid,
     evaluate_threshold,
     filtered_records,
     run_baseline,
+    run_grid,
     select_calibration,
 )
 
@@ -114,6 +116,7 @@ def test_synthetic_baseline_writes_two_reportable_results(tmp_path, monkeypatch)
                 "  confidence_method: frequency",
                 "  required_correct_fraction: 1.0",
                 "  alphas: [0.1, 0.2]",
+                "  calib_fracs: [0.5, 0.75, 1.0]",
                 "  baseline_calib_frac: 0.5",
                 "  bootstrap_samples: 100",
                 "  bootstrap_level: 0.95",
@@ -144,6 +147,20 @@ def test_synthetic_baseline_writes_two_reportable_results(tmp_path, monkeypatch)
     assert len(paths) == 2
     assert all(json.loads(path.read_text(encoding="utf-8"))["reportable"] for path in paths)
 
+    grid = calculate_grid(config_path)
+    assert len(grid) == 6
+    assert {run["payload"]["n_calibration"] for run in grid} == {10, 15, 20}
+
+    grid_dir = tmp_path / "grid-results"
+    monkeypatch.setattr(
+        results,
+        "git_dirty",
+        lambda: any(grid_dir.glob("*.json")),
+    )
+    grid_paths = run_grid(config_path, results_dir=grid_dir)
+    assert len(grid_paths) == 6
+    assert all(json.loads(path.read_text(encoding="utf-8"))["reportable"] for path in grid_paths)
+
 
 def test_real_baseline_computes():
     from confqa.factuality.data import DEFAULT_SCORED_PATH
@@ -157,3 +174,18 @@ def test_real_baseline_computes():
     assert [run["alpha"] for run in runs] == [0.1, 0.2]
     assert all(run["payload"]["n_calibration"] == 10 for run in runs)
     assert all(run["payload"]["n_responses"] == 25 for run in runs)
+
+
+def test_real_grid_computes():
+    from confqa.factuality.data import DEFAULT_SCORED_PATH
+    from confqa.factuality.evaluate import DEFAULT_CONFIG
+
+    if not DEFAULT_SCORED_PATH.exists():
+        pytest.skip("upstream FActScore cache is not available")
+
+    runs = calculate_grid(DEFAULT_CONFIG)
+
+    assert len(runs) == 6
+    assert {run["alpha"] for run in runs} == {0.1, 0.2}
+    assert {run["calib_frac"] for run in runs} == {0.5, 0.75, 1.0}
+    assert {run["payload"]["n_calibration"] for run in runs} == {10, 15, 20}

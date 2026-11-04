@@ -13,6 +13,7 @@ B 负责复现 conformal factuality，并在固定的 FActScore 子集上完成�
 - 上游 `factscore.py` 中 `ALPHA = 0.2` 与 `REQUIRED_FRAC_CORRECT = 0.96` 是两个不同参数；不能把后者解释成 \(1-\alpha\)。B 手册中的相关表述需要在实现时修正。
 - 阈值只在 calibration subset 上拟合，之后一次性应用到冻结的 test set；test 不参与阈值、参数或案例选择。
 - 主方法固定 `confidence_method = frequency`，但按照上游定义排序时使用 `frequency-score + noise`，保留 `>= threshold` 的 claim。
+- 团队确认校准集大小为 calibration pool 的 `{0.5, 0.75, 1.0}`，即 10 / 15 / 20 条回答。
 - 正确 claim 的标注集合沿用上游 `{"Y", "S"}`；`"N"` 和 `"U"` 都视为不正确。
 - “空响应”定义为过滤后没有保留任何 claim，而不是必须等到生成文本等于空字符串。`Abstain.` 如果对应 0 条保留 claim，也计入 empty。
 - 所有正式数字由 `confqa.common.results.run_result(..., pipeline="fact")` 写入 `exp/results/`；工作区 dirty 时生成的 JSON 只能调试，不能进入报告。
@@ -265,7 +266,7 @@ B 负责复现 conformal factuality，并在固定的 FActScore 子集上完成�
 | 风险 | 影响 | 缓解措施 |
 |---|---|---|
 | `a` 与 \(\alpha\) 被混用 | 指标和阈值含义错误 | 固定 \(a=1\)，\(\alpha\) 只用于 conformal level，并在结果 schema 中显式记录 |
-| calibration 比例文档冲突 | 网格结果无法与 A/C 比较 | 基线统一用 `0.5`；Task 5 前让团队在 `{0.2,0.3,0.5}` 与 `{0.5,0.75,1.0}` 间拍板 |
+| calibration 比例文档冲突 | 网格结果无法与 A/C 比较 | 已确认使用 `{0.5,0.75,1.0}`，并同步计划、手册和配置 |
 | calibration pool 只有 20、test 只有 25 | 阈值和 CI 不稳定 | 使用固定 split、seed、quantile 与 bootstrap CI，不进行多次选择后挑最好结果 |
 | 空集合被当作 all-correct | factuality 虚高 | 主指标采用 all-correct nonempty，并单独报告 empty rate |
 | 原始回答只覆盖最后 30 个 prompt | 案例选择受限 | 优先从 survey 的 30 条中选案例，并在报告中注明数据限制 |
@@ -274,8 +275,7 @@ B 负责复现 conformal factuality，并在固定的 FActScore 子集上完成�
 
 ## Open Questions
 
-1. 校准比例以哪一组为准：`PLAN.md`、B 手册和工作计划写 `{0.2, 0.3, 0.5}`，但 `configs/base.yaml` 与 `docs/reference/schemas.md` 写 `{0.5, 0.75, 1.0}`。在 Task 5 前必须由团队确认。
-2. 仓库 README 写提交日期为 2026-11-30，但学业总账仍记为待定；需要在用户确认后更新总账，不能静默改 DDL。
-3. “empty”采用“0 条 retained claims”的定义；若团队希望按最终生成文本为空来定义，需要统一修改指标与结果字段。
-4. 是否允许用 `out/factscore_survey.json` 恢复最后 30 个 prompt 的原始回答开展案例研究；当前计划默认允许，并要求在报告中说明适用范围。
+1. 仓库 README 写提交日期为 2026-11-30，但学业总账仍记为待定；需要在用户确认后更新总账，不能静默改 DDL。
+2. “empty”采用“0 条 retained claims”的定义；若团队希望按最终生成文本为空来定义，需要统一修改指标与结果字段。
+3. 是否允许用 `out/factscore_survey.json` 恢复最后 30 个 prompt 的原始回答开展案例研究；当前计划默认允许，并要求在报告中说明适用范围。
 
