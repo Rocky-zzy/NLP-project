@@ -66,8 +66,16 @@ class CaseView:
         return bool(self.retained) and all(claim.correct for claim in self.retained)
 
     @property
-    def retained_incorrect(self) -> tuple[CaseClaim, ...]:
+    def retained_unaccepted(self) -> tuple[CaseClaim, ...]:
         return tuple(claim for claim in self.retained if not claim.correct)
+
+    @property
+    def retained_false(self) -> tuple[CaseClaim, ...]:
+        return tuple(claim for claim in self.retained if claim.annotation == "N")
+
+    @property
+    def retained_unverifiable(self) -> tuple[CaseClaim, ...]:
+        return tuple(claim for claim in self.retained if claim.annotation == "U")
 
     @property
     def retention(self) -> float:
@@ -144,7 +152,9 @@ def summarize_case_views(cases: list[CaseView]) -> dict:
         "n_test": len(cases),
         "n_empty": sum(case.empty for case in cases),
         "n_all_correct_nonempty": sum(case.retained_all_correct for case in cases),
-        "n_retained_incorrect": sum(bool(case.retained_incorrect) for case in cases),
+        "n_retained_unaccepted": sum(bool(case.retained_unaccepted) for case in cases),
+        "n_retained_false": sum(bool(case.retained_false) for case in cases),
+        "n_retained_unverifiable": sum(bool(case.retained_unverifiable) for case in cases),
         "n_original_available": sum(case.original_output is not None for case in cases),
     }
 

@@ -65,7 +65,9 @@ def test_case_summary_has_mutually_exclusive_counts():
         "n_test": 3,
         "n_empty": 1,
         "n_all_correct_nonempty": 1,
-        "n_retained_incorrect": 1,
+        "n_retained_unaccepted": 1,
+        "n_retained_false": 1,
+        "n_retained_unverifiable": 0,
         "n_original_available": 1,
     }
 
@@ -80,7 +82,9 @@ def test_real_case_counts_and_cache_audit():
         "n_test": 25,
         "n_empty": 7,
         "n_all_correct_nonempty": 17,
-        "n_retained_incorrect": 1,
+        "n_retained_unaccepted": 1,
+        "n_retained_false": 1,
+        "n_retained_unverifiable": 0,
         "n_original_available": 14,
     }
     assert analysis["cache_audit"]["n_empty_claim_sets"] == 0

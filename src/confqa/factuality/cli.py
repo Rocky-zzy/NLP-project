@@ -7,6 +7,7 @@ from collections.abc import Sequence
 
 from .cases import analyze_primary_cases
 from .evaluate import DEFAULT_CONFIG, run_baseline, run_grid
+from .report import run_report
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -24,6 +25,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     cases = subparsers.add_parser("cases", help="summarize failure-case candidates")
     cases.add_argument("--config", default=str(DEFAULT_CONFIG))
 
+    subparsers.add_parser("report", help="build the retention-factuality figure")
+
     args = parser.parse_args(argv)
     if args.command == "baseline":
         paths = run_baseline(args.config, results_dir=args.results_dir)
@@ -38,6 +41,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         print(f"summary={analysis['summary']}")
         print(f"cache_audit={analysis['cache_audit']}")
+        return 0
+    elif args.command == "report":
+        png_path, pdf_path = run_report()
+        print(png_path)
+        if pdf_path is not None:
+            print(pdf_path)
         return 0
     else:
         parser.error(f"unknown command: {args.command}")

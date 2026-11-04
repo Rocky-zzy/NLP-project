@@ -9,15 +9,15 @@
 - 固定 test 为 25 条
 - calibrated threshold：`4.9996421406662925`
 - 正确标注：`Y`、`S`
-- 错误标注：`N`、`U`
+- 排除标注：`N`（False）、`U`（Unverifiable）
 
 主要结论：
 
 1. Claim filtering 能明显提高 retained claims 的正确性，但它优化的是“留下来的内容是否可靠”，不是“回答是否完整”。
-2. 7 / 25 条 test 回答被完全删空；空响应满足“没有错误 claim”，但对用户没有信息价值。
+2. 7 / 25 条 test 回答被完全删空；空响应没有 retained claim，但对用户没有信息价值。
 3. 17 / 25 条 test 回答非空且所有 retained claims 都正确。
-4. 1 / 25 条回答在过滤后仍保留错误 claim，说明频率分数并不保证一定选对。
-5. 正确的高分 claim 可能被保留，错误的低分 claim 会被删除；但正确的低频 claim 也可能被误删。
+4. 1 / 25 条回答在过滤后仍保留 `N` claim，说明频率分数并不保证一定选对。
+5. 高频 claim 更容易保留、低频 claim 更容易删除，但分数高低不绝对等于标注真假。
 
 25 条 test 的互斥结果统计：
 
@@ -25,7 +25,7 @@
 |---|---:|
 | 非空且 retained claims 全对 | 17 |
 | 空响应 | 7 |
-| 非空但 retained claims 中仍有错误 | 1 |
+| 非空但 retained claims 中含 `N` | 1 |
 | 合计 | 25 |
 
 ## 2. 数据限制
@@ -73,9 +73,9 @@
 - ID：`factscore-0027`
 - Prompt：`Sharad Kumar (athlete)`
 - 原始 claims：13
-- 错误 claims：5
+- `N + U` claims：5（`N=4`，`U=1`）
 - 保留 claims：4
-- 错误 claims 保留数：0
+- `N + U` claims 保留数：0
 - Retention：\(4/13=30.8\%\)
 - 判断：**成功。** 虽然删除了不少次要信息，但保留了身份、项目、出生信息和一项
   重要成就，仍足以回答人物简介。
@@ -121,9 +121,9 @@
 - ID：`factscore-0049`
 - Prompt：`Zamfir Arbore`
 - 原始 claims：10
-- 错误 claims：5
+- `N + U` claims：3（`N=1`，`U=2`）
 - 保留 claims：4
-- 错误 claims 保留数：0
+- `N + U` claims 保留数：0
 - Retention：\(4/10=40\%\)
 - 判断：**部分成功。** 保留下来的内容正确且抓住身份、生卒年和地区，但删掉了
   historian、政治活动和流亡经历，人物介绍已明显变薄。
@@ -152,7 +152,7 @@
 
 分析：
 
-- 五条错误或不可验证 claim 全部删除。
+- 一条 `N` 和两条 `U` 全部删除。
 - “historian”其实正确，但 frequency score 只有约 3，被当作低置信信息删除。
 - 这说明 filtering 的目标不是最大化信息量；它宁愿牺牲正确但低频的事实，也要
   降低保留错误内容的风险。
@@ -164,7 +164,7 @@
 - ID：`factscore-0034`
 - Prompt：`Rin Iwanaga`
 - 原始 claims：5
-- 错误 claims：1
+- `N + U` claims：1（`N=1`，`U=0`）
 - 保留 claims：1
 - Retention：\(1/5=20\%\)
 - 判断：**失败。** 保留下来的 claim 正确，但没有提供任何足以回答人物简介的事实。
@@ -196,7 +196,7 @@
 - ID：`factscore-0046`
 - Prompt：`Carlos Alfonso`
 - 原始 claims：8
-- 错误 claims：1
+- `N + U` claims：1（`N=1`，`U=0`）
 - 保留 claims：2
 - Retention：\(2/8=25\%\)
 - 判断：**部分失败。** 确实删除了错误内容，但也删掉了 baseball player 等其他解释，
@@ -308,9 +308,9 @@
 
 - ID：`factscore-0047`
 - 原始 claims：8
-- 错误 claims：3
+- `N + U` claims：3（`N=3`，`U=0`）
 - 保留 claims：3
-- 保留的错误 claims：1
+- 保留的 `N + U` claims：1（`N=1`，`U=0`）
 - Retention：\(3/8=37.5\%\)
 - 判断：**失败。** 最终 retained claims 并非全对。
 

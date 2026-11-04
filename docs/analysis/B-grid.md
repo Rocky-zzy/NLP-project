@@ -21,6 +21,22 @@
 | 0.2 | 0.8 | 15 | 4.99876 | 0.80 | [0.64, 0.96] | 0.2952 | [0.2227, 0.3709] | 0.12 | [0.00, 0.28] |
 | 0.2 | 0.8 | 20 | 3.99988 | 0.76 | [0.60, 0.92] | 0.3619 | [0.2780, 0.4459] | 0.12 | [0.00, 0.28] |
 
+## 图形
+
+![Conformal factuality trade-off](../../figures/retention_vs_factuality.png)
+
+报告图同时提供：
+
+- `figures/retention_vs_factuality.png`
+- `figures/retention_vs_factuality.pdf`
+
+横轴是 retained claim 比例，纵轴是非空且 retained claims 全对的比例。横纵误差棒
+都是固定 seed 的 95% bootstrap CI。10 条和 15 条校准的结果完全重合，因此合并为
+一个 `n=10/15` 标注，避免后画的点遮住前一个点。
+
+图中橙色点在 retention 上整体位于蓝色点右侧，说明目标更宽松时保留信息更多；
+但两组 alpha 的 CI 重叠明显，不能把当前差异解释为稳定的统计显著效应。
+
 所有结果均由以下命令生成：
 
 ```bash
@@ -42,3 +58,12 @@ PYTHONPATH=src .venv/bin/python -m confqa.factuality.cli grid \
 - 6 个结果使用相同的 `test_ids_sha256`、`split_sha256` 和 `scored_sha256`。
 - calibration 子集满足 10 条 subset of 15 条 subset of 20 条。
 - 每个结果都记录完整 calibration ID 列表、阈值、三个主指标和 CI。
+
+## 结果文件
+
+- `exp/results/fact__a0.1__calib0.5.json`
+- `exp/results/fact__a0.2__calib0.5.json`
+- `exp/results/fact__a0.1__calib0.75.json`
+- `exp/results/fact__a0.2__calib0.75.json`
+- `exp/results/fact__a0.1__calib1.json`
+- `exp/results/fact__a0.2__calib1.json`
