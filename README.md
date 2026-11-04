@@ -38,6 +38,20 @@ The core package needs only numpy and pyyaml, so tests run on a login node.
 GPU dependencies live in `requirements-gpu.txt` and are needed only to
 sample from a model.
 
+## Shared tools (owner: C)
+
+Everything that crosses a person boundary goes through these three modules, so
+the numbers stay comparable and traceable.
+
+| Tool | Use |
+|---|---|
+| `python -m confqa.common.splits --dataset ... --out data/splits/...` | build the committed calibration/dev/test split (run once) |
+| `confqa.common.results.run_result(...)` | write a result json stamped with git commit, config hash and `reportable` |
+| `confqa.common.plots.plot_coverage_vs_size` / `plot_retention_vs_factuality` | turn result jsons into the two trade-off figures |
+
+`data/splits/factscore.json` is already built and committed (50 prompts:
+25 test / 5 dev / 20 calibration pool).
+
 ## Layout
 
 ```
