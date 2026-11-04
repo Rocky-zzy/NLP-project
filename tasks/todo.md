@@ -11,7 +11,7 @@
 
 ## Phase 2: 主实验
 
-- [ ] Task 4：生成 `alpha=0.1/0.2`、`calib_frac=0.5` 的基线结果（11-07）
+- [x] Task 4：生成 `alpha=0.1/0.2`、`calib_frac=0.5` 的基线结果（11-07）
 - [ ] Task 5：生成 2 个目标水平 × 3 个校准比例的 6 个结果（11-10）
 - [ ] Checkpoint：6 个 JSON 均为 `reportable=true`，字段和 split hash 可追溯
 
