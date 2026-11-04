@@ -117,7 +117,11 @@ def run_result(
     record.update(payload)
 
     path = directory / (name or _default_name(pipeline, alpha, calib_frac))
-    path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(record, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
     if dirty:
         print(
