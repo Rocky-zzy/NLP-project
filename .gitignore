@@ -27,6 +27,9 @@ logs/
 *.ckpt
 *.npz
 
+# --- Handover bundles (raw evidence, kept out of a public repo) ---
+/a1-evidence-*/
+
 # --- Secrets ---
 .env
 *.key
