@@ -20,6 +20,10 @@
 - [x] Task 6：完成 empty rate、过度删减、成功案例与排除审计（11-14）
 - [x] Task 7：生成 retention–factuality 图和汇总表（11-16）
 - [ ] Task 8：完成 1b/2b/3b 英文草稿与 H3/H5/H7 交接（11-23）
+  - [x] 1b/2b/3b 英文草稿
+  - [x] H7 交接文档
+  - [ ] H3 新回答的 claim 拆分与 frequency judging 接口
+  - [ ] H5 交接文档
 - [ ] Checkpoint：全量测试、lint、干净环境复跑和 C 独立复现均通过
 
 ## 必须拍板
