@@ -10,10 +10,14 @@
 
 ## 结果
 
-| alpha | 1-alpha | threshold | retained claims | all-correct nonempty | retention | empty rate |
-|---:|---:|---:|---:|---:|---:|---:|
-| 0.1 | 0.9 | 5.00007 | 34 / 210 | 15 / 25 = 0.60 | 0.1619 | 9 / 25 = 0.36 |
-| 0.2 | 0.8 | 4.99876 | 62 / 210 | 20 / 25 = 0.80 | 0.2952 | 3 / 25 = 0.12 |
+| alpha | 1-alpha | threshold | retained claims | all-correct vacuous | all-correct nonempty | retention | empty rate |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0.1 | 0.9 | 5.00007 | 34 / 210 | 24 / 25 = 0.96 | 15 / 25 = 0.60 | 0.1619 | 9 / 25 = 0.36 |
+| 0.2 | 0.8 | 4.99876 | 62 / 210 | 23 / 25 = 0.92 | 20 / 25 = 0.80 | 0.2952 | 3 / 25 = 0.12 |
+
+"all-correct vacuous" counts an empty response as vacuously correct and is the
+quantity the conformal guarantee bounds; "all-correct nonempty" is the
+usefulness-side number and is what the headline used to report alone.
 
 结果文件：
 

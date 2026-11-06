@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "pipeline": "fact",
-  "created_at": "2026-11-04T12:13:47+00:00",
+  "created_at": "2026-11-06T10:41:43+00:00",
   "elapsed_s": null,
   "git": {
-    "commit": "2108cabd6b6202924bae20a39e651ce1fbdc6c50",
+    "commit": "fd66e76bcf585755cda32740c77df1b64c5d4ff7",
     "dirty": false
   },
   "config": {
     "path": "configs/factuality.yaml",
-    "sha256": "f3fc4ce745e85419c21a2ead8bb72ce846c35b4def41eaddbbb498ef4548abc6"
+    "sha256": "02fcb892b15ef90e5148c94d38974cb9de877f580c975596aa860619b95c135f"
   },
   "model": "upstream-cached:gpt-4",
   "seed": 0,
@@ -34,8 +34,8 @@
   ],
   "calibration_ids_sha256": "541b5ef8e194009f293a66e7d8bc7d700a39294ab25dd0a17f2b5ea4188b972b",
   "test_ids_sha256": "ddecc312d8738d948f488239b91998efea265eae2f65e021c617f781f5c19542",
-  "scored_file": "third_party/conformal-factual-lm/out/factscore_subclaims_with_scores.jsonl",
-  "scored_sha256": "f296834632fbba05eab2d4e4d52056a898f6041ab0090c1239a1303e2f7bd385",
+  "scored_file": "C:/Users/27059/Desktop/Files and Subjects/26Autumn学习资料/NLP/NLP-project/third_party/conformal-factual-lm/out/factscore_subclaims_with_scores.jsonl",
+  "scored_sha256": "c895fd289d3e9d4c8309c13e250e991aaa65ba14abb94ba00eb32bbabd1d3e97",
   "split_file": "data/splits/factscore.json",
   "split_sha256": "9419c4d444b5b5f9c73cd86cf95d43381b5a82b938afc7ffc26e7012aa3364ab",
   "upstream_commit": "6022b4c90c6580f524f123b0cb97bbb61ab621d1",
@@ -46,6 +46,11 @@
   "all_correct_nonempty_ci": [
     0.64,
     0.96
+  ],
+  "all_correct_vacuous": 0.92,
+  "all_correct_vacuous_ci": [
+    0.8,
+    1.0
   ],
   "retention": 0.29523809523809524,
   "retention_ci": [
