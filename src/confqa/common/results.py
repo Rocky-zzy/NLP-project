@@ -67,7 +67,14 @@ def git_dirty(
     if not status:
         return False
     for line in status.splitlines():
-        path = line[3:].strip().strip('"')
+        # Porcelain v1 is "XY PATH"; _git() strips the leading space of the
+        # first line, so split instead of indexing at a fixed offset.
+        parts = line.split(maxsplit=1)
+        if len(parts) != 2:
+            continue
+        path = parts[1].strip().strip('"')
+        if " -> " in path:
+            path = path.split(" -> ", 1)[1]
         if not any(path.startswith(prefix) for prefix in ignore):
             return True
     return False
