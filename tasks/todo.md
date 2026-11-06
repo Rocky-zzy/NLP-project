@@ -22,8 +22,9 @@
 - [ ] Task 8：完成 1b/2b/3b 英文草稿与 H3/H5/H7 交接（11-23）
   - [x] 1b/2b/3b 英文草稿
   - [x] H7 交接文档
-  - [ ] H3 新回答的 claim 拆分与 frequency judging 接口
-  - [ ] H5 交接文档
+  - [x] H3 接口、parser、算法、fake-client 测试和交接文档
+  - [ ] H3 真实模型集成与 C 独立复现
+  - [x] H5 交接文档
 - [ ] Checkpoint：全量测试、lint、干净环境复跑和 C 独立复现均通过
 
 ## 必须拍板

@@ -55,10 +55,9 @@ PYTHONPATH=src .venv/bin/python -m confqa.factuality.cli cases \
 
 ## Not included in H7
 
-- H3 claim-splitting and frequency-judging interface for newly generated
-  responses.
+- H3 real-model integration and C's independent run. The offline H3 interface
+  is now documented separately in `docs/analysis/H3-B-to-C-handoff.md`.
 - New Qwen generation or end-to-end model deployment.
 - Independent execution by C.
 
-H3 remains a separate handoff item and must not be inferred complete from this
-draft.
+H7 does not certify H3's real response-generation path.

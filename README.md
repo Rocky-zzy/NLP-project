@@ -96,5 +96,6 @@ third_party/        upstream repos at pinned commits (ignored)
 - [x] upstream repos cloned and pinned ([docs/reference/upstream_versions.md](docs/reference/upstream_versions.md))
 - [x] per-person manuals and work plan
 - [ ] ConU pipeline running end to end (A)
-- [ ] factuality baseline from cached scores (B)
+- [x] factuality baseline from cached scores (B)
+- [x] factuality H3 offline claim/judge interface (B)
 - [ ] extension (C)

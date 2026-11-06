@@ -208,6 +208,104 @@ prompt hash in the result payload, and report human agreement on a sample.
 {"pid": "factscore-0001", "prompt": "...", "responses": ["...", "...", "...", "...", "..."]}
 ```
 
+### `cache/ext_claims.jsonl` — H3 claim splitting
+
+```json
+{
+  "schema_version": 1,
+  "pid": "factscore-0001",
+  "response_id": 0,
+  "model": "Qwen2.5-14B-Instruct",
+  "response_sha256": "…",
+  "breakdown_prompt_sha256": "…",
+  "claims": [
+    {"cid": 0, "text": "...", "gpt_score": 0.9}
+  ]
+}
+```
+
+- One row is written for every successfully parsed target response.
+- `cid` is contiguous from zero within that response.
+- `gpt_score` is optional because the frequency baseline does not require it.
+- Split failures go to `cache/ext_h3_failures.jsonl`; they are never silently
+  skipped.
+
+### `cache/ext_judgments.jsonl` — H3 three-way judgments
+
+```json
+{
+  "schema_version": 1,
+  "pid": "factscore-0001",
+  "target_response_id": 0,
+  "comparison_response_ids": [0, 1, 2, 3, 4],
+  "model": "Qwen2.5-14B-Instruct",
+  "judged_by": "Qwen2.5-14B-Instruct",
+  "judge_prompt_sha256": "…",
+  "claims": [
+    {
+      "cid": 0,
+      "text": "...",
+      "judgments": [
+        {"response_id": 0, "label": "support", "score": 1}
+      ]
+    }
+  ]
+}
+```
+
+- `score` is exactly `1` (support), `0` (unrelated), or `-1`
+  (contradict).
+- Every target claim must have one judgment for every configured comparison
+  response.
+- A judge parse failure invalidates that target row and is recorded in
+  `cache/ext_h3_failures.jsonl`.
+
+### `cache/ext_baseline_scores.jsonl`
+
+```json
+{
+  "schema_version": 1,
+  "pid": "factscore-0001",
+  "target_response_id": 0,
+  "prompt": "...",
+  "claims": [
+    {
+      "cid": 0,
+      "text": "...",
+      "frequency_score": 5,
+      "support_count": 5,
+      "comparison_count": 5,
+      "support_rate": 1.0
+    }
+  ]
+}
+```
+
+- `frequency_score` is the sum of the three-way judgment scores.
+- `support_rate` is the fraction of comparison responses marked support.
+- `prompt` allows the score file to be joined with human labels and converted
+  into the same `FactResponse` shape used by the cached-data pipeline.
+- The same target/comparison policy must be used by the frequency baseline and
+  semantic-clustering extension.
+
+### `cache/ext_h3_failures.jsonl`
+
+```json
+{
+  "schema_version": 1,
+  "stage": "claim_split",
+  "pid": "factscore-0001",
+  "response_id": 0,
+  "error_type": "ClaimParseError",
+  "message": "...",
+  "raw_output": "..."
+}
+```
+
+`stage` is `claim_split` or `judge`. For a judge failure,
+`target_response_id`, `cid`, and `comparison_response_id` identify the failed
+pair. `raw_output` is retained in the ignored cache for debugging and audit.
+
 ### `cache/ext_clusters.jsonl`
 
 ```json

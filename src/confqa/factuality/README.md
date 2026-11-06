@@ -22,6 +22,7 @@ exp/results/fact__a<alpha>__calib<ratio>.json
 | `evaluate.py` / `cli.py` | 双 alpha 基线、校准比例网格和案例统计 |
 | `cases.py` | 原始回答恢复、成功/失败案例与排除审计 |
 | `report.py` | 从 result JSON 生成带 CI 的 retention–factuality 图 |
+| `h3.py` | 新回答 claim 拆分、三分类 judge、frequency 汇总与 label join |
 
 输入哈希和已知数据限制见
 [`docs/reference/factscore-inputs.md`](../../../docs/reference/factscore-inputs.md)。
@@ -29,3 +30,6 @@ exp/results/fact__a<alpha>__calib<ratio>.json
 注意：上游 `ALPHA` 是 conformal 错误率，`REQUIRED_FRAC_CORRECT`（paper 中的
 \(a\)）是每条回答要求正确保留的比例。课程要求全部保留 claim 正确，因此主实验
 固定 \(a=1\)，并研究 \(\alpha=0.1/0.2\)。
+
+H3 的接入、输入输出和验收步骤见
+[`docs/analysis/H3-B-to-C-handoff.md`](../../../docs/analysis/H3-B-to-C-handoff.md)。
