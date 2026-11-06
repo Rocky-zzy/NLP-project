@@ -42,6 +42,9 @@ def summarize_factuality(records) -> dict:
         n: number of responses
         all_correct_nonempty: fraction of responses retaining >= 1 claim with
             all retained claims correct (the "factuality" headline number)
+        all_correct_vacuous: same, but an empty response counts as vacuously
+            correct. This is the quantity the conformal guarantee bounds, so it
+            must be reported next to the headline and the empty rate.
         retention: retained claims / total claims
         empty_rate: fraction of responses with no retained claim
     """
@@ -58,10 +61,17 @@ def summarize_factuality(records) -> dict:
             good += 1
     if n == 0:
         nan = float("nan")
-        return {"n": 0, "all_correct_nonempty": nan, "retention": nan, "empty_rate": nan}
+        return {
+            "n": 0,
+            "all_correct_nonempty": nan,
+            "all_correct_vacuous": nan,
+            "retention": nan,
+            "empty_rate": nan,
+        }
     return {
         "n": n,
         "all_correct_nonempty": good / n,
+        "all_correct_vacuous": (good + empty) / n,
         "retention": kept / total if total else float("nan"),
         "empty_rate": empty / n,
     }

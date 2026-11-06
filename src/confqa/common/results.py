@@ -54,8 +54,23 @@ def git_commit(cwd: Path | None = None) -> str:
     return _git(["rev-parse", "HEAD"], cwd) or "unknown"
 
 
-def git_dirty(cwd: Path | None = None) -> bool:
-    return bool(_git(["status", "--porcelain"], cwd))
+def git_dirty(
+    cwd: Path | None = None,
+    ignore: Sequence[str] = ("exp/results/",),
+) -> bool:
+    """True if anything outside the result directory is uncommitted.
+
+    Writing a result file must not invalidate its own provenance, so changes
+    under exp/results/ are ignored by default.
+    """
+    status = _git(["status", "--porcelain"], cwd)
+    if not status:
+        return False
+    for line in status.splitlines():
+        path = line[3:].strip().strip('"')
+        if not any(path.startswith(prefix) for prefix in ignore):
+            return True
+    return False
 
 
 def file_sha256(path: str | Path) -> str:

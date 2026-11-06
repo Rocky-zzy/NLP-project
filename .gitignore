@@ -20,6 +20,8 @@ cache/
 third_party/
 logs/
 *.jsonl
+# small hand-written fixtures are source, not generated output
+!examples/**/*.jsonl
 *.pt
 *.pth
 *.bin

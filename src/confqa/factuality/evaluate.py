@@ -81,12 +81,13 @@ def filtered_records(
     return records
 
 
-def _metric_values(records: Sequence[dict]) -> tuple[float, float, float]:
+def _metric_values(records: Sequence[dict]) -> tuple[float, float, float, float]:
     summary = summarize_factuality(records)
     return (
         float(summary["all_correct_nonempty"]),
         float(summary["retention"]),
         float(summary["empty_rate"]),
+        float(summary["all_correct_vacuous"]),
     )
 
 
@@ -113,7 +114,7 @@ def bootstrap_intervals(
 
     lo_index = int((1.0 - level) / 2.0 * n_boot)
     hi_index = int((1.0 + level) / 2.0 * n_boot) - 1
-    keys = ("all_correct_ci", "retention_ci", "empty_ci")
+    keys = ("all_correct_ci", "retention_ci", "empty_ci", "all_correct_vacuous_ci")
     return {
         key: (
             sorted(values[index] for values in samples)[lo_index],
@@ -148,6 +149,8 @@ def evaluate_threshold(
         "n_retained_claims": retained_claims,
         "all_correct_nonempty": summary["all_correct_nonempty"],
         "all_correct_nonempty_ci": list(intervals["all_correct_ci"]),
+        "all_correct_vacuous": summary["all_correct_vacuous"],
+        "all_correct_vacuous_ci": list(intervals["all_correct_vacuous_ci"]),
         "retention": summary["retention"],
         "retention_ci": list(intervals["retention_ci"]),
         "empty_rate": summary["empty_rate"],
