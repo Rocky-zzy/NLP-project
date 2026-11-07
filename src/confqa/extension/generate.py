@@ -22,7 +22,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-DEFAULT_NAMES = "third_party/conformal-factual-lm/data/factscore_names.txt"
+DEFAULT_NAMES = "data/factscore_names.txt"
 DEFAULT_SPLIT = "data/splits/factscore.json"
 TEMPLATE = "Tell me a paragraph bio of {name}"
 
