@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import threading
 import time
 import urllib.request
 from pathlib import Path
@@ -56,6 +57,32 @@ class VLLMClient:
         raise RuntimeError(f"request failed after {self.retries} attempts: {last_error}")
 
 
+class Progress:
+    """Print a heartbeat while run_h3 works through its calls."""
+
+    def __init__(self, client: VLLMClient, every: float = 20.0) -> None:
+        self.client = client
+        self.every = every
+        self._stop = threading.Event()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+
+    def _run(self) -> None:
+        started = time.perf_counter()
+        while not self._stop.wait(self.every):
+            print(
+                f"  calls={self.client.calls} elapsed={time.perf_counter() - started:.0f}s",
+                flush=True,
+            )
+
+    def __enter__(self) -> Progress:
+        self._thread.start()
+        return self
+
+    def __exit__(self, *exc) -> None:
+        self._stop.set()
+        self._thread.join(timeout=2)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default="http://127.0.0.1:8000/v1")
@@ -73,13 +100,14 @@ def main(argv: list[str] | None = None) -> int:
 
     client = VLLMClient(args.base_url)
     started = time.perf_counter()
-    summary = run_h3(
-        records,
-        client,
-        output_dir=args.out_dir,
-        model=args.model,
-        target_response_ids=targets,
-    )
+    with Progress(client):
+        summary = run_h3(
+            records,
+            client,
+            output_dir=args.out_dir,
+            model=args.model,
+            target_response_ids=targets,
+        )
     elapsed = time.perf_counter() - started
 
     print(
