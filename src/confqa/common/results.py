@@ -56,7 +56,7 @@ def git_commit(cwd: Path | None = None) -> str:
 
 def git_dirty(
     cwd: Path | None = None,
-    ignore: Sequence[str] = ("exp/results/",),
+    ignore: Sequence[str] = ("exp/",),
 ) -> bool:
     """True if anything outside the result directory is uncommitted.
 
