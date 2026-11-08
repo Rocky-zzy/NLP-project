@@ -144,7 +144,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-fetch", action="store_true")
     args = parser.parse_args(argv)
 
-    names = [n.strip() for n in Path(args.names).read_text(encoding="utf-8").splitlines() if n.strip()]
+    names = [
+        n.strip() for n in Path(args.names).read_text(encoding="utf-8").splitlines() if n.strip()
+    ]
     by_pid: dict[str, list[dict]] = defaultdict(list)
     for line in Path(args.clusters).read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
@@ -159,13 +161,23 @@ def main(argv: list[str] | None = None) -> int:
         if not extract:
             no_source.append({"pid": pid, "name": name})
             for claim in claims:
-                labels.append({"pid": pid, "cid": claim["cid"], "verdict": "no_source",
-                               "why": "", "title": title})
+                labels.append(
+                    {
+                        "pid": pid,
+                        "cid": claim["cid"],
+                        "verdict": "no_source",
+                        "why": "",
+                        "title": title,
+                    }
+                )
             print(f"[{index + 1}/{len(by_pid)}] {name}: no page")
             continue
         body = "\n".join(f"{c['cid']}: {c['text']}" for c in claims)
-        raw = call_model(args.base_url, args.model,
-                         PROMPT.format(name=name, extract=extract[: args.max_chars], claims=body))
+        raw = call_model(
+            args.base_url,
+            args.model,
+            PROMPT.format(name=name, extract=extract[: args.max_chars], claims=body),
+        )
         try:
             verdicts = parse_verdicts(raw, [c["cid"] for c in claims])
         except ValueError as exc:
@@ -173,17 +185,23 @@ def main(argv: list[str] | None = None) -> int:
             continue
         for claim in claims:
             verdict, why = verdicts[claim["cid"]]
-            labels.append({"pid": pid, "cid": claim["cid"], "verdict": verdict,
-                           "why": why, "title": title})
+            labels.append(
+                {"pid": pid, "cid": claim["cid"], "verdict": verdict, "why": why, "title": title}
+            )
             stats[verdict] += 1
         print(f"[{index + 1}/{len(by_pid)}] {name}: {len(claims)} claims")
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in labels),
-                   encoding="utf-8", newline="\n")
-    print(f"wrote {out}: {len(labels)} rows, {dict(stats)}, "
-          f"{len(no_source)} people without a page, {time.perf_counter() - started:.0f}s")
+    out.write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in labels),
+        encoding="utf-8",
+        newline="\n",
+    )
+    print(
+        f"wrote {out}: {len(labels)} rows, {dict(stats)}, "
+        f"{len(no_source)} people without a page, {time.perf_counter() - started:.0f}s"
+    )
     return 0
 
 
