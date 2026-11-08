@@ -20,6 +20,7 @@ import argparse
 import json
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from collections import defaultdict
@@ -103,7 +104,7 @@ def call_model(base_url: str, model: str, prompt: str, timeout: float = 180.0) -
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.0,
-        "max_tokens": 1200,
+        "max_tokens": 700,
     }
     request = urllib.request.Request(
         base_url.rstrip("/") + "/chat/completions",
@@ -140,7 +141,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--cache-dir", default="cache/wiki")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000/v1")
     parser.add_argument("--model", default="qwen2.5-14b-instruct")
-    parser.add_argument("--max-chars", type=int, default=6000)
+    parser.add_argument("--max-chars", type=int, default=3000, help="fits the 2048-token context")
     parser.add_argument("--no-fetch", action="store_true")
     args = parser.parse_args(argv)
 
@@ -173,11 +174,21 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[{index + 1}/{len(by_pid)}] {name}: no page")
             continue
         body = "\n".join(f"{c['cid']}: {c['text']}" for c in claims)
-        raw = call_model(
-            args.base_url,
-            args.model,
-            PROMPT.format(name=name, extract=extract[: args.max_chars], claims=body),
-        )
+        try:
+            raw = call_model(
+                args.base_url,
+                args.model,
+                PROMPT.format(name=name, extract=extract[: args.max_chars], claims=body),
+            )
+        except urllib.error.HTTPError as exc:
+            if exc.code != 400:
+                raise
+            print(f"[{pid}] context too long; retrying with half the extract", file=sys.stderr)
+            raw = call_model(
+                args.base_url,
+                args.model,
+                PROMPT.format(name=name, extract=extract[: args.max_chars // 2], claims=body),
+            )
         try:
             verdicts = parse_verdicts(raw, [c["cid"] for c in claims])
         except ValueError as exc:
