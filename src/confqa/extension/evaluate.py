@@ -28,18 +28,32 @@ METHODS = {
 }
 
 
+def _label_value(row: dict) -> bool | None:
+    """Accept both the judge format (correct) and the wiki format (verdict)."""
+    if "correct" in row:
+        return bool(row["correct"])
+    verdict = row.get("verdict")
+    if verdict == "supported":
+        return True
+    if verdict == "not_claim":
+        return None
+    return False  # contradicted, absent, no_source
+
+
 def load_rows(clusters: Path, labels: Path) -> dict[str, list[dict]]:
     label_map = {}
     for line in labels.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
-        label_map[(row["pid"], int(row["cid"]))] = bool(row["correct"])
+        value = _label_value(row)
+        if value is not None:
+            label_map[(row["pid"], int(row["cid"]))] = value
 
     by_pid: dict[str, list[dict]] = defaultdict(list)
     for line in clusters.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
         key = (row["pid"], int(row["cid"]))
         if key not in label_map:
-            raise ValueError(f"missing label for {key}")
+            continue  # not a factual claim, excluded from the metric
         row["correct"] = label_map[key]
         by_pid[row["pid"]].append(row)
     return by_pid
