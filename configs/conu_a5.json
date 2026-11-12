@@ -1,0 +1,11 @@
+{
+  "dataset": "triviaqa",
+  "model": "Qwen2.5-14B-Instruct",
+  "seed": 0,
+  "alphas": [0.1, 0.2],
+  "calibration_sizes": [100, 150, 250],
+  "calibration_selection": "prefix of the frozen A3 calibration order",
+  "drop_unanswerable": false,
+  "correctness_threshold": 0.6,
+  "bootstrap": {"n_boot": 10000, "level": 0.95, "seed": 0}
+}

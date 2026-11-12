@@ -137,6 +137,14 @@ not optional.
 `n_dropped_unanswerable` is the filtering audit: examples removed because no
 sample was correct. **Report it next to every coverage number.**
 
+ConU A5 reuses the frozen TriviaQA A3 split with 250 calibration and 250 test
+questions. The grid selects 100, 150, and 250 calibration questions, respectively
+0.2, 0.3, and 0.5 of the full cohort (`calib_ratio_of_total`). `calib_frac` and
+the filename still use the calibration pool as their denominator: 0.4, 0.6,
+and 1.0. A5 records `n_calibration_used`, `n_test`, and `avg_set_size_ci`
+alongside `coverage_ci`. Its primary metrics use all fixed test questions and
+its `eligible_test` metrics use the same threshold on the answerable subset.
+
 ---
 
 ## 3. Conformal factuality pipeline

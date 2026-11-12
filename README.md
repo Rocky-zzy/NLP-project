@@ -23,6 +23,7 @@ claim scoring.
 - Week plan and handoff points: [docs/planning/workplan.png](docs/planning/workplan.png)
 - Decisions, risks, deliverables: [PLAN.md](PLAN.md)
 - Artifact formats: [docs/reference/schemas.md](docs/reference/schemas.md)
+- Every reported number, with its source file: [docs/analysis/main-tables.md](docs/analysis/main-tables.md)
 
 ## Quickstart
 
@@ -95,7 +96,11 @@ third_party/        upstream repos at pinned commits (ignored)
 - [x] scaffold, CI, metrics, tests, schemas
 - [x] upstream repos cloned and pinned ([docs/reference/upstream_versions.md](docs/reference/upstream_versions.md))
 - [x] per-person manuals and work plan
-- [ ] ConU pipeline running end to end (A)
+- [x] ConU pipeline end to end: 500 questions x 20 samples, plus the
+      calibration-size grid ([A5 handoff](docs/analysis/A5-A-conu-grid-handoff.md))
 - [x] factuality baseline from cached scores (B)
 - [x] factuality H3 offline claim/judge interface (B)
-- [ ] extension (C)
+- [x] extension (C): a negative result with a full evidence chain
+      ([docs/analysis/C-extension.md](docs/analysis/C-extension.md))
+- [x] Parts 1-3 main tables ([docs/analysis/main-tables.md](docs/analysis/main-tables.md))
+- [ ] English report, poster, individual contribution statements
