@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "pipeline": "ext",
+  "created_at": "2026-11-12T12:09:59+00:00",
+  "elapsed_s": null,
+  "git": {
+    "commit": "3d63eede7bd547b5a1ef86fa1258864161d26d3d",
+    "dirty": false
+  },
+  "config": null,
+  "model": null,
+  "seed": null,
+  "alpha": 0.1,
+  "calib_frac": null,
+  "reportable": true,
+  "method": "support",
+  "field": "support",
+  "threshold": 1.0,
+  "n_responses": 25,
+  "n_claims": 270,
+  "all_correct_vacuous": 0.24,
+  "all_correct_nonempty": 0.16,
+  "retention": 0.6518518518518519,
+  "empty_rate": 0.08
+}
