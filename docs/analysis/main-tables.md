@@ -10,7 +10,8 @@ with the commands at the end.
 Source: `exp/results/conu__a<alpha>__calib<frac>.json` (A5). One fixed
 250-question test set; the three calibration sizes are nested prefixes of a
 single frozen order, so they are not independent draws. See
-[A5-A-conu-grid-handoff.md](A5-A-conu-grid-handoff.md) for the review.
+[A5-A-conu-grid-handoff.md](A5-A-conu-grid-handoff.md) for the review and
+[A5-resampling-review.md](A5-resampling-review.md) for the 1,000-draw check.
 
 | alpha | n calibration | q-hat | quantile level | coverage, all 250 [95% CI] | coverage, eligible 232 | set size, slots [95% CI] |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -39,6 +40,14 @@ Context that must accompany this table:
   distinct-text set size of **6.31**: 18.39 of 20 returned slots cover only
   about six different answers. Report both, or the set looks useless when it is
   merely repetitive.
+- **Sensitivity check, not just the prefix grid.** A re-ran the calibration step
+  on 1,000 random subsets per size. q-hat left 0.95 in at most 0.7% of draws
+  (only at n = 100, alpha = 0.1), topped out at 0.9523, and never reached the
+  next coverage breakpoint, 0.98. Coverage was 230/250 in every one of the 3,000
+  draws. The reason is arithmetic: **199 of the 250 calibration scores are
+  exactly 0.95**, so the order statistic sits on the atom unless at least 10 of
+  100 draws land above it. See
+  [A5-resampling-review.md](A5-resampling-review.md).
 
 ## Table 2 — Long-form (conformal factuality, 50 FActScore biographies)
 
@@ -86,17 +95,19 @@ returning almost every sample, while 0.96 factuality is achieved by deleting
   neither the threshold nor any reported number. Write this up as a property of
   the upstream score normalisation, with the saturation evidence, rather than
   hiding it behind a "robustness check" heading.
-- **The confidence intervals condition on a fixed calibration set**, so they
-  resample test questions only. They cannot support "calibration size does not
-  matter": with 100 calibration questions the quantile is far less stable, and
-  nothing in these six files measures that. Needs repeated calibration draws and
-  belongs in the limitations. This is the one gap a reviewer is most likely to
-  find, so state it before they do.
-- A3's `results/summary.json` still lives only in A's handoff and not in this
-  repository. Commit it, or at least pin its sha256, before the report is final.
-- A4's filter audit (`cache/a4_filter_audit/summary.json`) is a declared input of
-  A5 and has never been delivered. The 25-question exclusion count cannot be
-  re-derived from anything in this repository.
+- ~~The confidence intervals condition on a fixed calibration set, so nothing
+  measures how much q-hat moves across calibration draws.~~ **Closed 2026-11-12**
+  by A's 1,000-draw resampling. What survives is a smaller caveat: the result is
+  an empirical statement about this fixed 250/250 split, not a distribution-free
+  property of ConU, and the printed intervals still condition on a fixed
+  calibration set. Say so in one sentence rather than pretending the two
+  intervals measure the same thing.
+- ~~A3's summary and A4's filter audit are missing.~~ **Closed 2026-11-12.** Both
+  are now committed byte-for-byte under `exp/handoff/a5_resampling/`, with the
+  A4 file's hash equal to the one recorded inside the A5 results. The
+  475/25 split and the 0.928 oracle ceiling are now checkable in-repo.
+- A4's patch (`patches/conu-no-filter.patch`) is still not delivered, so the A4
+  comparison cannot be re-run, only quoted.
 
 ## How to regenerate
 
@@ -107,6 +118,11 @@ python -m confqa.conu.a5_grid --input-root <root> --output-dir exp/results \
 
 ls exp/results/fact__*.json    # long-form sources
 ls exp/results/conu__*.json    # short-form sources
+
+# A's delivery, byte-for-byte; verify before trusting it
+cd exp/handoff/a5_resampling && sha256sum -c SHA256SUMS
+# A3 summary, A4 filter audit, the scalar export and the cutoffs all live there
+python a5_resample_calibration.py --seed 0 --draws 1000 --out /tmp/resample.json
 ```
 
 The table numbers were transcribed from the committed jsons, not retyped from a

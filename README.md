@@ -60,6 +60,7 @@ configs/            experiment configs; base.yaml is the single source of shared
 data/               raw data (ignored) + fixed splits (tracked)
 cache/              generated artifacts: samples, similarities, claims (ignored)
 exp/results/        one json per run -- tracked, the source of every number
+exp/handoff/        teammate deliveries, byte-for-byte, each with SHA256SUMS
 figures/            plots produced from exp/results
 src/confqa/         common/ (shared), conu/ (A), factuality/ (B), extension/ (C)
 tests/              unit tests for metrics and io
@@ -96,8 +97,10 @@ third_party/        upstream repos at pinned commits (ignored)
 - [x] scaffold, CI, metrics, tests, schemas
 - [x] upstream repos cloned and pinned ([docs/reference/upstream_versions.md](docs/reference/upstream_versions.md))
 - [x] per-person manuals and work plan
-- [x] ConU pipeline end to end: 500 questions x 20 samples, plus the
+- [x] ConU pipeline end to end: 500 questions x 20 samples, the
       calibration-size grid ([A5 handoff](docs/analysis/A5-A-conu-grid-handoff.md))
+      and a 1,000-draw subset resampling
+      ([review](docs/analysis/A5-resampling-review.md))
 - [x] factuality baseline from cached scores (B)
 - [x] factuality H3 offline claim/judge interface (B)
 - [x] extension (C): a negative result with a full evidence chain

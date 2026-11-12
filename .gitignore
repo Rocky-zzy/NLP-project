@@ -18,6 +18,9 @@ data/raw/
 data/processed/
 cache/
 third_party/
+# ...but a teammate delivery under exp/handoff/ is archived byte-for-byte, and
+# A keeps its A4 audit in a folder named cache/, so re-include that one path.
+!exp/handoff/a5_resampling/cache/
 logs/
 *.jsonl
 # small hand-written fixtures are source, not generated output

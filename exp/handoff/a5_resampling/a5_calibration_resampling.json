@@ -1,0 +1,179 @@
+{
+  "schema": "confqa.conu.calibration_subset_sensitivity.v1",
+  "seed": 0,
+  "draws_per_size": 1000,
+  "calibration_pool_size": 250,
+  "test_size": 250,
+  "test_with_acceptable_candidate": 232,
+  "atom_0_95_in_calibration_pool": 199,
+  "sampling": "Uniform subsets without replacement within each draw; same draw for both alphas.",
+  "quantile_rule": "ceil((n+1)*(1-alpha))/n with higher interpolation, as in A5.",
+  "interval_rule": "Empirical 5th and 95th percentiles with linear interpolation.",
+  "scope": "Fixed calibration pool, fixed test questions, fixed cached candidates and scores.",
+  "results": [
+    {
+      "n_calibration": 100,
+      "alpha": 0.1,
+      "draws": 1000,
+      "unique_subsets": 1000,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.9522613065326633
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 993
+        },
+        {
+          "q_hat": 0.9510869565217391,
+          "covered_count": 230,
+          "count": 2
+        },
+        {
+          "q_hat": 0.9522613065326633,
+          "covered_count": 230,
+          "count": 5
+        }
+      ]
+    },
+    {
+      "n_calibration": 100,
+      "alpha": 0.2,
+      "draws": 1000,
+      "unique_subsets": 1000,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.95
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 1000
+        }
+      ]
+    },
+    {
+      "n_calibration": 150,
+      "alpha": 0.1,
+      "draws": 1000,
+      "unique_subsets": 1000,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.95
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 1000
+        }
+      ]
+    },
+    {
+      "n_calibration": 150,
+      "alpha": 0.2,
+      "draws": 1000,
+      "unique_subsets": 1000,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.95
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 1000
+        }
+      ]
+    },
+    {
+      "n_calibration": 250,
+      "alpha": 0.1,
+      "draws": 1000,
+      "unique_subsets": 1,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.95
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 1000
+        }
+      ]
+    },
+    {
+      "n_calibration": 250,
+      "alpha": 0.2,
+      "draws": 1000,
+      "unique_subsets": 1,
+      "q_hat": {
+        "p05": 0.95,
+        "p95": 0.95,
+        "min": 0.95,
+        "max": 0.95
+      },
+      "coverage": {
+        "p05": 0.92,
+        "p95": 0.92,
+        "min": 0.92,
+        "max": 0.92
+      },
+      "joint_counts": [
+        {
+          "q_hat": 0.95,
+          "covered_count": 230,
+          "count": 1000
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "scores": "ff165688bae2f7b882435f8c2392ea01d397ca952b4e1e5e49af3d5a6482edcb",
+    "test_cutoffs": "b0f74a828e7b3f9c81969429ec49d680170bc82077a0b69452db64414a689fd0"
+  }
+}
