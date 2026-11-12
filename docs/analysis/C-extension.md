@@ -1,7 +1,10 @@
 # Part 4: cross-response claim scoring (C)
 
-Status: complete. Every number below comes from committed code and committed
-result files; the label audit is documented in the same commit.
+Status: complete. Every number below comes from a committed result file:
+`exp/results/extension/grounded/` for the headline table and
+`exp/results/extension/weak/` for the discarded-label reference. Both sets were
+produced by `python -m confqa.extension.evaluate` at commit `3d63eed` with
+`reportable: true` and a clean work tree.
 
 ## What was built
 
@@ -20,8 +23,8 @@ same split-conformal rule, so the comparison is at an identical sampling budget.
 
 ## Label audit: why the first pass was thrown away
 
-The memory-only judge labelled 550 claims. Sixteen claims were checked by hand
-against Wikipedia; **6 of 17 were wrong (35%)**, in three modes:
+The memory-only judge labelled 550 claims. Seventeen claims were checked by hand
+against Wikipedia; **6 of them were wrong (35%)**, in three modes:
 
 - plausible but false (a baseball pitcher judged "football player")
 - true but judged false (a Paralympic medallist judged not an athlete)
@@ -56,20 +59,46 @@ supported by the article, and **16.4% are directly contradicted**. Those are
 claims all five samples agreed on and Wikipedia denies: a shared hallucination,
 not random noise.
 
-## Headline comparison (grounded labels, 25 test responses)
+## Headline comparison (grounded labels, 24 test responses)
 
-| method | threshold | vacuous all-correct | retention | empty rate |
-|---|---:|---:|---:|---:|
-| baseline (judge frequency) | 5.0 | **0.75** | 0.124 | 0.667 |
-| extension (support) | 1.0 | 0.25 | **0.691** | 0.167 |
+The test split holds 25 prompts but only 24 survive grounded labelling: one
+prompt has every claim tagged `not_claim` and drops out. Every rate below is
+therefore an exact fraction of 24.
+
+| method | threshold | vacuous all-correct | non-empty all-correct | retention | empty rate |
+|---|---:|---:|---:|---:|---:|
+| baseline (judge frequency) | 5.0 | **0.750** (18/24) | 0.083 (2/24) | 0.124 | 0.667 (16/24) |
+| extension (support) | 1.0 | 0.250 (6/24) | 0.083 (2/24) | **0.691** | 0.167 (4/24) |
+
+At this sample size the intervals are wide: Wilson 95% for vacuous all-correct
+is 0.551-0.880 versus 0.120-0.449, and 0.023-0.258 for non-empty all-correct on
+both rows.
 
 The extension keeps 5.6x more claims and is three times less reliable. Neither
 reaches its nominal target (0.9 / 0.8): the baseline empties two thirds of the
 responses and still misses.
 
-For reference, the same comparison under the discarded weak labels gave 0.84 vs
-0.24 — the baseline number dropped to 0.75 once labels were grounded, while the
-extension barely moved. **The weak labels flattered the baseline.**
+**Both filters leave exactly two fully correct non-empty responses.** The
+0.75 versus 0.25 gap is therefore a difference in how often the response is
+emptied, not in how often what survives is correct. The non-empty column, not
+the vacuous one, is where the two methods are actually identical.
+
+### The discarded weak labels, side by side
+
+| labels | method | vacuous all-correct | non-empty | retention | empty rate | responses | claims |
+|---|---|---:|---:|---:|---:|---:|---:|
+| weak | baseline | 0.840 | 0.240 | 0.111 | 0.600 | 25 | 270 |
+| weak | support | 0.240 | 0.160 | 0.652 | 0.080 | 25 | 270 |
+| grounded | baseline | 0.750 | 0.083 | 0.124 | 0.667 | 24 | 217 |
+| grounded | support | 0.250 | 0.083 | 0.691 | 0.167 | 24 | 217 |
+
+Grounding the labels dropped the baseline from 0.840 to 0.750 and left the
+extension at 0.24-0.25. **The weak labels flattered the baseline**, because the
+memory-only judge counted meta-commentary and off-topic sentences as true.
+
+The two label sets do not score the same claims (270 versus 217): retention is a
+ratio computed within each set, so the weak/grounded pairs are comparable, but
+the raw claim counts are not.
 
 ## What this means
 
@@ -90,6 +119,8 @@ extension barely moved. **The weak labels flattered the baseline.**
   extract of a short article. All absent claims are counted as unsupported,
   following the FActScore convention, which biases factuality down.
 - Two entities (Joeri Adams, Carlos Alfonso) have only disambiguation pages.
-- The test half holds 25 responses; every rate above has a wide interval.
+- The test half holds 25 responses and 24 survive grounded labelling, so every
+  rate above is a multiple of 1/24 and the intervals are wide. A one-response
+  change moves the vacuous all-correct rate by 4 points.
 - The extension's similarity threshold was fixed at 0.6 for comparability with
   the short-form line, not tuned.

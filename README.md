@@ -104,6 +104,7 @@ third_party/        upstream repos at pinned commits (ignored)
 - [x] factuality baseline from cached scores (B)
 - [x] factuality H3 offline claim/judge interface (B)
 - [x] extension (C): a negative result with a full evidence chain
-      ([docs/analysis/C-extension.md](docs/analysis/C-extension.md))
+      ([docs/analysis/C-extension.md](docs/analysis/C-extension.md)), result
+      files committed under `exp/results/extension/`
 - [x] Parts 1-3 main tables ([docs/analysis/main-tables.md](docs/analysis/main-tables.md))
 - [ ] English report, poster, individual contribution statements
