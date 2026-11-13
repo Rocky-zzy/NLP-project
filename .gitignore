@@ -34,6 +34,7 @@ logs/
 
 # --- Handover bundles (raw evidence, kept out of a public repo) ---
 /a1-evidence-*/
+/a4-evidence-*/
 
 # --- Secrets ---
 .env

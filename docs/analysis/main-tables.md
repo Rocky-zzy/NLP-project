@@ -40,6 +40,12 @@ Context that must accompany this table:
   distinct-text set size of **6.31**: 18.39 of 20 returned slots cover only
   about six different answers. Report both, or the set looks useless when it is
   merely repetitive.
+- **Recomputed independently on 2026-11-13** from A's raw 20x20 pairwise
+  score matrix (500 questions, 210 pairs each) with a separate implementation:
+  243/250 calibration, q-hat 0.95, 230/232 and 230/250, 18.543 / 18.388, and
+  6.272 / 6.308 distinct texts. Every value in this table is now reproducible
+  from the raw similarities rather than quoted. See
+  [A4-reproduction-review.md](A4-reproduction-review.md).
 - **Sensitivity check, not just the prefix grid.** A re-ran the calibration step
   on 1,000 random subsets per size. q-hat left 0.95 in at most 0.7% of draws
   (only at n = 100, alpha = 0.1), topped out at 0.9523, and never reached the
