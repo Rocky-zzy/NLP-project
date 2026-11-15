@@ -27,7 +27,7 @@ Context that must accompany this table:
 - **25 of 500 questions (5.0%) were excluded** because no sample was correct;
   18 of them sit in the test set, which is why the eligible column has n = 232.
 - The oracle ceiling on all 250 test questions is **0.928** (232/250 have at
-  least one correct sample), so 0.920 is within one question of the maximum
+  least one correct sample), so 0.920 is two questions short of the maximum
   attainable. 0.92 versus a 0.90 target is not evidence of a well-behaved
   method; it is a method that already returns almost everything.
 - **All six rows are identical.** q-hat sits on an atom of the nonconformity
@@ -40,6 +40,12 @@ Context that must accompany this table:
   distinct-text set size of **6.31**: 18.39 of 20 returned slots cover only
   about six different answers. Report both, or the set looks useless when it is
   merely repetitive.
+- **Where the answers come from.** The 10,000 answers are a team-generated
+  Qwen2.5-14B-Instruct cache, frozen before any calibration or analysis; the
+  benchmark answers are TriviaQA's. The 12,720.5 s of generation and 1,666.1 s of
+  scoring are request times recorded by the A3 plan, measured after server
+  startup. They are **not** the platform's metered GPU allocation, which also
+  covers model loading and idle time and is accounted separately.
 - **Recomputed independently on 2026-11-13** from A's raw 20x20 pairwise
   score matrix (500 questions, 210 pairs each) with a separate implementation:
   243/250 calibration, q-hat 0.95, 230/232 and 230/250, 18.543 / 18.388, and
@@ -47,12 +53,13 @@ Context that must accompany this table:
   from the raw similarities rather than quoted. See
   [A4-reproduction-review.md](A4-reproduction-review.md).
 - **Sensitivity check, not just the prefix grid.** A re-ran the calibration step
-  on 1,000 random subsets per size. q-hat left 0.95 in at most 0.7% of draws
-  (only at n = 100, alpha = 0.1), topped out at 0.9523, and never reached the
+  on 1,000 random subsets per size. q-hat left 0.95 in only a handful of draws
+  (all at n = 100, alpha = 0.1), topped out at 0.9523, and never reached the
   next coverage breakpoint, 0.98. Coverage was 230/250 in every one of the 3,000
   draws. The reason is arithmetic: **199 of the 250 calibration scores are
-  exactly 0.95**, so the order statistic sits on the atom unless at least 10 of
-  100 draws land above it. See
+  exactly 0.95**, so the threshold sits on that atom almost always. Quote the
+  empirical statement, not a derivation — the exact order statistic depends on
+  the quantile convention. See
   [A5-resampling-review.md](A5-resampling-review.md).
 
 ## Table 2 — Long-form (conformal factuality, 50 FActScore biographies)
@@ -112,8 +119,10 @@ returning almost every sample, while 0.96 factuality is achieved by deleting
   are now committed byte-for-byte under `exp/handoff/a5_resampling/`, with the
   A4 file's hash equal to the one recorded inside the A5 results. The
   475/25 split and the 0.928 oracle ceiling are now checkable in-repo.
-- A4's patch (`patches/conu-no-filter.patch`) is still not delivered, so the A4
-  comparison cannot be re-run, only quoted.
+- ~~A4's patch is missing.~~ **Closed 2026-11-13.** The patch, the runner and the
+  seven frozen inputs arrived in A's reproduction package, archived outside git
+  at `a4-evidence-20261113/`. The CPU rerun regenerates the A4 summary with the
+  same sha256, `f1be4c32…`.
 
 ## How to regenerate
 

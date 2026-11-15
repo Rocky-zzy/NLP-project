@@ -58,13 +58,16 @@ not move.
 
 ### Not verified here
 
-The numbers cannot be recomputed from this repository. A5 consumes
+The numbers cannot be recomputed from this repository alone. A5 consumes
 `cache/a3_500_m20/` (A's generation cache, gitignored) and
-`cache/a4_filter_audit/summary.json`. Neither was handed over, and **A4 has still
-not been delivered at all** — it is declared as an input in `input_sha256` but
-never appeared. What protects the numbers is A5's own cross-check: when
-n_calibration equals the full pool it asserts equality with A4's unfiltered run
-and aborts otherwise, and it refuses to run on a dirty checkout.
+`cache/a4_filter_audit/summary.json`. Neither is in git — A4 was still undelivered
+when this review was written. **Both have since arrived** (2026-11-13, with A's
+reproduction package, archived outside git): the A4 summary there is identical to
+the committed copy, and A's raw score matrix rebuilds the whole table. See
+[A4-reproduction-review.md](A4-reproduction-review.md). What protects the numbers
+in the meantime is A5's own cross-check: when n_calibration equals the full pool
+it asserts equality with A4's unfiltered run and aborts otherwise, and it refuses
+to run on a dirty checkout.
 
 ### Problems
 

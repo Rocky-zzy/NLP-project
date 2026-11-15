@@ -39,18 +39,26 @@ without replacement, 1,000 per size, one shared subset across both alphas).
 | 250 | 0.2 | one subset | 0.95000000 | 0 / 1 | 230-230 |
 
 Agreement: the percentiles, the maximum (0.95226131 to eight decimals) and the
-coverage count are identical. The one number that does not reproduce exactly is
-A's "7 of 1,000 draws above 0.95" at n = 100, alpha = 0.1; I get 4. That is an
-RNG-stream difference, not a disagreement. **Do not quote the exact count in the
-report** — quote the rate (about 0.5%) and the ceiling.
+coverage count are identical.
+
+The one number that does not reproduce exactly is A's "7 of 1,000 draws above
+0.95" at n = 100, alpha = 0.1; I get 4. Two things differ, not one. The RNG
+stream differs, and so does the rank: my run used the textbook
+`ceil((n+1)(1-alpha))`-th order statistic, the 91st, while A5 uses NumPy's
+`higher` rule at level 0.91, which is the 92nd (see the rank note below). The
+92nd rank lifts off the atom whenever at least 9 of 100 draws land above 0.95;
+the 91st needs 10. So A's rule should exceed slightly more often, which is the
+direction observed. **Do not quote the exact count in the report** — quote the
+rate and the ceiling, or use the empirical sentence from Section 3a.
 
 ## Why it is flat, in arithmetic
 
 - Of the 250 calibration scores, **199 are exactly 0.95**, 12 are above and 39
   below.
-- q-hat at n = 100, alpha = 0.1 is the 91st smallest of 100 draws. It stays at
-  0.95 unless at least 10 of the 100 land above 0.95, which happens about 0.5%
-  of the time.
+- q-hat at n = 100, alpha = 0.1 is the **92nd** smallest of 100 draws, not the
+  91st: the code applies NumPy's `higher` rule at level `0.91`, which lands one
+  rank above the textbook order statistic. It stays at 0.95 unless at least 9 of
+  the 100 land above 0.95, which happened in 7 of A's 1,000 draws.
 - When it does move, the maximum is 0.95226131, and the smallest test coverage
   cutoff above 0.95 is **0.98**. No observed threshold gets near it.
 
@@ -98,8 +106,10 @@ textbook formula while the code computes one rank above it.
 
 ## Still missing
 
-- A4's patch (`patches/conu-no-filter.patch`, hash `017e8f6a…`) is referenced by
-  the A4 summary and was not delivered, so A4 cannot be re-run from this package.
+- ~~A4's patch was not delivered.~~ **Closed 2026-11-13**: it arrived with A's
+  reproduction package, which is archived outside git at
+  `a4-evidence-20261113/`, and the CPU rerun reproduces the A4 summary
+  byte-for-byte. See [A4-reproduction-review.md](A4-reproduction-review.md).
 - A3's generation cache is still not in the repository. It no longer blocks
   anything: the scalar export plus the cutoffs reproduce the coverage number.
 
