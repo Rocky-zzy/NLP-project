@@ -103,8 +103,16 @@ third_party/        upstream repos at pinned commits (ignored)
       ([review](docs/analysis/A5-resampling-review.md))
 - [x] factuality baseline from cached scores (B)
 - [x] factuality H3 offline claim/judge interface (B)
+- [x] factuality report sections 1b/2b/3b and claim diagnostics (B)
+      ([review](docs/analysis/B-report-review.md))
+- [x] ConU report sections 1a/2a/3a (A)
+      ([review](docs/analysis/A4-reproduction-review.md))
 - [x] extension (C): a negative result with a full evidence chain
       ([docs/analysis/C-extension.md](docs/analysis/C-extension.md)), result
       files committed under `exp/results/extension/`
 - [x] Parts 1-3 main tables ([docs/analysis/main-tables.md](docs/analysis/main-tables.md))
+- [x] case studies for both branches
+      ([short-form](docs/analysis/A-conu-cases.md),
+      [long-form](docs/analysis/B-factuality-cases.md),
+      [extension](docs/analysis/C-extension.md))
 - [ ] English report, poster, individual contribution statements
