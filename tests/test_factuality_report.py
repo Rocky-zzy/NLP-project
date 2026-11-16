@@ -8,6 +8,7 @@ from confqa.factuality.report import (
     GRID_ALPHAS,
     GRID_CALIB_FRACS,
     load_grid_results,
+    plot_claim_diagnostics,
     plot_retention_vs_factuality,
 )
 
@@ -43,6 +44,33 @@ def test_plot_writes_png_and_pdf(tmp_path):
         _grid_records(),
         png_path=tmp_path / "plot.png",
         pdf_path=tmp_path / "plot.pdf",
+    )
+
+    assert png.exists() and png.stat().st_size > 0
+    assert pdf is not None and pdf.exists() and pdf.stat().st_size > 0
+
+
+def test_claim_diagnostic_plot_writes_files(tmp_path):
+    analysis = {
+        "claim_outcomes": {
+            "Y": {"retained": 40, "dropped": 71},
+            "S": {"retained": 4, "dropped": 20},
+            "N": {"retained": 1, "dropped": 51},
+            "U": {"retained": 0, "dropped": 23},
+        },
+        "score_bands": {
+            "5": {"correct": {"retained": 44, "dropped": 22}},
+            "4": {"correct": {"retained": 0, "dropped": 12}},
+            "1_to_3": {"correct": {"retained": 0, "dropped": 45}},
+            "0": {"correct": {"retained": 0, "dropped": 2}},
+            "negative": {"correct": {"retained": 0, "dropped": 10}},
+        },
+    }
+
+    png, pdf = plot_claim_diagnostics(
+        analysis,
+        png_path=tmp_path / "claims.png",
+        pdf_path=tmp_path / "claims.pdf",
     )
 
     assert png.exists() and png.stat().st_size > 0

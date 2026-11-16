@@ -7,7 +7,7 @@ from collections.abc import Sequence
 
 from .cases import analyze_primary_cases
 from .evaluate import DEFAULT_CONFIG, run_baseline, run_grid
-from .report import run_report
+from .report import run_claim_diagnostic_report, run_report
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -50,6 +50,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(png_path)
         if pdf_path is not None:
             print(pdf_path)
+        claim_png, claim_pdf = run_claim_diagnostic_report()
+        print(claim_png)
+        if claim_pdf is not None:
+            print(claim_pdf)
         return 0
     else:
         parser.error(f"unknown command: {args.command}")
