@@ -111,6 +111,8 @@ third_party/        upstream repos at pinned commits (ignored)
       ([docs/analysis/C-extension.md](docs/analysis/C-extension.md)), result
       files committed under `exp/results/extension/`
 - [x] Parts 1-3 main tables ([docs/analysis/main-tables.md](docs/analysis/main-tables.md))
+- [x] shared infrastructure and reproduction notes (C)
+      ([reports/C-infrastructure-sections.md](reports/C-infrastructure-sections.md))
 - [x] case studies for both branches
       ([short-form](docs/analysis/A-conu-cases.md),
       [long-form](docs/analysis/B-factuality-cases.md),

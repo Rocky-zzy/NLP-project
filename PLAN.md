@@ -57,7 +57,7 @@
 - [ ] 配置 yaml + 固定 seed
 - [x] 结果表：coverage/size；all-correct/retention/empty；双 α × 校准比例 → [main-tables](docs/analysis/main-tables.md)
 - [x] 结果 json 全部入库：短问答 6 份、长回答 6 份、扩展 8 份（弱标签 + grounded）
-- [ ] tradeoff 图 + 扩展对比图（覆盖-集合大小图已有，扩展对比图缺）
+- [x] 图：覆盖-集合大小、retention-真实性、claim 诊断、扩展对比
 - [x] 成功/失败案例：短问答、长回答、扩展三处都有
 - [ ] 英文报告
 - [ ] poster

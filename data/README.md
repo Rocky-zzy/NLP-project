@@ -4,7 +4,7 @@
 |---|---|---|
 | `raw/triviaqa/` | TriviaQA `rc.nocontext`, downloaded once | no |
 | `raw/factscore/` | FActScore biography prompts | no |
-| `splits/` | fixed calibration / dev / test ids | **yes** |
+| `splits/` | fixed calibration / dev / test ids (`factscore.json`, `triviaqa_a3.json`) | **yes** |
 | `processed/` | intermediate, regenerable | no |
 
 Splits are created once, committed, and never regenerated. Record the sha256 of
