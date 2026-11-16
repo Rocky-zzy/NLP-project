@@ -142,7 +142,114 @@ def plot_retention_vs_factuality(
     return png_path, saved_pdf
 
 
+def plot_claim_diagnostics(
+    analysis: dict,
+    *,
+    png_path: str | Path = FIGURES / "factuality_claim_diagnostics.png",
+    pdf_path: str | Path | None = FIGURES / "factuality_claim_diagnostics.pdf",
+) -> tuple[Path, Path | None]:
+    """Plot claim retention by annotation and score band."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, (annotation_ax, score_ax) = plt.subplots(
+        1,
+        2,
+        figsize=(11.2, 4.5),
+        gridspec_kw={"width_ratios": [1.0, 1.35]},
+    )
+
+    outcomes = analysis["claim_outcomes"]
+    labels = ["Y\nFactual", "S\nSubjective", "N\nFalse", "U\nUnverifiable"]
+    keys = ["Y", "S", "N", "U"]
+    retained = [outcomes[key]["retained"] for key in keys]
+    dropped = [outcomes[key]["dropped"] for key in keys]
+    x = range(len(keys))
+    retained_bars = annotation_ax.bar(
+        x,
+        retained,
+        color="#2F6DAE",
+        label="Retained",
+    )
+    dropped_bars = annotation_ax.bar(
+        x,
+        dropped,
+        bottom=retained,
+        color="#C9CDD2",
+        label="Dropped",
+    )
+    annotation_ax.bar_label(
+        retained_bars, labels=[str(value) for value in retained], label_type="center"
+    )
+    annotation_ax.bar_label(
+        dropped_bars,
+        labels=[str(value) for value in dropped],
+        label_type="center",
+    )
+    annotation_ax.set_xticks(list(x), labels)
+    annotation_ax.set_ylabel("Claim count")
+    annotation_ax.set_title("Retention by human annotation")
+    annotation_ax.legend(frameon=False, loc="upper right")
+
+    bands = ["5", "4", "1_to_3", "0", "negative"]
+    band_labels = ["5", "4", "1–3", "0", "<0"]
+    score_data = analysis["score_bands"]
+    kept = [score_data[band]["correct"]["retained"] for band in bands]
+    missed = [score_data[band]["correct"]["dropped"] for band in bands]
+    x_score = range(len(bands))
+    width = 0.38
+    score_ax.bar(
+        [value - width / 2 for value in x_score],
+        kept,
+        width=width,
+        color="#2F6DAE",
+        label="Correct, retained",
+    )
+    score_ax.bar(
+        [value + width / 2 for value in x_score],
+        missed,
+        width=width,
+        color="#D17B28",
+        label="Correct, dropped",
+    )
+    score_ax.set_xticks(list(x_score), band_labels)
+    score_ax.set_xlabel("Frequency score band")
+    score_ax.set_ylabel("Correct claim count")
+    score_ax.set_title("Correct-claim outcomes by score")
+    score_ax.legend(frameon=False, loc="upper right")
+
+    for ax in (annotation_ax, score_ax):
+        ax.grid(axis="y", color="#E7E7E7", linewidth=0.7)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+
+    fig.suptitle("Why claim filtering is conservative", fontsize=14, fontweight="bold")
+    fig.tight_layout()
+
+    png_path = Path(png_path)
+    png_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(png_path, dpi=220, bbox_inches="tight")
+    saved_pdf = None
+    if pdf_path is not None:
+        saved_pdf = Path(pdf_path)
+        saved_pdf.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(saved_pdf, bbox_inches="tight")
+    plt.close(fig)
+    return png_path, saved_pdf
+
+
 def run_report(results_dir: str | Path = RESULTS) -> tuple[Path, Path | None]:
     """Load the grid and write the report figure."""
     records = load_grid_results(results_dir)
     return plot_retention_vs_factuality(records)
+
+
+def run_claim_diagnostic_report(config_path: str | Path | None = None) -> tuple[Path, Path | None]:
+    """Build the claim-level diagnostic figure from the primary case run."""
+    from .cases import analyze_primary_cases
+    from .evaluate import DEFAULT_CONFIG
+
+    analysis = analyze_primary_cases(config_path or DEFAULT_CONFIG)
+    return plot_claim_diagnostics(analysis)

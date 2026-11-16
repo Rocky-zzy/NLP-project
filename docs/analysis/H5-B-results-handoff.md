@@ -29,23 +29,27 @@ All six files:
 
 ## Headline numbers
 
-| Target | Calib n | Threshold | All-correct | Retention | Empty |
-|---:|---:|---:|---:|---:|---:|
-| 0.9 | 10 | 5.00007 | 0.60 | 0.1619 | 0.36 |
-| 0.9 | 15 | 5.00007 | 0.60 | 0.1619 | 0.36 |
-| 0.9 | 20 | 4.99964 | 0.68 | 0.2143 | 0.28 |
-| 0.8 | 10 | 4.99876 | 0.80 | 0.2952 | 0.12 |
-| 0.8 | 15 | 4.99876 | 0.80 | 0.2952 | 0.12 |
-| 0.8 | 20 | 3.99988 | 0.76 | 0.3619 | 0.12 |
+| Target | Calib n | Threshold | All-correct vacuous | All-correct nonempty | Retention | Empty |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0.9 | 10 | 5.00007 | 0.96 | 0.60 | 0.1619 | 0.36 |
+| 0.9 | 15 | 5.00007 | 0.96 | 0.60 | 0.1619 | 0.36 |
+| 0.9 | 20 | 4.99964 | 0.96 | 0.68 | 0.2143 | 0.28 |
+| 0.8 | 10 | 4.99876 | 0.92 | 0.80 | 0.2952 | 0.12 |
+| 0.8 | 15 | 4.99876 | 0.92 | 0.80 | 0.2952 | 0.12 |
+| 0.8 | 20 | 3.99988 | 0.88 | 0.76 | 0.3619 | 0.12 |
 
-Every point includes response-level bootstrap 95% intervals for all three
-metrics. Detailed intervals and interpretation are in
+`all-correct vacuous` is the quantity bounded by the conformal guarantee and
+counts an empty response as correct. `all-correct nonempty` is the
+usefulness-side headline. Every point includes response-level bootstrap 95%
+intervals for all metrics. Detailed intervals and interpretation are in
 `docs/analysis/B-grid.md`.
 
 ## Related assets
 
 - Main figure: `figures/retention_vs_factuality.png`
 - PDF figure: `figures/retention_vs_factuality.pdf`
+- Claim diagnostics: `figures/factuality_claim_diagnostics.png`
+- Claim diagnostics PDF: `figures/factuality_claim_diagnostics.pdf`
 - Case analysis: `docs/analysis/B-factuality-cases.md`
 - Report draft: `reports/B-factuality-sections.md`
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-- Prepared locally by B on 2026-11-05.
+- Prepared locally by B on 2026-11-16.
 - Intended H7 milestone: 2026-11-23.
 - Not yet sent or independently reproduced by C.
 
@@ -14,6 +14,8 @@
 | Six result JSON files | `exp/results/fact__a[alpha]__calib[frac].json` | Reportable |
 | Main figure | `figures/retention_vs_factuality.png` | Ready |
 | Report PDF figure | `figures/retention_vs_factuality.pdf` | Ready |
+| Claim diagnostics | `figures/factuality_claim_diagnostics.png` | Ready |
+| Claim diagnostics PDF | `figures/factuality_claim_diagnostics.pdf` | Ready |
 | Detailed case analysis | `docs/analysis/B-factuality-cases.md` | Ready for review |
 | Grid analysis | `docs/analysis/B-grid.md` | Ready |
 | Baseline interpretation | `docs/analysis/B-baseline.md` | Ready |
@@ -46,6 +48,9 @@ PYTHONPATH=src .venv/bin/python -m confqa.factuality.cli cases \
   GPT-4 claims and scores. It does not reproduce new generation end to end.
 - `Y/S` are accepted; `N/U` are not accepted.
 - `U` means unverifiable, not false.
+- The conformal guarantee is evaluated with empty responses counted as
+  vacuously correct. The usefulness-side result excludes empty responses and is
+  reported separately.
 - The primary case analysis uses \(1-\alpha=0.9\) and all 20 calibration
   responses.
 - Empty responses are reported separately and are not treated as useful

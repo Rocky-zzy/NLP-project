@@ -21,6 +21,18 @@
 | 0.2 | 0.8 | 15 | 4.99876 | 0.80 | [0.64, 0.96] | 0.2952 | [0.2227, 0.3709] | 0.12 | [0.00, 0.28] |
 | 0.2 | 0.8 | 20 | 3.99988 | 0.76 | [0.60, 0.92] | 0.3619 | [0.2780, 0.4459] | 0.12 | [0.00, 0.28] |
 
+The conformal guarantee is evaluated with empty responses counted as vacuously
+correct:
+
+| alpha | calib 10 | calib 15 | calib 20 |
+|---:|---:|---:|---:|
+| 0.1 | 0.96 [0.88, 1.00] | 0.96 [0.88, 1.00] | 0.96 [0.88, 1.00] |
+| 0.2 | 0.92 [0.80, 1.00] | 0.92 [0.80, 1.00] | 0.88 [0.76, 1.00] |
+
+Both targets satisfy their conformal levels in every cell. The trade-off is
+visible in retention and empty rate rather than a failure of the formal
+guarantee.
+
 ## 图形
 
 ![Conformal factuality trade-off](../../figures/retention_vs_factuality.png)

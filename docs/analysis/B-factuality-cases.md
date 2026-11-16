@@ -121,6 +121,12 @@
 
 ### 4.3 哪些文本特征更容易出现在被误删的 claim 中
 
+![Claim-level retention diagnostics](../../figures/factuality_claim_diagnostics.png)
+
+左图按人工标注统计 retained / dropped claim；右图只保留正确 claim，按
+frequency score 分档展示保留与误删数量。它直观显示：高 precision 是通过
+大量删除正确 claim 换来的。
+
 以下是多标签表面统计；一条 claim 可以同时属于多个类别，因此比例不能相加。
 
 | 特征 | 正确且保留 | 正确但删除 | 观察 |
