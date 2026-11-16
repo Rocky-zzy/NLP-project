@@ -326,11 +326,14 @@ The six source files are:
 - [`fact__a0.2__calib0.75.json`](../exp/results/fact__a0.2__calib0.75.json)
 - [`fact__a0.2__calib1.json`](../exp/results/fact__a0.2__calib1.json)
 
-![Retention--factuality trade-off](../figures/retention_vs_factuality.png)
+![Retention versus factuality](../figures/retention_vs_factuality.png)
 
 *Figure 2. Retention versus nonempty all-correct rate for both targets and all
 three calibration sizes. Error bars are 95% response-level bootstrap intervals.
 The 10- and 15-response settings coincide and share a marker.*
+
+If the preview cannot render the image, open
+[Figure 2 directly](../figures/retention_vs_factuality.png).
 
 The figures are regenerated with:
 
