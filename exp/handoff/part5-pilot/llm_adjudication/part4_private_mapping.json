@@ -1,0 +1,642 @@
+{
+ "X001": {
+  "pid": "factscore-0045",
+  "cid": 3,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 4008
+ },
+ "X002": {
+  "pid": "factscore-0038",
+  "cid": 2,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X003": {
+  "pid": "factscore-0038",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X004": {
+  "pid": "factscore-0014",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "supported",
+  "condition": "full",
+  "evidence_chars": 1892
+ },
+ "X005": {
+  "pid": "factscore-0044",
+  "cid": 5,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 12000
+ },
+ "X006": {
+  "pid": "factscore-0033",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "supported",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X007": {
+  "pid": "factscore-0048",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "not_claim",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X008": {
+  "pid": "factscore-0047",
+  "cid": 4,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 2308
+ },
+ "X009": {
+  "pid": "factscore-0038",
+  "cid": 2,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X010": {
+  "pid": "factscore-0039",
+  "cid": 4,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2917
+ },
+ "X011": {
+  "pid": "factscore-0030",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 1285
+ },
+ "X012": {
+  "pid": "factscore-0034",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 5906
+ },
+ "X013": {
+  "pid": "factscore-0041",
+  "cid": 10,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 4805
+ },
+ "X014": {
+  "pid": "factscore-0018",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X015": {
+  "pid": "factscore-0034",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X016": {
+  "pid": "factscore-0010",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X017": {
+  "pid": "factscore-0010",
+  "cid": 16,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X018": {
+  "pid": "factscore-0004",
+  "cid": 10,
+  "support": 0.2,
+  "grounded_verdict": "supported",
+  "condition": "first_3000",
+  "evidence_chars": 1789
+ },
+ "X019": {
+  "pid": "factscore-0049",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 12000
+ },
+ "X020": {
+  "pid": "factscore-0024",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 1072
+ },
+ "X021": {
+  "pid": "factscore-0014",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 1892
+ },
+ "X022": {
+  "pid": "factscore-0049",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 12000
+ },
+ "X023": {
+  "pid": "factscore-0009",
+  "cid": 2,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X024": {
+  "pid": "factscore-0031",
+  "cid": 9,
+  "support": 0.2,
+  "grounded_verdict": "not_claim",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X025": {
+  "pid": "factscore-0008",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "not_claim",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X026": {
+  "pid": "factscore-0038",
+  "cid": 5,
+  "support": 0.6,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X027": {
+  "pid": "factscore-0010",
+  "cid": 4,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X028": {
+  "pid": "factscore-0036",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 1061
+ },
+ "X029": {
+  "pid": "factscore-0010",
+  "cid": 15,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X030": {
+  "pid": "factscore-0010",
+  "cid": 16,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X031": {
+  "pid": "factscore-0010",
+  "cid": 4,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X032": {
+  "pid": "factscore-0049",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X033": {
+  "pid": "factscore-0049",
+  "cid": 9,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 12000
+ },
+ "X034": {
+  "pid": "factscore-0036",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 1061
+ },
+ "X035": {
+  "pid": "factscore-0002",
+  "cid": 4,
+  "support": 0.2,
+  "grounded_verdict": "not_claim",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X036": {
+  "pid": "factscore-0040",
+  "cid": 2,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 3883
+ },
+ "X037": {
+  "pid": "factscore-0027",
+  "cid": 9,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2245
+ },
+ "X038": {
+  "pid": "factscore-0022",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X039": {
+  "pid": "factscore-0038",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X040": {
+  "pid": "factscore-0010",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X041": {
+  "pid": "factscore-0022",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 5609
+ },
+ "X042": {
+  "pid": "factscore-0034",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 5906
+ },
+ "X043": {
+  "pid": "factscore-0038",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X044": {
+  "pid": "factscore-0038",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X045": {
+  "pid": "factscore-0024",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 1072
+ },
+ "X046": {
+  "pid": "factscore-0030",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 1285
+ },
+ "X047": {
+  "pid": "factscore-0039",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2917
+ },
+ "X048": {
+  "pid": "factscore-0014",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 1892
+ },
+ "X049": {
+  "pid": "factscore-0048",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "not_claim",
+  "condition": "full",
+  "evidence_chars": 3604
+ },
+ "X050": {
+  "pid": "factscore-0010",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X051": {
+  "pid": "factscore-0045",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X052": {
+  "pid": "factscore-0040",
+  "cid": 2,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X053": {
+  "pid": "factscore-0038",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X054": {
+  "pid": "factscore-0038",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X055": {
+  "pid": "factscore-0002",
+  "cid": 4,
+  "support": 0.2,
+  "grounded_verdict": "not_claim",
+  "condition": "full",
+  "evidence_chars": 5171
+ },
+ "X056": {
+  "pid": "factscore-0010",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X057": {
+  "pid": "factscore-0010",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2731
+ },
+ "X058": {
+  "pid": "factscore-0045",
+  "cid": 3,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X059": {
+  "pid": "factscore-0010",
+  "cid": 15,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X060": {
+  "pid": "factscore-0010",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2731
+ },
+ "X061": {
+  "pid": "factscore-0034",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X062": {
+  "pid": "factscore-0039",
+  "cid": 4,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2917
+ },
+ "X063": {
+  "pid": "factscore-0018",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 5788
+ },
+ "X064": {
+  "pid": "factscore-0045",
+  "cid": 7,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 4008
+ },
+ "X065": {
+  "pid": "factscore-0027",
+  "cid": 9,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 2245
+ },
+ "X066": {
+  "pid": "factscore-0038",
+  "cid": 6,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X067": {
+  "pid": "factscore-0038",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "full",
+  "evidence_chars": 3723
+ },
+ "X068": {
+  "pid": "factscore-0008",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "not_claim",
+  "condition": "full",
+  "evidence_chars": 3195
+ },
+ "X069": {
+  "pid": "factscore-0039",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 2917
+ },
+ "X070": {
+  "pid": "factscore-0031",
+  "cid": 9,
+  "support": 0.2,
+  "grounded_verdict": "not_claim",
+  "condition": "full",
+  "evidence_chars": 7318
+ },
+ "X071": {
+  "pid": "factscore-0038",
+  "cid": 5,
+  "support": 0.6,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X072": {
+  "pid": "factscore-0047",
+  "cid": 4,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 2308
+ },
+ "X073": {
+  "pid": "factscore-0033",
+  "cid": 8,
+  "support": 1.0,
+  "grounded_verdict": "supported",
+  "condition": "full",
+  "evidence_chars": 4944
+ },
+ "X074": {
+  "pid": "factscore-0049",
+  "cid": 9,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X075": {
+  "pid": "factscore-0014",
+  "cid": 0,
+  "support": 1.0,
+  "grounded_verdict": "supported",
+  "condition": "first_3000",
+  "evidence_chars": 1892
+ },
+ "X076": {
+  "pid": "factscore-0044",
+  "cid": 5,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X077": {
+  "pid": "factscore-0041",
+  "cid": 10,
+  "support": 0.2,
+  "grounded_verdict": "absent",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ },
+ "X078": {
+  "pid": "factscore-0009",
+  "cid": 2,
+  "support": 1.0,
+  "grounded_verdict": "absent",
+  "condition": "full",
+  "evidence_chars": 3707
+ },
+ "X079": {
+  "pid": "factscore-0004",
+  "cid": 10,
+  "support": 0.2,
+  "grounded_verdict": "supported",
+  "condition": "full",
+  "evidence_chars": 1789
+ },
+ "X080": {
+  "pid": "factscore-0049",
+  "cid": 1,
+  "support": 1.0,
+  "grounded_verdict": "contradicted",
+  "condition": "first_3000",
+  "evidence_chars": 3000
+ }
+}
