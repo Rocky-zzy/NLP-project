@@ -72,8 +72,11 @@ for name in ["clusters.jsonl", "clusters_t0.75.jsonl", "clusters_t0.85.jsonl", "
     if not p.exists():
         continue
     rows = load(p)
-    sizes = Counter(r["cluster_id"] for r in rows)
-    hi = [r for r in rows if r["support"] >= 0.999]
+    # cluster_id is only unique within a prompt; count (pid, cluster_id).
+    sizes = Counter((r["pid"], r["cluster_id"]) for r in rows)
+    # not_claim rows are sentences that are not factual assertions at all, so
+    # they are excluded from the purity columns, as in the Part 4 analysis.
+    hi = [r for r in rows if r["support"] >= 0.999 and labels.get((r["pid"], r["cid"])) != "not_claim"]
     contra = sum(1 for r in hi if labels.get((r["pid"], r["cid"])) == "contradicted")
     thr = "0.60" if name == "clusters.jsonl" else name.replace("clusters_t", "").replace(".jsonl", "")
     print(f"{thr:>10} {len(rows):7d} {len(sizes):9d} {sum(sizes.values())/max(1,len(sizes)):10.2f} "

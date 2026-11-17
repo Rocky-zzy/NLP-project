@@ -1,9 +1,12 @@
-# HPC steps (blocked locally)
+# HPC steps
 
-The workstation cannot reach the cluster (one configured host times out, the
-other rejects the key), so these steps must be run on the HPC. Nothing here
-touches tracked files: new cluster files go to `cache/ext/` (git-ignored) and
-copies to `~/part5-handoff/`.
+These were written while the workstation could not reach the cluster. The
+inputs have since been recovered through the HPC file browser, so everything
+here runs on any host that has `cache/`, and a GPU is not required: pass
+`--device cpu` to `confqa.extension.cluster`. Results are in
+[B2-thresholds.md](B2-thresholds.md). Nothing here touches tracked files: new
+cluster files go to `cache/ext/` (git-ignored) and copies to
+`~/part5-handoff/`.
 
 ## What is needed
 
