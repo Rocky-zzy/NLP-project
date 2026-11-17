@@ -1,0 +1,52 @@
+{
+ "seed": 20261117,
+ "rng": "python random.Random(seed), shuffle per stratum over (pid, claim_index) sorted",
+ "created": "2026-11-17",
+ "source_claims_file": "third_party/conformal-factual-lm/out/factscore_subclaims_with_scores.jsonl",
+ "source_split_file": "data/splits/factscore.json",
+ "sampling_depends_on_labels": false,
+ "strata": {
+  "score_5": {
+   "definition": "score_5",
+   "available_in_test": 68,
+   "selected_main": 20,
+   "selected_pilot": 3
+  },
+  "score_3_4": {
+   "definition": "score_3_4",
+   "available_in_test": 36,
+   "selected_main": 20,
+   "selected_pilot": 3
+  },
+  "score_1_2": {
+   "definition": "score_1_2",
+   "available_in_test": 51,
+   "selected_main": 20,
+   "selected_pilot": 3
+  },
+  "score_0": {
+   "definition": "score_0",
+   "available_in_test": 21,
+   "selected_main": 20,
+   "selected_pilot": 3
+  }
+ },
+ "main_package": {
+  "n": 80,
+  "ids": "F001..F080"
+ },
+ "pilot_package": {
+  "n": 12,
+  "ids": "P001..P012",
+  "pool": "all 50 biographies (the test split holds only 21 score-0 claims)",
+  "disjoint_from_main": true,
+  "purpose": "protocol adherence only; not a population sample"
+ },
+ "withheld_from_evaluator": [
+  "factscore annotation (Y/S/N/U)",
+  "frequency score",
+  "tie-break noise term",
+  "previous LLM grounded labels",
+  "any prior judgment or expected result"
+ ]
+}

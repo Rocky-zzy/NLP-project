@@ -1,0 +1,738 @@
+{
+ "F001": {
+  "pid": "factscore-0038",
+  "claim_index": 1,
+  "subject": "Jesse Foppert",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3723
+ },
+ "F002": {
+  "pid": "factscore-0038",
+  "claim_index": 0,
+  "subject": "Jesse Foppert",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3723
+ },
+ "F003": {
+  "pid": "factscore-0005",
+  "claim_index": 5,
+  "subject": "Chief Jones",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1566
+ },
+ "F004": {
+  "pid": "factscore-0000",
+  "claim_index": 1,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 964
+ },
+ "F005": {
+  "pid": "factscore-0046",
+  "claim_index": 2,
+  "subject": "Carlos Alfonso",
+  "frequency_score": 5,
+  "factscore_annotation": "S",
+  "evidence_chars": 211
+ },
+ "F006": {
+  "pid": "factscore-0021",
+  "claim_index": 4,
+  "subject": "Desmond Luke",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2525
+ },
+ "F007": {
+  "pid": "factscore-0014",
+  "claim_index": 0,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1892
+ },
+ "F008": {
+  "pid": "factscore-0015",
+  "claim_index": 0,
+  "subject": "Jean Daullé",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3444
+ },
+ "F009": {
+  "pid": "factscore-0028",
+  "claim_index": 0,
+  "subject": "Ko Itakura",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 6595
+ },
+ "F010": {
+  "pid": "factscore-0033",
+  "claim_index": 5,
+  "subject": "Song Kang",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 4944
+ },
+ "F011": {
+  "pid": "factscore-0011",
+  "claim_index": 4,
+  "subject": "Quintus Sosius Senecio",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3003
+ },
+ "F012": {
+  "pid": "factscore-0038",
+  "claim_index": 2,
+  "subject": "Jesse Foppert",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3723
+ },
+ "F013": {
+  "pid": "factscore-0028",
+  "claim_index": 4,
+  "subject": "Ko Itakura",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 6595
+ },
+ "F014": {
+  "pid": "factscore-0047",
+  "claim_index": 2,
+  "subject": "Rennie Fritchie, Baroness Fritchie",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2308
+ },
+ "F015": {
+  "pid": "factscore-0043",
+  "claim_index": 0,
+  "subject": "John Estes",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2518
+ },
+ "F016": {
+  "pid": "factscore-0046",
+  "claim_index": 0,
+  "subject": "Carlos Alfonso",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 211
+ },
+ "F017": {
+  "pid": "factscore-0015",
+  "claim_index": 4,
+  "subject": "Jean Daullé",
+  "frequency_score": 5,
+  "factscore_annotation": "S",
+  "evidence_chars": 3444
+ },
+ "F018": {
+  "pid": "factscore-0027",
+  "claim_index": 4,
+  "subject": "Sharad Kumar (athlete)",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2245
+ },
+ "F019": {
+  "pid": "factscore-0047",
+  "claim_index": 4,
+  "subject": "Rennie Fritchie, Baroness Fritchie",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2308
+ },
+ "F020": {
+  "pid": "factscore-0014",
+  "claim_index": 4,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 5,
+  "factscore_annotation": "U",
+  "evidence_chars": 1892
+ },
+ "F021": {
+  "pid": "factscore-0038",
+  "claim_index": 6,
+  "subject": "Jesse Foppert",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3723
+ },
+ "F022": {
+  "pid": "factscore-0023",
+  "claim_index": 2,
+  "subject": "Roxana Díaz (athlete)",
+  "frequency_score": 3,
+  "factscore_annotation": "N",
+  "evidence_chars": 665
+ },
+ "F023": {
+  "pid": "factscore-0049",
+  "claim_index": 7,
+  "subject": "Zamfir Arbore",
+  "frequency_score": 3,
+  "factscore_annotation": "U",
+  "evidence_chars": 12000
+ },
+ "F024": {
+  "pid": "factscore-0014",
+  "claim_index": 3,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1892
+ },
+ "F025": {
+  "pid": "factscore-0009",
+  "claim_index": 6,
+  "subject": "Lees Knowles",
+  "frequency_score": 4,
+  "factscore_annotation": "S",
+  "evidence_chars": 3707
+ },
+ "F026": {
+  "pid": "factscore-0003",
+  "claim_index": 8,
+  "subject": "Doug Sheehan",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1244
+ },
+ "F027": {
+  "pid": "factscore-0040",
+  "claim_index": 4,
+  "subject": "Zelma Wilson",
+  "frequency_score": 3,
+  "factscore_annotation": "U",
+  "evidence_chars": 3883
+ },
+ "F028": {
+  "pid": "factscore-0023",
+  "claim_index": 3,
+  "subject": "Roxana Díaz (athlete)",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 665
+ },
+ "F029": {
+  "pid": "factscore-0023",
+  "claim_index": 5,
+  "subject": "Roxana Díaz (athlete)",
+  "frequency_score": 3,
+  "factscore_annotation": "S",
+  "evidence_chars": 665
+ },
+ "F030": {
+  "pid": "factscore-0033",
+  "claim_index": 2,
+  "subject": "Song Kang",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 4944
+ },
+ "F031": {
+  "pid": "factscore-0000",
+  "claim_index": 2,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 964
+ },
+ "F032": {
+  "pid": "factscore-0027",
+  "claim_index": 3,
+  "subject": "Sharad Kumar (athlete)",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2245
+ },
+ "F033": {
+  "pid": "factscore-0034",
+  "claim_index": 1,
+  "subject": "Rin Iwanaga",
+  "frequency_score": 3,
+  "factscore_annotation": "N",
+  "evidence_chars": 5906
+ },
+ "F034": {
+  "pid": "factscore-0043",
+  "claim_index": 9,
+  "subject": "John Estes",
+  "frequency_score": 3,
+  "factscore_annotation": "S",
+  "evidence_chars": 2518
+ },
+ "F035": {
+  "pid": "factscore-0001",
+  "claim_index": 3,
+  "subject": "Marianne McAndrew",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2176
+ },
+ "F036": {
+  "pid": "factscore-0003",
+  "claim_index": 5,
+  "subject": "Doug Sheehan",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1244
+ },
+ "F037": {
+  "pid": "factscore-0049",
+  "claim_index": 3,
+  "subject": "Zamfir Arbore",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 12000
+ },
+ "F038": {
+  "pid": "factscore-0028",
+  "claim_index": 3,
+  "subject": "Ko Itakura",
+  "frequency_score": 4,
+  "factscore_annotation": "N",
+  "evidence_chars": 6595
+ },
+ "F039": {
+  "pid": "factscore-0028",
+  "claim_index": 1,
+  "subject": "Ko Itakura",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 6595
+ },
+ "F040": {
+  "pid": "factscore-0033",
+  "claim_index": 4,
+  "subject": "Song Kang",
+  "frequency_score": 4,
+  "factscore_annotation": "Y",
+  "evidence_chars": 4944
+ },
+ "F041": {
+  "pid": "factscore-0014",
+  "claim_index": 2,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 1,
+  "factscore_annotation": "N",
+  "evidence_chars": 1892
+ },
+ "F042": {
+  "pid": "factscore-0023",
+  "claim_index": 7,
+  "subject": "Roxana Díaz (athlete)",
+  "frequency_score": 1,
+  "factscore_annotation": "N",
+  "evidence_chars": 665
+ },
+ "F043": {
+  "pid": "factscore-0028",
+  "claim_index": 8,
+  "subject": "Ko Itakura",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 6595
+ },
+ "F044": {
+  "pid": "factscore-0027",
+  "claim_index": 10,
+  "subject": "Sharad Kumar (athlete)",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2245
+ },
+ "F045": {
+  "pid": "factscore-0000",
+  "claim_index": 6,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 1,
+  "factscore_annotation": "N",
+  "evidence_chars": 964
+ },
+ "F046": {
+  "pid": "factscore-0009",
+  "claim_index": 8,
+  "subject": "Lees Knowles",
+  "frequency_score": 1,
+  "factscore_annotation": "U",
+  "evidence_chars": 3707
+ },
+ "F047": {
+  "pid": "factscore-0040",
+  "claim_index": 11,
+  "subject": "Zelma Wilson",
+  "frequency_score": 1,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3883
+ },
+ "F048": {
+  "pid": "factscore-0023",
+  "claim_index": 4,
+  "subject": "Roxana Díaz (athlete)",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 665
+ },
+ "F049": {
+  "pid": "factscore-0049",
+  "claim_index": 5,
+  "subject": "Zamfir Arbore",
+  "frequency_score": 1,
+  "factscore_annotation": "S",
+  "evidence_chars": 12000
+ },
+ "F050": {
+  "pid": "factscore-0000",
+  "claim_index": 10,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 1,
+  "factscore_annotation": "S",
+  "evidence_chars": 964
+ },
+ "F051": {
+  "pid": "factscore-0021",
+  "claim_index": 2,
+  "subject": "Desmond Luke",
+  "frequency_score": 1,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2525
+ },
+ "F052": {
+  "pid": "factscore-0040",
+  "claim_index": 9,
+  "subject": "Zelma Wilson",
+  "frequency_score": 2,
+  "factscore_annotation": "U",
+  "evidence_chars": 3883
+ },
+ "F053": {
+  "pid": "factscore-0015",
+  "claim_index": 7,
+  "subject": "Jean Daullé",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3444
+ },
+ "F054": {
+  "pid": "factscore-0012",
+  "claim_index": 3,
+  "subject": "Joeri Adams",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 336
+ },
+ "F055": {
+  "pid": "factscore-0014",
+  "claim_index": 1,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 1,
+  "factscore_annotation": "U",
+  "evidence_chars": 1892
+ },
+ "F056": {
+  "pid": "factscore-0011",
+  "claim_index": 5,
+  "subject": "Quintus Sosius Senecio",
+  "frequency_score": 2,
+  "factscore_annotation": "U",
+  "evidence_chars": 3003
+ },
+ "F057": {
+  "pid": "factscore-0038",
+  "claim_index": 4,
+  "subject": "Jesse Foppert",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3723
+ },
+ "F058": {
+  "pid": "factscore-0020",
+  "claim_index": 1,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 2,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F059": {
+  "pid": "factscore-0040",
+  "claim_index": 7,
+  "subject": "Zelma Wilson",
+  "frequency_score": 2,
+  "factscore_annotation": "U",
+  "evidence_chars": 3883
+ },
+ "F060": {
+  "pid": "factscore-0040",
+  "claim_index": 10,
+  "subject": "Zelma Wilson",
+  "frequency_score": 2,
+  "factscore_annotation": "S",
+  "evidence_chars": 3883
+ },
+ "F061": {
+  "pid": "factscore-0020",
+  "claim_index": 7,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F062": {
+  "pid": "factscore-0000",
+  "claim_index": 9,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 964
+ },
+ "F063": {
+  "pid": "factscore-0014",
+  "claim_index": 6,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 1892
+ },
+ "F064": {
+  "pid": "factscore-0000",
+  "claim_index": 7,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 964
+ },
+ "F065": {
+  "pid": "factscore-0020",
+  "claim_index": 3,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F066": {
+  "pid": "factscore-0047",
+  "claim_index": 7,
+  "subject": "Rennie Fritchie, Baroness Fritchie",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2308
+ },
+ "F067": {
+  "pid": "factscore-0049",
+  "claim_index": 9,
+  "subject": "Zamfir Arbore",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 12000
+ },
+ "F068": {
+  "pid": "factscore-0047",
+  "claim_index": 5,
+  "subject": "Rennie Fritchie, Baroness Fritchie",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2308
+ },
+ "F069": {
+  "pid": "factscore-0020",
+  "claim_index": 2,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F070": {
+  "pid": "factscore-0046",
+  "claim_index": 6,
+  "subject": "Carlos Alfonso",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 211
+ },
+ "F071": {
+  "pid": "factscore-0009",
+  "claim_index": 3,
+  "subject": "Lees Knowles",
+  "frequency_score": 0,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3707
+ },
+ "F072": {
+  "pid": "factscore-0027",
+  "claim_index": 7,
+  "subject": "Sharad Kumar (athlete)",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2245
+ },
+ "F073": {
+  "pid": "factscore-0007",
+  "claim_index": 6,
+  "subject": "Joey D. Vieira",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 2343
+ },
+ "F074": {
+  "pid": "factscore-0020",
+  "claim_index": 9,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F075": {
+  "pid": "factscore-0020",
+  "claim_index": 6,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F076": {
+  "pid": "factscore-0001",
+  "claim_index": 6,
+  "subject": "Marianne McAndrew",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2176
+ },
+ "F077": {
+  "pid": "factscore-0020",
+  "claim_index": 8,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "F078": {
+  "pid": "factscore-0040",
+  "claim_index": 5,
+  "subject": "Zelma Wilson",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 3883
+ },
+ "F079": {
+  "pid": "factscore-0014",
+  "claim_index": 5,
+  "subject": "Vincenzo Tusa",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 1892
+ },
+ "F080": {
+  "pid": "factscore-0020",
+  "claim_index": 5,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 0,
+  "factscore_annotation": "N",
+  "evidence_chars": 2421
+ },
+ "P001": {
+  "pid": "factscore-0047",
+  "claim_index": 3,
+  "subject": "Rennie Fritchie, Baroness Fritchie",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2308
+ },
+ "P002": {
+  "pid": "factscore-0003",
+  "claim_index": 2,
+  "subject": "Doug Sheehan",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 1244
+ },
+ "P003": {
+  "pid": "factscore-0000",
+  "claim_index": 3,
+  "subject": "Lanny Flaherty",
+  "frequency_score": 5,
+  "factscore_annotation": "Y",
+  "evidence_chars": 964
+ },
+ "P004": {
+  "pid": "factscore-0033",
+  "claim_index": 6,
+  "subject": "Song Kang",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 4944
+ },
+ "P005": {
+  "pid": "factscore-0011",
+  "claim_index": 1,
+  "subject": "Quintus Sosius Senecio",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3003
+ },
+ "P006": {
+  "pid": "factscore-0018",
+  "claim_index": 7,
+  "subject": "María Elena Medina-Mora Icaza",
+  "frequency_score": 3,
+  "factscore_annotation": "Y",
+  "evidence_chars": 5788
+ },
+ "P007": {
+  "pid": "factscore-0040",
+  "claim_index": 8,
+  "subject": "Zelma Wilson",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 3883
+ },
+ "P008": {
+  "pid": "factscore-0020",
+  "claim_index": 0,
+  "subject": "Luis Guillermo Rivera",
+  "frequency_score": 2,
+  "factscore_annotation": "Y",
+  "evidence_chars": 2421
+ },
+ "P009": {
+  "pid": "factscore-0006",
+  "claim_index": 10,
+  "subject": "Focus...",
+  "frequency_score": 1,
+  "factscore_annotation": "S",
+  "evidence_chars": 7368
+ },
+ "P010": {
+  "pid": "factscore-0002",
+  "claim_index": 4,
+  "subject": "Chaim Malinowitz",
+  "frequency_score": 0,
+  "factscore_annotation": "Y",
+  "evidence_chars": 5171
+ },
+ "P011": {
+  "pid": "factscore-0041",
+  "claim_index": 11,
+  "subject": "Michael Valpy",
+  "frequency_score": 0,
+  "factscore_annotation": "S",
+  "evidence_chars": 4805
+ },
+ "P012": {
+  "pid": "factscore-0042",
+  "claim_index": 9,
+  "subject": "Prince Rivers",
+  "frequency_score": 0,
+  "factscore_annotation": "U",
+  "evidence_chars": 6220
+ }
+}

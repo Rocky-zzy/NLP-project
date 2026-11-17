@@ -1,0 +1,724 @@
+{
+ "retrieved": "2026-11-17",
+ "source": "wikidata wbsearchentities+wbgetentities",
+ "n_names": 50,
+ "records": [
+  {
+   "name": "Lanny Flaherty",
+   "search_hits": [
+    [
+     "Q3826929",
+     "American actor (1942–2024)"
+    ]
+   ],
+   "qid": "Q3826929",
+   "description": "American actor (1942–2024)",
+   "n_statements": 45,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": true,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Marianne McAndrew",
+   "search_hits": [
+    [
+     "Q6762251",
+     "actress"
+    ]
+   ],
+   "qid": "Q6762251",
+   "description": "actress",
+   "n_statements": 41,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Chaim Malinowitz",
+   "search_hits": [
+    [
+     "Q78721193",
+     "American writer"
+    ]
+   ],
+   "qid": "Q78721193",
+   "description": "American writer",
+   "n_statements": 26,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": false,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Doug Sheehan",
+   "search_hits": [
+    [
+     "Q1252492",
+     "American actor (1949–2024)"
+    ]
+   ],
+   "qid": "Q1252492",
+   "description": "American actor (1949–2024)",
+   "n_statements": 37,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": true,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Gerhard Fischer (inventor)",
+   "search_hits": [],
+   "qid": null
+  },
+  {
+   "name": "Chief Jones",
+   "search_hits": [
+    [
+     "Q5096765",
+     "Canadian ice hockey player"
+    ]
+   ],
+   "qid": "Q5096765",
+   "error": "entity fetch failed"
+  },
+  {
+   "name": "Focus...",
+   "error": "search failed"
+  },
+  {
+   "name": "Joey D. Vieira",
+   "error": "search failed"
+  },
+  {
+   "name": "Taral Hicks",
+   "search_hits": [
+    [
+     "Q537228",
+     "American actress and singer"
+    ]
+   ],
+   "qid": "Q537228",
+   "description": "American actress and singer",
+   "n_statements": 51,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Lees Knowles",
+   "search_hits": [
+    [
+     "Q7528246",
+     "British barrister, historian, philanthropist and Conservative politician (1857–1928)"
+    ],
+    [
+     "Q6516411",
+     "lecture series given by distinguished experts in military and naval history at Trinity College, Cambridge"
+    ]
+   ],
+   "qid": "Q7528246",
+   "description": "British barrister, historian, philanthropist and Conservative politician (1857–1928)",
+   "n_statements": 57,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": true,
+    "award": false,
+    "birthplace": true,
+    "deathplace": true,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Carolina Portesi Peroni",
+   "search_hits": [
+    [
+     "Q56605091",
+     "Italian figure skater"
+    ]
+   ],
+   "qid": "Q56605091",
+   "description": "Italian figure skater",
+   "n_statements": 24,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": false,
+    "education": false
+   }
+  },
+  {
+   "name": "Quintus Sosius Senecio",
+   "search_hits": [
+    [
+     "Q633112",
+     "late 1st/early 2nd century Roman senator, consul and governor"
+    ]
+   ],
+   "qid": "Q633112",
+   "description": "late 1st/early 2nd century Roman senator, consul and governor",
+   "n_statements": 28,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": true,
+    "award": false,
+    "birthplace": false,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Joeri Adams",
+   "search_hits": [
+    [
+     "Q1691778",
+     "Belgian cyclist"
+    ]
+   ],
+   "qid": "Q1691778",
+   "description": "Belgian cyclist",
+   "n_statements": 23,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Dominic King",
+   "error": "search failed"
+  },
+  {
+   "name": "Vincenzo Tusa",
+   "error": "search failed"
+  },
+  {
+   "name": "Jean Daullé",
+   "error": "search failed"
+  },
+  {
+   "name": "Richard Burkewood Welbourn",
+   "error": "search failed"
+  },
+  {
+   "name": "Damir Memović",
+   "search_hits": [
+    [
+     "Q26845144",
+     "association football player"
+    ]
+   ],
+   "qid": "Q26845144",
+   "description": "association football player",
+   "n_statements": 16,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "María Elena Medina-Mora Icaza",
+   "search_hits": [
+    [
+     "Q6003686",
+     "Mexican psychologist"
+    ],
+    [
+     "Q133545629",
+     ""
+    ]
+   ],
+   "qid": "Q6003686",
+   "description": "Mexican psychologist",
+   "n_statements": 30,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": true,
+    "position": false,
+    "award": true,
+    "birthplace": false,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Hesham Nazih",
+   "search_hits": [
+    [
+     "Q16125484",
+     "Egyptian composer and songwriter"
+    ]
+   ],
+   "qid": "Q16125484",
+   "description": "Egyptian composer and songwriter",
+   "n_statements": 35,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Luis Guillermo Rivera",
+   "search_hits": [
+    [
+     "Q5492723",
+     "Colombian footballer"
+    ]
+   ],
+   "qid": "Q5492723",
+   "description": "Colombian footballer",
+   "n_statements": 21,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Desmond Luke",
+   "search_hits": [
+    [
+     "Q5264760",
+     "Sierra Leonean politician (1935-2021)"
+    ]
+   ],
+   "qid": "Q5264760",
+   "description": "Sierra Leonean politician (1935-2021)",
+   "n_statements": 28,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": true,
+    "award": false,
+    "birthplace": true,
+    "deathplace": true,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Miguel Díaz (baseball)",
+   "error": "search failed"
+  },
+  {
+   "name": "Roxana Díaz (athlete)",
+   "error": "search failed"
+  },
+  {
+   "name": "Fernando (footballer, born 1984)",
+   "error": "search failed"
+  },
+  {
+   "name": "Gerardo Fernandez Fe",
+   "search_hits": [
+    [
+     "Q16571332",
+     "Cuban writer"
+    ],
+    [
+     "Q139099866",
+     ""
+    ]
+   ],
+   "qid": "Q16571332",
+   "description": "Cuban writer",
+   "n_statements": 13,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Augusto Martínez Sánchez",
+   "search_hits": [
+    [
+     "Q5711699",
+     "Cuban politician (1923–2013)"
+    ]
+   ],
+   "qid": "Q5711699",
+   "description": "Cuban politician (1923–2013)",
+   "n_statements": 16,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": true,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Sharad Kumar (athlete)",
+   "search_hits": [],
+   "qid": null
+  },
+  {
+   "name": "Ko Itakura",
+   "search_hits": [
+    [
+     "Q20038711",
+     "Japanese footballer (born 1997)"
+    ]
+   ],
+   "qid": "Q20038711",
+   "description": "Japanese footballer (born 1997)",
+   "n_statements": 71,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Besant Ravi",
+   "search_hits": [
+    [
+     "Q23762818",
+     "Indian actor"
+    ]
+   ],
+   "qid": "Q23762818",
+   "description": "Indian actor",
+   "n_statements": 9,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "Thomas Houghton (rugby league)",
+   "search_hits": [],
+   "qid": null
+  },
+  {
+   "name": "Katsunosuke Hori",
+   "error": "search failed"
+  },
+  {
+   "name": "Ra Jong-yil",
+   "error": "search failed"
+  },
+  {
+   "name": "Song Kang",
+   "error": "search failed"
+  },
+  {
+   "name": "Rin Iwanaga",
+   "error": "search failed"
+  },
+  {
+   "name": "Keita Kadokura",
+   "error": "search failed"
+  },
+  {
+   "name": "Lily Branscombe",
+   "error": "search failed"
+  },
+  {
+   "name": "Luis N. Rivera-Pagán",
+   "error": "search failed"
+  },
+  {
+   "name": "Jesse Foppert",
+   "error": "search failed"
+  },
+  {
+   "name": "Mike Trivisonno",
+   "error": "search failed"
+  },
+  {
+   "name": "Zelma Wilson",
+   "search_hits": [
+    [
+     "Q15964442",
+     "American architect (1918-1996)"
+    ]
+   ],
+   "qid": "Q15964442",
+   "description": "American architect (1918-1996)",
+   "n_statements": 26,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Michael Valpy",
+   "search_hits": [
+    [
+     "Q6835047",
+     "Canadian journalist and author"
+    ]
+   ],
+   "qid": "Q6835047",
+   "description": "Canadian journalist and author",
+   "n_statements": 28,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Prince Rivers",
+   "search_hits": [
+    [
+     "Q7244213",
+     "American politician in South Carolina (1824-1887)"
+    ]
+   ],
+   "qid": "Q7244213",
+   "description": "American politician in South Carolina (1824-1887)",
+   "n_statements": 12,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": true,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": false,
+    "deathplace": false,
+    "citizenship": true,
+    "education": false
+   }
+  },
+  {
+   "name": "John Estes",
+   "search_hits": [
+    [
+     "Q102400997",
+     "Ph.D. University of Mississippi 2012"
+    ],
+    [
+     "Q1754823",
+     "American blues guitarist, songwriter and singer (1899-1977)"
+    ],
+    [
+     "Q207544",
+     "American author of children's books (1856–1919)"
+    ]
+   ],
+   "qid": "Q102400997",
+   "description": "Ph.D. University of Mississippi 2012",
+   "n_statements": 11,
+   "props": {
+    "instance_of": true,
+    "birth": false,
+    "death": false,
+    "occupation": true,
+    "employer": true,
+    "position": false,
+    "award": false,
+    "birthplace": false,
+    "deathplace": false,
+    "citizenship": false,
+    "education": true
+   }
+  },
+  {
+   "name": "Eric Hacker",
+   "search_hits": [
+    [
+     "Q2898369",
+     "Major League Baseball pitcher"
+    ],
+    [
+     "Q137570764",
+     "American para-athlete"
+    ]
+   ],
+   "qid": "Q2898369",
+   "description": "Major League Baseball pitcher",
+   "n_statements": 40,
+   "props": {
+    "instance_of": true,
+    "birth": true,
+    "death": false,
+    "occupation": true,
+    "employer": false,
+    "position": false,
+    "award": false,
+    "birthplace": true,
+    "deathplace": false,
+    "citizenship": true,
+    "education": true
+   }
+  },
+  {
+   "name": "Alma Katsu",
+   "error": "search failed"
+  },
+  {
+   "name": "Carlos Alfonso",
+   "error": "search failed"
+  },
+  {
+   "name": "Rennie Fritchie, Baroness Fritchie",
+   "error": "search failed"
+  },
+  {
+   "name": "Daniel Charles",
+   "error": "search failed"
+  },
+  {
+   "name": "Zamfir Arbore",
+   "error": "search failed"
+  }
+ ]
+}

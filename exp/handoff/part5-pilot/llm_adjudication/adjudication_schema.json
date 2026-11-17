@@ -1,0 +1,79 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "title": "evidence adjudication record",
+ "type": "object",
+ "required": [
+  "blind_id",
+  "state",
+  "explanation",
+  "quotes",
+  "claim_parts",
+  "confidence",
+  "complete_proposition",
+  "temporal_caveat"
+ ],
+ "properties": {
+  "blind_id": {
+   "type": "string"
+  },
+  "state": {
+   "enum": [
+    "supported",
+    "contradicted",
+    "unknown"
+   ]
+  },
+  "explanation": {
+   "type": "string",
+   "maxLength": 400
+  },
+  "quotes": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "claim_parts": {
+   "type": "object",
+   "required": [
+    "supported",
+    "contradicted",
+    "unaddressed"
+   ],
+   "properties": {
+    "supported": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "contradicted": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "unaddressed": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "confidence": {
+   "enum": [
+    "high",
+    "medium",
+    "low"
+   ]
+  },
+  "complete_proposition": {
+   "type": "boolean"
+  },
+  "temporal_caveat": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": false
+}

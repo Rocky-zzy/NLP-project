@@ -25,6 +25,8 @@ logs/
 *.jsonl
 # small hand-written fixtures are source, not generated output
 !examples/**/*.jsonl
+# The Part 5 adjudication packages are JSONL by construction and must be tracked.
+!exp/handoff/part5-pilot/**
 *.pt
 *.pth
 *.bin
