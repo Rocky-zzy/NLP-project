@@ -16,10 +16,24 @@ copies to `~/part5-handoff/`.
 ## Run
 
 ```bash
-cd /hpc2ssd/JH_DATA/spooler/aiaa4051_077/NLP-project
+cd <repository root>
 git fetch origin && git pull --ff-only
 bash exp/handoff/part5-pilot/hpc/recluster_and_compare.sh
 ```
+
+The defaults assume the original layout (`/hpc2ssd/JH_DATA/spooler/aiaa4051_077`).
+On a different machine, point it at the new paths:
+
+```bash
+PROJECT_ROOT=/path/to/NLP-project \
+CONFQA_PY=/path/to/conda/env/bin/python \
+bash exp/handoff/part5-pilot/hpc/recluster_and_compare.sh
+```
+
+The script stops immediately and lists any of the four cache files that are
+missing. They are git-ignored, so a fresh clone has none of them; the rebuild
+order is `generate` → `run_h3` → `cluster --threshold 0.6` → `relabel`, and the
+last two need the vLLM endpoint.
 
 The script prints, per threshold: target claims, clusters, mean cluster size,
 share of claims at support 1.0, and the contradiction rate among support-1.0

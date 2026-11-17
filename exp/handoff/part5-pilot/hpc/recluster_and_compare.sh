@@ -1,13 +1,38 @@
 #!/usr/bin/env bash
 # Run on the HPC login node from the repository root.
 # Produces the strict-clustering comparison (B2) and the inputs for Package B.
+#
+# Optional environment variables, for running outside the original layout:
+#   PROJECT_ROOT  repository root        default /hpc2ssd/JH_DATA/spooler/aiaa4051_077/NLP-project
+#   CONFQA_PY     interpreter of the env default <repo>/../envs/confqa/bin/python
+#   OUT           transfer directory     default $HOME/part5-handoff
 set -euo pipefail
 
 ROOT="${PROJECT_ROOT:-/hpc2ssd/JH_DATA/spooler/aiaa4051_077/NLP-project}"
-PY="${PROJECT_ROOT:-/hpc2ssd/JH_DATA/spooler/aiaa4051_077}/envs/confqa/bin/python"
-OUT="${HOME}/part5-handoff"
+PY="${CONFQA_PY:-$(dirname "$ROOT")/envs/confqa/bin/python}"
+OUT="${OUT:-$HOME/part5-handoff}"
 
 cd "$ROOT"
+
+# The cache is git-ignored, so a fresh clone has none of it. Fail up front with
+# the full missing list instead of dying halfway through the reruns.
+missing=""
+for f in cache/h3/ext_claims.jsonl cache/h3/ext_baseline_scores.jsonl \
+         cache/ext/clusters.jsonl cache/ext/labels_wiki.jsonl; do
+  [ -f "$f" ] || missing="$missing  $f"$'\n'
+done
+if [ -n "$missing" ]; then
+  echo "missing inputs (cluster-only, git-ignored):" >&2
+  printf '%s' "$missing" >&2
+  echo "see exp/handoff/part5-pilot/hpc/README.md for how to rebuild them" >&2
+  exit 1
+fi
+if [ ! -x "$PY" ]; then
+  echo "interpreter not found: $PY" >&2
+  echo "set CONFQA_PY to the python of the conda env that has confqa installed" >&2
+  exit 1
+fi
+
 mkdir -p "$OUT"
 
 echo "== 1. original artifacts =="
