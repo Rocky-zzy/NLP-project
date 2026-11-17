@@ -98,11 +98,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--encoder", default="cross-encoder/stsb-roberta-large")
     parser.add_argument("--batch", type=int, default=64)
     parser.add_argument("--target", type=int, default=0)
+    parser.add_argument(
+        "--device",
+        default="cuda:0",
+        help="torch device for the cross-encoder; pass cpu where no GPU is available",
+    )
     args = parser.parse_args(argv)
 
     from sentence_transformers import CrossEncoder
 
-    encoder = CrossEncoder(args.encoder, num_labels=1, device="cuda:0")
+    encoder = CrossEncoder(args.encoder, num_labels=1, device=args.device)
     by_prompt = load_claims(Path(args.claims))
     baseline = load_baseline(Path(args.baseline))
 
