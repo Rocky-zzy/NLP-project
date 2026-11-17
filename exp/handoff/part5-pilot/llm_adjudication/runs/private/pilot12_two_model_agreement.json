@@ -1,0 +1,164 @@
+{
+ "note": "contains annotations; never hand to an evaluator",
+ "models": [
+  "deepseek-flash_pilot12_2026-11-17",
+  "gpt6-luna_pilot12_2026-11-17"
+ ],
+ "n": 12,
+ "state_agreement": 12,
+ "state_disagreements": [],
+ "confidence_disagreements": [
+  "P001"
+ ],
+ "complete_proposition_disagreements": [
+  "P008"
+ ],
+ "temporal_caveat_disagreements": [
+  "P006",
+  "P008",
+  "P009"
+ ],
+ "identical_quote_sets": [
+  "P005",
+  "P006",
+  "P007",
+  "P008",
+  "P009",
+  "P010",
+  "P011"
+ ],
+ "per_id": [
+  {
+   "id": "P001",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "medium",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P002",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P003",
+   "state_deepseek": "unknown",
+   "state_gpt6": "unknown",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": false,
+   "complete_gpt6": false,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P004",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P005",
+   "state_deepseek": "unknown",
+   "state_gpt6": "unknown",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": false,
+   "complete_gpt6": false,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P006",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "No; the passage retrieved on 2026-11-08 uses the present tense \"is a member,\" so the retrieval date does not change the verdict.",
+   "caveat_gpt6": "The present-tense membership claim is supported as of the passage's retrieval date, 2026-11-08."
+  },
+  {
+   "id": "P007",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P008",
+   "state_deepseek": "contradicted",
+   "state_gpt6": "contradicted",
+   "conf_deepseek": "medium",
+   "conf_gpt6": "medium",
+   "complete_deepseek": true,
+   "complete_gpt6": false,
+   "caveat_deepseek": "The 2026-11-08 retrieval date matters: the passage describes him as retired, so the present-tense claim is contradicted as of that date.",
+   "caveat_gpt6": "The present-tense status is time-sensitive; the passage describes him as retired as of 2026-11-08."
+  },
+  {
+   "id": "P009",
+   "state_deepseek": "unknown",
+   "state_gpt6": "unknown",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": false,
+   "complete_gpt6": false,
+   "caveat_deepseek": "No; the passage offers no information about audience or fans at any date.",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P010",
+   "state_deepseek": "supported",
+   "state_gpt6": "supported",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": true,
+   "complete_gpt6": true,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P011",
+   "state_deepseek": "unknown",
+   "state_gpt6": "unknown",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": false,
+   "complete_gpt6": false,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  },
+  {
+   "id": "P012",
+   "state_deepseek": "unknown",
+   "state_gpt6": "unknown",
+   "conf_deepseek": "high",
+   "conf_gpt6": "high",
+   "complete_deepseek": false,
+   "complete_gpt6": false,
+   "caveat_deepseek": "none",
+   "caveat_gpt6": "none"
+  }
+ ]
+}

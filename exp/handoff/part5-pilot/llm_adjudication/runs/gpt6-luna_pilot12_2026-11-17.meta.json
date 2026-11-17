@@ -1,0 +1,17 @@
+{
+ "run_id": "gpt6-luna_pilot12_2026-11-17",
+ "model_display_name": "GPT6-Luna",
+ "model_api_identifier": "not recorded (evaluated through an external harness)",
+ "harness": "user-operated external harness, results pasted back on 2026-11-17",
+ "date": "2026-11-17",
+ "protocol_file": "adjudication_prompt.md",
+ "protocol_sha256": "4b97fe02bdc57d50833f09171214ad1db4711f350942af570faaeff627dbf19a",
+ "input_file": "pilot_12_claims.jsonl",
+ "input_sha256": "9166965979e7235fc1a5fc7b21883be2979a0ce622f925b3c942eab74768518f",
+ "n_records": 12,
+ "decoding_settings": "not recorded (harness did not expose them)",
+ "raw_output_file": "gpt6-luna_pilot12_2026-11-17.raw.jsonl",
+ "raw_output_sha256": "5ba9405cf6f6712fb1e1a254e3b5a4088d7a8109ca81210de1e730a50ec1bbe7",
+ "prior_model_seen_this_output": false,
+ "note": "Stored verbatim as received. Labels and prior judgments were never shown to the model. This is the second adjudicator; the first model's output was not shown to it and vice versa."
+}
