@@ -1,0 +1,16 @@
+{
+ "repairs": [
+  {
+   "blind_id": "F002",
+   "field": "temporal_caveat",
+   "fix": "escaped unescaped double quotes inside the string",
+   "value": "No; the 2026-11-08 passage itself uses \"former,\" so the retrieval date does not change the verdict."
+  },
+  {
+   "blind_id": "F009",
+   "field": "temporal_caveat",
+   "fix": "escaped unescaped double quotes inside the string",
+   "value": "No; the 2026-11-08 passage uses the present tense \"is a Japanese professional footballer\" and describes his 2026 club status."
+  }
+ ]
+}

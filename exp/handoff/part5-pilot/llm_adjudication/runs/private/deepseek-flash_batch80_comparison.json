@@ -1,0 +1,648 @@
+{
+ "note": "contains annotations; never hand to an evaluator",
+ "rows": [
+  {
+   "id": "F001",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Jesse Foppert",
+   "confidence": "high"
+  },
+  {
+   "id": "F002",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Jesse Foppert",
+   "confidence": "high"
+  },
+  {
+   "id": "F003",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Chief Jones",
+   "confidence": "medium"
+  },
+  {
+   "id": "F004",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F005",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 5,
+   "subject": "Carlos Alfonso",
+   "confidence": "medium"
+  },
+  {
+   "id": "F006",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Desmond Luke",
+   "confidence": "medium"
+  },
+  {
+   "id": "F007",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F008",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Jean Daullé",
+   "confidence": "high"
+  },
+  {
+   "id": "F009",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Ko Itakura",
+   "confidence": "high"
+  },
+  {
+   "id": "F010",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Song Kang",
+   "confidence": "high"
+  },
+  {
+   "id": "F011",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Quintus Sosius Senecio",
+   "confidence": "medium"
+  },
+  {
+   "id": "F012",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Jesse Foppert",
+   "confidence": "high"
+  },
+  {
+   "id": "F013",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Ko Itakura",
+   "confidence": "high"
+  },
+  {
+   "id": "F014",
+   "state": "contradicted",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Rennie Fritchie, Baroness Fritchie",
+   "confidence": "high"
+  },
+  {
+   "id": "F015",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "John Estes",
+   "confidence": "high"
+  },
+  {
+   "id": "F016",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Carlos Alfonso",
+   "confidence": "high"
+  },
+  {
+   "id": "F017",
+   "state": "supported",
+   "ann": "S",
+   "freq": 5,
+   "subject": "Jean Daullé",
+   "confidence": "high"
+  },
+  {
+   "id": "F018",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Sharad Kumar (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F019",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "subject": "Rennie Fritchie, Baroness Fritchie",
+   "confidence": "high"
+  },
+  {
+   "id": "F020",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 5,
+   "subject": "Vincenzo Tusa",
+   "confidence": "medium"
+  },
+  {
+   "id": "F021",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Jesse Foppert",
+   "confidence": "high"
+  },
+  {
+   "id": "F022",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 3,
+   "subject": "Roxana Díaz (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F023",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 3,
+   "subject": "Zamfir Arbore",
+   "confidence": "high"
+  },
+  {
+   "id": "F024",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 3,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F025",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 4,
+   "subject": "Lees Knowles",
+   "confidence": "high"
+  },
+  {
+   "id": "F026",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Doug Sheehan",
+   "confidence": "high"
+  },
+  {
+   "id": "F027",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 3,
+   "subject": "Zelma Wilson",
+   "confidence": "high"
+  },
+  {
+   "id": "F028",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 3,
+   "subject": "Roxana Díaz (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F029",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 3,
+   "subject": "Roxana Díaz (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F030",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 3,
+   "subject": "Song Kang",
+   "confidence": "high"
+  },
+  {
+   "id": "F031",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 3,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F032",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Sharad Kumar (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F033",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 3,
+   "subject": "Rin Iwanaga",
+   "confidence": "medium"
+  },
+  {
+   "id": "F034",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 3,
+   "subject": "John Estes",
+   "confidence": "high"
+  },
+  {
+   "id": "F035",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Marianne McAndrew",
+   "confidence": "medium"
+  },
+  {
+   "id": "F036",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Doug Sheehan",
+   "confidence": "high"
+  },
+  {
+   "id": "F037",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 3,
+   "subject": "Zamfir Arbore",
+   "confidence": "high"
+  },
+  {
+   "id": "F038",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 4,
+   "subject": "Ko Itakura",
+   "confidence": "high"
+  },
+  {
+   "id": "F039",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Ko Itakura",
+   "confidence": "high"
+  },
+  {
+   "id": "F040",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 4,
+   "subject": "Song Kang",
+   "confidence": "high"
+  },
+  {
+   "id": "F041",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 1,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F042",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 1,
+   "subject": "Roxana Díaz (athlete)",
+   "confidence": "medium"
+  },
+  {
+   "id": "F043",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Ko Itakura",
+   "confidence": "high"
+  },
+  {
+   "id": "F044",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Sharad Kumar (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F045",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 1,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F046",
+   "state": "contradicted",
+   "ann": "U",
+   "freq": 1,
+   "subject": "Lees Knowles",
+   "confidence": "high"
+  },
+  {
+   "id": "F047",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 1,
+   "subject": "Zelma Wilson",
+   "confidence": "medium"
+  },
+  {
+   "id": "F048",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Roxana Díaz (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F049",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 1,
+   "subject": "Zamfir Arbore",
+   "confidence": "high"
+  },
+  {
+   "id": "F050",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 1,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F051",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 1,
+   "subject": "Desmond Luke",
+   "confidence": "high"
+  },
+  {
+   "id": "F052",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 2,
+   "subject": "Zelma Wilson",
+   "confidence": "high"
+  },
+  {
+   "id": "F053",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Jean Daullé",
+   "confidence": "high"
+  },
+  {
+   "id": "F054",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Joeri Adams",
+   "confidence": "high"
+  },
+  {
+   "id": "F055",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 1,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F056",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 2,
+   "subject": "Quintus Sosius Senecio",
+   "confidence": "medium"
+  },
+  {
+   "id": "F057",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 2,
+   "subject": "Jesse Foppert",
+   "confidence": "high"
+  },
+  {
+   "id": "F058",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 2,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F059",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 2,
+   "subject": "Zelma Wilson",
+   "confidence": "high"
+  },
+  {
+   "id": "F060",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 2,
+   "subject": "Zelma Wilson",
+   "confidence": "high"
+  },
+  {
+   "id": "F061",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F062",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F063",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F064",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Lanny Flaherty",
+   "confidence": "high"
+  },
+  {
+   "id": "F065",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F066",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Rennie Fritchie, Baroness Fritchie",
+   "confidence": "high"
+  },
+  {
+   "id": "F067",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "subject": "Zamfir Arbore",
+   "confidence": "high"
+  },
+  {
+   "id": "F068",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Rennie Fritchie, Baroness Fritchie",
+   "confidence": "high"
+  },
+  {
+   "id": "F069",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F070",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Carlos Alfonso",
+   "confidence": "high"
+  },
+  {
+   "id": "F071",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 0,
+   "subject": "Lees Knowles",
+   "confidence": "high"
+  },
+  {
+   "id": "F072",
+   "state": "contradicted",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Sharad Kumar (athlete)",
+   "confidence": "high"
+  },
+  {
+   "id": "F073",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "subject": "Joey D. Vieira",
+   "confidence": "high"
+  },
+  {
+   "id": "F074",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F075",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F076",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Marianne McAndrew",
+   "confidence": "high"
+  },
+  {
+   "id": "F077",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  },
+  {
+   "id": "F078",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "subject": "Zelma Wilson",
+   "confidence": "high"
+  },
+  {
+   "id": "F079",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "subject": "Vincenzo Tusa",
+   "confidence": "high"
+  },
+  {
+   "id": "F080",
+   "state": "unknown",
+   "ann": "N",
+   "freq": 0,
+   "subject": "Luis Guillermo Rivera",
+   "confidence": "high"
+  }
+ ],
+ "comparable": 72,
+ "agree_strict": 40,
+ "agree_n_as_not_supported": 55
+}

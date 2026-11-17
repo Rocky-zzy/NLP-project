@@ -1,0 +1,24 @@
+{
+ "run_id": "deepseek-flash_batch80_2026-11-17",
+ "model_display_name": "DeepSeek Flash",
+ "model_api_identifier": "not recorded (evaluated through an external harness)",
+ "harness": "user-operated external harness, 4 conversations of 20 items, pasted back on 2026-11-17",
+ "date": "2026-11-17",
+ "protocol_file": "adjudication_prompt.md",
+ "protocol_sha256": "4b97fe02bdc57d50833f09171214ad1db4711f350942af570faaeff627dbf19a",
+ "input_file": "factscore_80_blind.jsonl (dispatched as 4 chunks of 20)",
+ "input_sha256": "3a3f7c6df3c8cfa56124cf7f62395048d1f781a8f97548eba2d96ad3483895a2",
+ "n_records": 80,
+ "n_json_parse_failures_as_received": 2,
+ "repaired_records": [
+  "F002",
+  "F009"
+ ],
+ "repair_file": "deepseek-flash_batch80_2026-11-17.repairs.json",
+ "decoding_settings": "not recorded (harness did not expose them)",
+ "raw_output_file": "deepseek-flash_batch80_2026-11-17.raw.txt",
+ "raw_output_sha256": "50ca49137524165377a81d15ce8cfbdd92450eb00a24222a51e9e3d4b2d323b6",
+ "parsed_output_file": "deepseek-flash_batch80_2026-11-17.parsed.jsonl",
+ "parsed_output_sha256": "0261d79642f45b623522f89815dc936c06b20c6266e3bfe89285011d9cef5b49",
+ "note": "Stored verbatim as received. F002 and F009 contain unescaped double quotes inside temporal_caveat, so they do not parse as JSON; the raw file keeps them untouched and parsed.jsonl applies a single documented repair (escaping those quotes). F020/F021, F040/F041 and F060/F061 arrived glued on one line and were split at the record boundary."
+}

@@ -1,0 +1,21 @@
+{
+ "note": "contains annotations; never hand to an evaluator",
+ "shared_ids": 20,
+ "identical_state": 18,
+ "differences": [
+  {
+   "id": "F005",
+   "deepseek": "unknown",
+   "gpt6": "supported",
+   "ann": "S",
+   "subject": "Carlos Alfonso"
+  },
+  {
+   "id": "F021",
+   "deepseek": "supported",
+   "gpt6": "unknown",
+   "ann": "Y",
+   "subject": "Jesse Foppert"
+  }
+ ]
+}
