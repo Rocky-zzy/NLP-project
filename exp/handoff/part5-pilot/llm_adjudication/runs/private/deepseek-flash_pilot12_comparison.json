@@ -1,0 +1,91 @@
+{
+ "note": "contains annotations; never hand to an evaluator",
+ "rows": [
+  {
+   "id": "P001",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "chars": 2308
+  },
+  {
+   "id": "P002",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 5,
+   "chars": 1244
+  },
+  {
+   "id": "P003",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 5,
+   "chars": 964
+  },
+  {
+   "id": "P004",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 3,
+   "chars": 4944
+  },
+  {
+   "id": "P005",
+   "state": "unknown",
+   "ann": "Y",
+   "freq": 3,
+   "chars": 3003
+  },
+  {
+   "id": "P006",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 3,
+   "chars": 5788
+  },
+  {
+   "id": "P007",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 2,
+   "chars": 3883
+  },
+  {
+   "id": "P008",
+   "state": "contradicted",
+   "ann": "Y",
+   "freq": 2,
+   "chars": 2421
+  },
+  {
+   "id": "P009",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 1,
+   "chars": 7368
+  },
+  {
+   "id": "P010",
+   "state": "supported",
+   "ann": "Y",
+   "freq": 0,
+   "chars": 5171
+  },
+  {
+   "id": "P011",
+   "state": "unknown",
+   "ann": "S",
+   "freq": 0,
+   "chars": 4805
+  },
+  {
+   "id": "P012",
+   "state": "unknown",
+   "ann": "U",
+   "freq": 0,
+   "chars": 6220
+  }
+ ],
+ "agree": 7,
+ "comparable": 10
+}

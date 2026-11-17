@@ -1,0 +1,104 @@
+Project 1
+Project title: Conformal Prediction for Reliable Short-
+and Long-Form Question Answering
+Project manager: Rui Xu
+Email: rxu233@connect.hkust-gz.edu.cn
+Project description
+Large language models can generate incorrect answers with high confidence.
+Conformal prediction provides a framework for calibrating uncertainty, but its
+application depends on what constitutes a reliable response.
+This project investigates two approaches. ConU constructs sets of sampled answers
+intended to contain at least one correct answer. Conformal factuality decomposes a
+response into claims and removes uncertain claims to improve the factuality of the
+retained content. These objectives suggest different advantages for short answers
+and longer responses containing multiple claims. Students will reproduce both
+approaches, investigate their strengths and limitations, and explore a simple way to
+combine their ideas. ConU paper , Conformal factuality paper
+Objectives
+• Reproduce two conformal methods for language generation.
+• Understand the distinction between covering a correct answer and controlling the
+factuality of retained claims.
+• Investigate how answer length, sampling, and calibration affect performance.
+• Implement and evaluate one modest extension combining ideas from the two
+methods.
+Codebases and datasets
+• Short-form QA: ConU repository , using a subset of TriviaQA.
+• Long-form generation: Conformal factuality repository , using FActScore
+biography prompts. The repository includes annotated claims and saved outputs
+that can support initial reproduction. Cached outputs and annotations
+One dataset per setting and one inference model are sufficient. Students may begin
+with cached outputs and then generate a small collection of new responses.
+Tasks
+Part 1: Reproduce the basic methods
+• Run the ConU pipeline: sample answers, compute uncertainty scores, calibrate a
+threshold, and construct answer sets.
+• Run the conformal factuality pipeline: decompose responses into claims, score
+the claims, calibrate a threshold, and filter responses.
+• Reproduce one representative result from each repository on a manageable
+subset.
+• Explain the input, output, calibration procedure, and correctness criterion of each
+method.
+Report answer-set coverage and size for ConU. For conformal factuality, report the
+proportion of responses whose retained claims are all correct, the proportion of
+original claims retained, and the frequency of empty responses.
+Part 2: Understand suitability and failure cases
+Use experimental examples to investigate the following questions:
+• Why might a set of alternative answers be useful for short-form QA?
+• Why might claim filtering be more useful for a long response containing both
+correct and incorrect claims?
+• What happens when repeated sampling never produces a correct answer?
+• Can filtering make a response factually correct but too incomplete to answer the
+question?
+Present several successful and unsuccessful examples. Explain why answer-set
+coverage and factuality are different evaluation objectives, rather than treating their
+numerical values as interchangeable.
+Inspect whether either implementation excludes difficult examples. In particular, the
+ConU implementation filters out examples without an acceptable sampled answer
+before splitting the data. Report the excluded proportion and examine performance on
+the unfiltered examples as well. ConU implementation
+Part 3: Conduct a controlled empirical study
+• Evaluate two target levels, such as 1 − α = 0.8 and 0.9.
+• Investigate one additional factor: the number of sampled responses, calibration-
+set size, or response length.
+• Visualize the tradeoff between reliability and usefulness: answer-set size for short-
+form QA, and retained information for long-form generation.
+• Keep test examples separate from calibration and any parameter tuning. Reuse
+generated outputs where possible to reduce computational cost.
+Students should explain observed trends and unexpected results; reproducing every
+experiment from the original papers is unnecessary.
+Part 4: Explore a simple combination
+Implement one small extension that transfers an idea from one method to the other.
+A suggested direction is to combine ConU’s semantic comparison of sampled
+answers with claim filtering:
+1. Generate several responses to the same question and decompose them into
+claims.
+2. Use semantic similarity to identify equivalent claims across responses.
+3. Score each claim by the proportion of responses containing an equivalent claim.
+4. Use these scores in the conformal factuality filtering procedure and recalibrate its
+threshold.
+Compare this extension with an existing claim-scoring method at the same sampling
+budget. Investigate whether it retains more useful claims at comparable factuality, and
+examine failures caused by repeated but incorrect claims.
+A well-executed negative result is acceptable. Assessment should reward sound
+reasoning, reproducible experiments, and honest analysis rather than improvement
+alone. A new theoretical guarantee is not required.
+Final Report and Deliverables
+Submit a report covering motivation, methods, experimental setup, results, failure
+analysis, and conclusions, together with runnable code, configurations, plots, a poster,
+and individual contribution statements.
+Recommended computational scope
+Hardware: 1 × NVIDIA A6000.
+Proposed allocation cap: 20 GPU-hours per team for the complete project. This is a
+planning limit, not a measured runtime estimate.
+No model training is required. Use the cached generations and existing annotations
+for the main reproduction and calibration experiments. Fix one inference model for
+any new local generations.
+Use one manageable subset per setting. For the supplementary generation and
+combination study, use at most 50 prompts per setting and up to five responses per
+prompt. Select these prompts before inspecting model outcomes, and reuse the same
+outputs across target levels and compatible comparisons.
+Keep calibration, development, and test examples disjoint. A small pilot must account
+for generation, semantic comparisons, claim scoring, and evaluation, including any
+auxiliary models. New generations supplement the cached-output experiments; the
+small supplementary subset alone should not be used to claim reliable coverage or
+factuality guarantees.

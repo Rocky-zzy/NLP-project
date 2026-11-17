@@ -1,0 +1,17 @@
+{
+ "run_id": "deepseek-flash_pilot12_2026-11-17",
+ "model_display_name": "DeepSeek Flash",
+ "model_api_identifier": "not recorded (evaluated through an external harness)",
+ "harness": "user-operated external harness, results pasted back on 2026-11-17",
+ "date": "2026-11-17",
+ "protocol_file": "adjudication_prompt.md",
+ "protocol_sha256": "4b97fe02bdc57d50833f09171214ad1db4711f350942af570faaeff627dbf19a",
+ "input_file": "pilot_12_claims.jsonl",
+ "input_sha256": "9166965979e7235fc1a5fc7b21883be2979a0ce622f925b3c942eab74768518f",
+ "n_records": 12,
+ "decoding_settings": "not recorded (harness did not expose them)",
+ "raw_output_file": "deepseek-flash_pilot12_2026-11-17.raw.jsonl",
+ "raw_output_sha256": "310f6e016b9b3f4c6eaf47979dc1cdccd2b0e873414d71a0b3a540d62878f64e",
+ "second_model_seen_this_output": false,
+ "note": "Stored verbatim as received. Labels and prior judgments were never shown to the model."
+}
