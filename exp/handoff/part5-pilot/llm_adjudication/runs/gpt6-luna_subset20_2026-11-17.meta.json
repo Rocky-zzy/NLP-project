@@ -1,0 +1,19 @@
+{
+ "run_id": "gpt6-luna_subset20_2026-11-17",
+ "model_display_name": "GPT6-Luna",
+ "model_api_identifier": "not recorded (evaluated through an external harness)",
+ "harness": "user-operated external harness, results pasted back on 2026-11-17",
+ "date": "2026-11-17",
+ "protocol_file": "adjudication_prompt.md",
+ "protocol_sha256": "4b97fe02bdc57d50833f09171214ad1db4711f350942af570faaeff627dbf19a",
+ "input_file": "gpt6-subset-20.ids.txt applied to factscore_80_blind.jsonl",
+ "input_sha256": "3a3f7c6df3c8cfa56124cf7f62395048d1f781a8f97548eba2d96ad3483895a2  (factscore_80_blind.jsonl, working-tree bytes)",
+ "n_records": 20,
+ "decoding_settings": "not recorded (harness did not expose them)",
+ "raw_output_file": "gpt6-luna_subset20_2026-11-17.raw.jsonl",
+ "raw_output_sha256": "6418aa04535196ea98a9fb925e9fd2f8531e0734df5538972ad4186872232e83",
+ "prior_model_seen_this_output": false,
+ "note": "Stored verbatim as received. The 20 items are a stratified subset of the 80; DeepSeek Flash runs the full 80 separately.",
+ "subset_ids_file": "gpt6-subset-20.ids.txt",
+ "subset_ids_sha256": "02afa5f11899ca477f4e77a29a49e7a924e96e339bbe24d888d8a1609e5266bc"
+}
