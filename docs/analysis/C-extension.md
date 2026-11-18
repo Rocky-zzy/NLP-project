@@ -107,6 +107,51 @@ The two label sets do not score the same claims (270 versus 217): retention is a
 ratio computed within each set, so the weak/grounded pairs are comparable, but
 the raw claim counts are not.
 
+## The two objections the label audit left open
+
+The grounded labels came from a judge that saw only the first 3,000 characters of
+each extract, and that extract was also the evidence it was checking against.
+Part 5 tests both objections with an independent blind protocol
+([part5-evidence-adjudication.md](../../reports/part5-evidence-adjudication.md));
+three of its results bear directly on the numbers above.
+
+**Truncation does not inflate them.** Forty claims were re-adjudicated under two
+conditions, extract cut at 3,000 characters and whole extract. Of the 24 claims
+whose two copies genuinely differ, exactly one changed verdict, and it changed
+toward the weaker verdict when the text was cut. That is the only direction the
+protocol allows: a `supported` or `contradicted` verdict needs positive evidence
+inside the visible window, so hiding text can only turn those into `unknown`.
+The cap makes the rates below conservative.
+
+**The adjudicator is not deterministic.** Sixteen of the forty claims had
+byte-identical evidence in both conditions; two of the sixteen received different
+verdicts. The measurement floor is about 12%, so differences of that size in this
+section are not interpretable.
+
+**"Contradicted" is a definition.** Of the 21 claims the grounded judge called
+contradicted, the independent adjudicator recovered 3 and returned 18 `unknown`,
+because an invented career is *not mentioned* by the article rather than refuted
+by it. The stricter reading is what the protocol mandates, and it cannot catch
+whole-cloth fabrication — the dominant error in these responses.
+
+## The similarity threshold, measured
+
+Stricter clustering thresholds confine the 0.6 default's problem to the encoder,
+not to the threshold:
+
+| threshold | clusters | mean size | real claims at unanimous support | contradicted among them | rate |
+|---:|---:|---:|---:|---:|---:|
+| 0.60 | 227 | 2.42 | 304 | 50 | 16.4% |
+| 0.75 | 458 | 1.20 | 79 | 8 | 10.1% |
+| 0.85 | 535 | 1.03 | 14 | 3 | 21.4% |
+| 0.90 | 546 | 1.01 | 4 | 0 | 0.0% |
+
+Coverage collapses first — 67% to 0.9% of the 452 real claims — while the
+contradiction rate does not fall. Claims all five samples agree on and Wikipedia
+denies are agreements, and no similarity threshold undoes an agreement. The 0.85
+and 0.90 cells rest on 14 and 4 claims and should be read as "no better", not
+"better".
+
 ## What this means
 
 - The extension is a **negative result**. Consistency is a real but weak signal;
@@ -130,4 +175,15 @@ the raw claim counts are not.
   rate above is a multiple of 1/24 and the intervals are wide. A one-response
   change moves the vacuous all-correct rate by 4 points.
 - The extension's similarity threshold was fixed at 0.6 for comparability with
-  the short-form line, not tuned.
+  the short-form line, not tuned. The sensitivity analysis above shows that
+  tuning it would not have helped.
+- **Run-to-run noise is about 12%** on byte-identical input (Part 5, paired
+  probe). The four-way tables in this section differ by less than that in some
+  cells, and those cells should not be over-read.
+- **The contradiction rate is conditional on a definition.** It counts "the
+  article asserts something incompatible" together with "the article never
+  mentions the fabrication". Under a strict evidence-only reading most of those
+  claims are `unknown`, so 16.4% is an upper bound on what evidence can refute.
+- The label audit in this section used the same cached extract as the evidence it
+  was checking. Part 5 re-adjudicates 40 of these claims with an independent
+  protocol and reproduces the direction of the conclusion, not the exact rates.

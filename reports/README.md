@@ -11,8 +11,8 @@ brief asks for; Part 5 is the optional research appendix.
 | 1a, 2a, 3a — ConU on TriviaQA | [A-conu-sections.md](../docs/analysis/A-conu-sections.md) | 82 lines | reviewed against the repo in [A4-reproduction-review.md](../docs/analysis/A4-reproduction-review.md) and [A5-resampling-review.md](../docs/analysis/A5-resampling-review.md) |
 | 1b, 2b, 3b — conformal factuality | [B-factuality-sections.md](B-factuality-sections.md) | 396 lines | reviewed in [B-report-review.md](../docs/analysis/B-report-review.md) |
 | 1c — shared infrastructure | [C-infrastructure-sections.md](C-infrastructure-sections.md) | 104 lines | complete, all statements checkable from the repository |
-| 4 — cross-response claim scoring | [C-extension.md](../docs/analysis/C-extension.md) | 126 lines | complete; every number comes from a committed result file |
-| 5 — evidence adjudication (bonus) | [part5-pilot/README.md](../exp/handoff/part5-pilot/README.md) | — | data and analysis records only, no prose section yet |
+| 4 — cross-response claim scoring | [C-extension.md](../docs/analysis/C-extension.md) | 189 lines | complete; every number comes from a committed result file, and the two label objections are now measured rather than deferred |
+| 5 — evidence adjudication (bonus) | [part5-evidence-adjudication.md](part5-evidence-adjudication.md) | 231 lines | complete; research extension beyond the four required parts |
 
 Supporting material that is not itself a section:
 
@@ -53,15 +53,14 @@ Part 1c documents the convention.
 
 ## What is missing before submission
 
-1. **Contribution statements for B and C.** A's is in
-   [docs/contributions/A.md](../docs/contributions/A.md); the evidence index for
-   the other two is in [docs/contributions/README.md](../docs/contributions/README.md).
-2. **Part 5 has no written section.** The runs, validation records and the B2
-   table are complete; only the prose is missing. It is optional.
-3. **A single document.** The four drafts were written independently and do not
+1. **Contribution statement for B.** A's is in
+   [docs/contributions/A.md](../docs/contributions/A.md), C's draft is in
+   [C.md](../docs/contributions/C.md), and the evidence index for both is in
+   [docs/contributions/README.md](../docs/contributions/README.md).
+2. **A single document.** The five drafts were written independently and do not
    share a numbering scheme, a notation for the conformal quantities, or a
    reference list. B's draft already carries `Limitations` and `References`;
-   the assembled report should keep one of each, not four.
+   the assembled report should keep one of each, not five.
 
 ## What is deliberately not in the repository
 
