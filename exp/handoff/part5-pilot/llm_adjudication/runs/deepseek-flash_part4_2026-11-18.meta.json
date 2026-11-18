@@ -1,0 +1,28 @@
+{
+ "run_id": "deepseek-flash_part4_2026-11-18",
+ "model_display_name": "DeepSeek Flash",
+ "model_api_identifier": "not recorded (evaluated through an external harness)",
+ "harness": "user-operated external harness, 4 conversations of 20 items, pasted back on 2026-11-18",
+ "date": "2026-11-18",
+ "protocol_file": "adjudication_prompt.md",
+ "protocol_sha256": "4b97fe02bdc57d50833f09171214ad1db4711f350942af570faaeff627dbf19a",
+ "input_file": "part4_40_blind.jsonl, dispatched as the four chunks in part4_chunks.json",
+ "input_sha256": "112dcdb965c23b62e0a6a1efb6d83340ec530d1e3524020e45bdb952dce5a891",
+ "n_records": 80,
+ "json_parse_failures": 0,
+ "decoding_settings": "not recorded (harness did not expose them)",
+ "raw_output_files": [
+  "part4-batch1_2026-11-18.raw.txt",
+  "part4-batch2_2026-11-18.raw.txt",
+  "part4-batch3_2026-11-18.raw.txt",
+  "part4-batch4_2026-11-18.raw.txt"
+ ],
+ "raw_output_sha256": [
+  "c880706b3a2625e3893078d9580f9dcc6419ffbe1a322e0a34a3d31adcd61d4b",
+  "ce2fca5a1525501debcd0b052c49c4fe90b3578407918083dcb1a6533a4012da",
+  "b11609f256d59cb610c8a50484539b14dd4543128fdfab7201ce5d98f7643437",
+  "3ea327be7ddd6a0353b456e74297ee55e141956f8a1024cb5daf49d28c01e3e9"
+ ],
+ "design": "40 claims x 2 evidence conditions (first_3000, full); the two conditions of a claim were never in the same chunk",
+ "note": "Stored verbatim as received. No repair was needed: all 80 records parse."
+}
