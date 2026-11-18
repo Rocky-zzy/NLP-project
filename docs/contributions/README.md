@@ -7,7 +7,7 @@ trust. [A.md](A.md) is the model to follow.
 | Person | Area | Statement |
 |---|---|---|
 | A | ConU, short-form QA | [A.md](A.md) — written and reviewed |
-| B | conformal factuality, long-form | **missing** |
+| B | conformal factuality, long-form | [B.md](B.md) — written, pending review |
 | C | infrastructure, Part 4, Part 5 | [C.md](C.md) — draft, C to confirm |
 
 The report needs all three before submission; see

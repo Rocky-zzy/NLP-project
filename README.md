@@ -117,4 +117,7 @@ third_party/        upstream repos at pinned commits (ignored)
       ([short-form](docs/analysis/A-conu-cases.md),
       [long-form](docs/analysis/B-factuality-cases.md),
       [extension](docs/analysis/C-extension.md))
-- [ ] English report, poster, individual contribution statements
+- [ ] English report, poster
+- [x] individual contribution statements
+      ([A](docs/contributions/A.md), [B](docs/contributions/B.md),
+      [C draft](docs/contributions/C.md))

@@ -53,10 +53,11 @@ Part 1c documents the convention.
 
 ## What is missing before submission
 
-1. **Contribution statement for B.** A's is in
-   [docs/contributions/A.md](../docs/contributions/A.md), C's draft is in
-   [C.md](../docs/contributions/C.md), and the evidence index for both is in
-   [docs/contributions/README.md](../docs/contributions/README.md).
+1. **Contribution review.** A's statement is reviewed, B's statement is now
+   written and awaiting review, and C's statement remains a draft. See
+   [A.md](../docs/contributions/A.md), [B.md](../docs/contributions/B.md),
+   [C.md](../docs/contributions/C.md), and the
+   [evidence index](../docs/contributions/README.md).
 2. **A single document.** The five drafts were written independently and do not
    share a numbering scheme, a notation for the conformal quantities, or a
    reference list. B's draft already carries `Limitations` and `References`;
