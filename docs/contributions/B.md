@@ -22,11 +22,10 @@ and prepared the H3, H5, and H7 handoffs. For H3, I implemented the offline
 claim-splitting, three-way judging, frequency aggregation, strict parsers, and
 fake-client tests used when the extension moved to newly generated responses.
 
-I am also responsible for assembling the team's final project poster. That work
-will integrate the short-form, long-form, and extension results, the shared
+I was also responsible for designing and producing the team's final project
+poster. I integrated the short-form, long-form, and extension results, the shared
 tables and figures, the main limitations, and the individual contributions into
-one coherent visual narrative. The poster itself is still in progress and is not
-claimed as completed in this statement.
+one coherent visual narrative.
 
 ---
 
