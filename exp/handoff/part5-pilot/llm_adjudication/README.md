@@ -24,6 +24,15 @@ at support 1.0, plus 20 mixed. The pair is deliberately redundant — it measure
 whether the 3,000-character cap in `relabel.py` is what drives `absent`
 verdicts, which is the confound the A4 audit raised.
 
+Dispatch it as four chunks of 20, listed in `part4_chunks.json`. The two
+evidence conditions of a given claim are never placed in the same chunk: if the
+adjudicator met the same claim twice in one conversation it could copy its
+earlier answer, which would manufacture the very agreement the package exists to
+measure. Each chunk holds 10 records of each condition, so a batch-level effect
+cannot be mistaken for a condition effect. Sixteen of the 40 claims have an
+extract under 3,000 characters, so for those the two conditions are byte
+identical — split across chunks they become a free test-retest check.
+
 ## What the evaluator never sees
 
 - the FActScore annotation (`Y`/`S`/`N`/`U`);
