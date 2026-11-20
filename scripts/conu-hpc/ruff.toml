@@ -1,0 +1,3 @@
+# Archived source bytes are pinned in the run records.
+extend = "../../pyproject.toml"
+exclude = ["*.py"]

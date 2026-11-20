@@ -1,0 +1,141 @@
+--- a/conformal_uncertainty_criterion.py
++++ b/conformal_uncertainty_criterion.py
+@@ -1,17 +1,10 @@
+ import argparse
+-import pathlib
+ import pickle
+-import tqdm
+ import os
+ import random
+ import json
+ 
+-import accelerate
+-import datasets
+-from transformers import AutoModelForCausalLM, AutoTokenizer
+-
+ import numpy as np
+-import torch
+ 
+ 
+ parser = argparse.ArgumentParser()
+@@ -42,6 +35,11 @@
+ parser.add_argument('--correctness-threshold', type=float, default=0.7, help='for correctness evaluation')
+ parser.add_argument('--alpha', type=float, default=0.2, help='risk level')
+ # ----------------------------------------------------------------------------------------------------------------------
++parser.add_argument('--no-filter', action='store_true',
++                    help='Keep questions with no acceptable sampled answer')
++parser.add_argument('--a3-scores', help='Read A3 similarity scores JSONL instead of upstream pickle files')
++parser.add_argument('--fixed-split', help='Use frozen calibration/test IDs from this JSON file')
++parser.add_argument('--result-json', help='Save counts, threshold, and metrics to this JSON file')
+ args = parser.parse_args()
+ # run_name for saving experimental record
+ model_name = args.generate_model.split('\\')[-1] if '\\' in args.generate_model else args.generate_model
+@@ -69,41 +67,54 @@
+ random.seed(seed_value)
+ # 3. Set `numpy` pseudo-random generator at a fixed value
+ np.random.seed(seed_value)
+-# 4. Fix torch random seed
+-torch.manual_seed(seed_value)
+ # cache path for hf_datasets
+ os.environ["HF_DATASETS_CACHE"] = args.cache_dir
+-# set cuda device 0,1
+-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+-# ----------------------------------------------------------------------------------------------------------------------
+-# load generation
+-with open(f'{run_name}/cleaned_generations.pkl', 'rb') as record_file:
+-    generations = pickle.load(record_file)
+-# load similarity scores
+-with open(f'{run_name}/similarity_scores.pkl', 'rb') as record_file:
+-    similarity_scores = pickle.load(record_file)
+-
+-similarity_dict, similarity_for_correctness = similarity_scores
++# ----------------------------------------------------------------------------------------------------------------------
++if args.a3_scores:
++    with open(args.a3_scores, encoding='utf-8') as handle:
++        records = [json.loads(line) for line in handle]
++    generations = [{'id': record['qid']} for record in records]
++    similarity_dict = {record['qid']: dict(enumerate(record['similarity_matrix']))
++                       for record in records}
++    similarity_for_correctness = {record['qid']: record['similarity_to_canonical_gold']
++                                  for record in records}
++else:
++    with open(f'{run_name}/cleaned_generations.pkl', 'rb') as record_file:
++        generations = pickle.load(record_file)
++    with open(f'{run_name}/similarity_scores.pkl', 'rb') as record_file:
++        similarity_dict, similarity_for_correctness = pickle.load(record_file)
+ # ----------------------------------------------------------------------------------------------------------------------
+ # assumption: at least one acceptable generation
+ applied_generations = []
+ for generation in generations:
+     id = generation['id']
+     similarity_for_correctness_list = similarity_for_correctness[id]
+-    if max(similarity_for_correctness_list) >= args.correctness_threshold:
++    if args.no_filter or max(similarity_for_correctness_list) >= args.correctness_threshold:
+         applied_generations.append(generation)
+ 
+ total_num = len(applied_generations)
+-num_cal = int(total_num * args.split_ratio)
+-calibration_set = random.sample(applied_generations, num_cal)
+-test_set = [generation for generation in applied_generations if generation not in calibration_set]
++if args.fixed_split:
++    with open(args.fixed_split, encoding='utf-8') as handle:
++        split = json.load(handle)
++    calibration_ids, test_ids = split['calibration_ids'], split['test_ids']
++    all_ids = calibration_ids + test_ids
++    source_ids = [generation['id'] for generation in generations]
++    if len(all_ids) != len(set(all_ids)) or sorted(all_ids) != sorted(source_ids):
++        raise ValueError('Frozen split must partition all input question IDs.')
++    applied_by_id = {generation['id']: generation for generation in applied_generations}
++    calibration_set = [applied_by_id[qid] for qid in calibration_ids if qid in applied_by_id]
++    test_set = [applied_by_id[qid] for qid in test_ids if qid in applied_by_id]
++else:
++    num_cal = int(total_num * args.split_ratio)
++    calibration_set = random.sample(applied_generations, num_cal)
++    test_set = [generation for generation in applied_generations if generation not in calibration_set]
+ print('Applied num: ', total_num)
+ print('Calibration num: ', len(calibration_set))
+ print('Test num: ', len(test_set))
+ # ----------------------------------------------------------------------------------------------------------------------
+ # nonconformity scores in calibration set
+ nonconformity_scores = []
+-for cal_data in tqdm.tqdm(calibration_set):
++for cal_data in calibration_set:
+     cal_id = cal_data['id']
+     # for NS
+     sampled_similarity_dict = similarity_dict[cal_id]
+@@ -140,7 +151,7 @@
+ miscoverage_num = 0
+ total_set_size = 0
+ total_confidence_weighted_ss = 0
+-for test_data in tqdm.tqdm(test_set):
++for test_data in test_set:
+     test_id = test_data['id']
+     sampled_similarity_dict = similarity_dict[test_id]
+     sampled_correctness_similarity_list = np.array(similarity_for_correctness[test_id])
+@@ -171,5 +182,26 @@
+ miscoverage_rate = miscoverage_num / len(test_set)
+ print('EMR: ', miscoverage_rate)
+ print('APSS: ', total_set_size / len(test_set))
++if args.result_json:
++    covered_count = len(test_set) - miscoverage_num
++    result = {
++        'alpha': args.alpha,
++        'no_filter': args.no_filter,
++        'n_total': len(generations),
++        'n_used': total_num,
++        'n_dropped': len(generations) - total_num,
++        'dropped_fraction': (len(generations) - total_num) / len(generations),
++        'calibration_ids': [row['id'] for row in calibration_set],
++        'test_ids': [row['id'] for row in test_set],
++        'n_calibration': len(calibration_set),
++        'n_test': len(test_set),
++        'q_level': float(q_level),
++        'q_hat': float(q_hat),
++        'covered_count': covered_count,
++        'coverage': covered_count / len(test_set),
++        'average_set_size_slots': total_set_size / len(test_set),
++    }
++    with open(args.result_json, 'w', encoding='utf-8') as handle:
++        json.dump(result, handle, allow_nan=False)
+ 
+ 

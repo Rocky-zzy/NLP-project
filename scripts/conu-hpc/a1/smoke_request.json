@@ -1,0 +1,14 @@
+{
+  "model": "qwen2.5-14b-instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the capital of France? Reply with only the city name."
+    }
+  ],
+  "temperature": 0,
+  "top_p": 1,
+  "max_tokens": 16,
+  "seed": 0,
+  "n": 1
+}
